@@ -1,0 +1,139 @@
+/* Ajustamos el contenedor principal para mantener el diseño responsivo */
+.mi-cuenta-container {
+    display: flex;
+    height: 100%;
+    justify-content: space-evenly;
+    padding: 20px;
+    gap: 30px;
+    background-color: #f4f7fa;
+    transition: all 0.3s ease;
+    
+  }
+  
+  .mi-cuenta-left,
+  .mi-cuenta-right {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 600px;
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .mi-cuenta-left:hover,
+  .mi-cuenta-right:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  h2 {
+    color: #333;
+    font-size: 1.4em; /* Reducido el tamaño del título */
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  /* Ajustamos la apariencia de los campos del formulario */
+  .form-group {
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .form-group label {
+    font-size: 1em; /* Tamaño de fuente reducido */
+    color: #333;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px; /* Reducido el padding de los inputs */
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9em; /* Reducido el tamaño de la fuente */
+    margin-top: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    border-color: #007bff;
+  }
+  
+  /* Estilos del botón */
+  .submit-button {
+    width: 100%;
+    padding: 10px; /* Reducido el padding del botón */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em; /* Tamaño de fuente más pequeño */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Mensajes de error y éxito */
+  .error-message,
+  .success-message {
+    color: #ff4d4d;
+    font-size: 0.9em; /* Reducido el tamaño de los mensajes */
+    text-align: center;
+    margin-top: 10px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .success-message {
+    color: #28a745;
+  }
+  
+  /* Datos de la cuenta */
+  .cuenta-data p {
+    margin-bottom: 10px;
+    font-size: 1em; /* Reducido el tamaño de fuente */
+  }
+  
+  .cuenta-data i {
+    margin-right: 8px;
+    font-size: 1.3em; /* Reducido el tamaño del icono */
+    color: #007bff;
+  }
+  
+  /* Estilos responsivos para dispositivos móviles */
+  @media screen and (max-width: 768px) {
+    .mi-cuenta-container {
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+    }
+  
+    .mi-cuenta-left,
+    .mi-cuenta-right {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    h2 {
+      font-size: 1.3em; /* Título más pequeño en dispositivos móviles */
+    }
+  
+    .form-group input {
+      padding: 8px; /* Aseguramos un tamaño compacto en móviles */
+    }
+  
+    .submit-button {
+      padding: 10px;
+      font-size: 1em; /* Botón más pequeño en móviles */
+    }
+  }
+  

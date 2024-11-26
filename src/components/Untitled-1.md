@@ -1,0 +1,44 @@
+```
+└── 📁src
+    └── 📁assets
+        └── escudo-icon.ico
+        └── logo-blanco2.png
+        └── logo-institucion.png
+        └── react.svg
+    └── 📁components
+        └── PrivateRoute.jsx
+        └── Sidebar.jsx
+    └── 📁layouts
+        └── DashboardLayout.jsx
+    └── 📁pages
+        └── Aseguradoras.jsx
+        └── Asociaciones.jsx
+        └── Conductores.jsx
+        └── Dashboard.jsx
+        └── Empadronamiento.jsx
+        └── Login.jsx
+        └── MiCuenta.jsx
+        └── Personas.jsx
+        └── TUC.jsx
+        └── Usuarios.jsx
+        └── Vehiculos.jsx
+        └── VehiculosSeguros.jsx
+    └── 📁services
+        └── api.js
+        └── auth.js
+        └── personas.js
+        └── usuarios.js
+        └── vehiculos.js
+    └── 📁styles
+        └── dashboard.css
+        └── dashboardLayout.css
+        └── loginPage.css
+        └── miCuenta.css
+        └── personas.css
+        └── usuarios.css
+    └── 📁utils
+        └── authHelper.jsx
+    └── App.jsx
+    └── main.jsx
+    └── src.ini
+```

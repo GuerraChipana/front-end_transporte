@@ -1,0 +1,152 @@
+/* Estilos específicos para la página de Usuarios */
+.usuarios-container {
+  padding: 30px;
+  background-color: #f4f7fa;
+}
+
+.usuarios-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.usuarios-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.usuarios-table th,
+.usuarios-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.usuarios-table th {
+  background-color: #4caf50;
+  color: white;
+}
+
+.usuarios-table td {
+  background-color: #ffffff;
+}
+
+.usuarios-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 30px; /* Bordes redondeados */
+  font-size: 0.9rem; /* Botones más pequeños */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.usuarios-btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.usuarios-btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.usuarios-btn-warning {
+  background-color: #ffc107;
+  color: black;
+}
+
+.usuarios-btn-info {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.usuarios-btn-active {
+  background-color: #28a745; /* Verde para activos */
+}
+
+.usuarios-btn-inactive {
+  background-color: #dc3545; /* Rojo para inactivos */
+}
+
+.usuarios-btn:hover {
+  opacity: 0.8;
+}
+
+/* Estilos para los modales */
+
+/* Agregar a tu archivo usuarios.css */
+.modal-content.crear-usuario {
+  width: 100%; /* Menor tamaño para móviles */
+  max-width: 450px; /* Límite de ancho */
+  height: 100%;
+  max-height: 480px;
+  margin: auto;
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 100%;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h5 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.modal-header button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.modal-body {
+  margin-top: 15px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
