@@ -54,10 +54,11 @@ const Aseguradoras = () => {
         />
       </div>
 
+      {(rol === "superadministrador" || rol === "administrador") && (
       <div>
         <button className="aseguradora-button aseguradora-button-create" onClick={() => { setModalIsOpen(true); setTipoModal("crear"); }}>Crear Aseguradora</button>
       </div>
-
+      )}
       <AseguradoraTabla
         aseguradoras={filtroAseguradora}
         onEdit={(id) => {

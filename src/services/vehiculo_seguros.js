@@ -25,19 +25,6 @@ export const actualizarSeguroVehicular = async (id, formdata) => {
   }
 };
 
-export const listarSegurosVehiculares = async () => {
-  try {
-    const response = await api.get("/vehiculo-seguros");
-    return response.data;
-  } catch (error) {
-    if (error.response) {
-      throw new Error(error.response.data.message || "Error desconocido");
-    } else {
-      throw new Error("Error al listar los seguros vehiculares");
-    }
-  }
-};
-
 export const obtenerSeguroVehicularPorId = async (id) => {
   try {
     const response = await api.get(`/vehiculo-seguros/${id}`);
@@ -47,6 +34,19 @@ export const obtenerSeguroVehicularPorId = async (id) => {
       throw new Error(error.response.data.message || "Error desconocido");
     } else {
       throw new Error(`Error al obtener el seguro vehicular con el id ${id}`);
+    }
+  }
+};
+
+export const listarSegurosVehiculares = async () => {
+  try {
+    const response = await api.get("/vehiculo-seguros");
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(error.response.data.message || "Error desconocido");
+    } else {
+      throw new Error("Error al listar los seguros vehiculares");
     }
   }
 };
