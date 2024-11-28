@@ -3,15 +3,15 @@ import { listarSegurosVehiculares } from '../services/vehiculo_seguros';
 import { getUserRoleFromToken } from '../utils/authHelper';
 import SeguroVehicularTabla from '../components/vehiculo_seguros/vSeguroTable';
 import VehiculosSegurosModel from '../components/vehiculo_seguros/vSeguroModal';
-import { cambiarEstadoSeguroVehicular } from '../services/vehiculo_seguros';
 
 const SeguroVehiculares = () => {
+  const rol = getUserRoleFromToken();
   const [seguros, setSeguros] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [tipoModal, setTipoModal] = useState('crear');
   const [seguroId, setSeguroId] = useState(null);
   const [buscarPlaca, setBuscarPlaca] = useState('');
-  
+
   // Fetch all insurances on mount
   useEffect(() => {
     const fetchSeguros = async () => {
@@ -57,12 +57,13 @@ const SeguroVehiculares = () => {
       </div>
 
       <div>
-        <button
-          className="seguro-vehicular-button seguro-vehicular-button-create"
-          onClick={() => { setModalIsOpen(true); setTipoModal('crear'); }}
-        >
-          Crear Seguro Vehicular
-        </button>
+        {(rol === "superadministrador" || rol === "administrador") && (
+          <button
+            className="seguro-vehicular-button seguro-vehicular-button-create"
+            onClick={() => { setModalIsOpen(true); setTipoModal('crear'); }}
+          >
+            Crear Seguro Vehicular
+          </button>)}
       </div>
 
       <SeguroVehicularTabla
