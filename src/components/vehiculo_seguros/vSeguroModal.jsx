@@ -25,7 +25,7 @@ const VehiculosSegurosModel = ({ tipoModal, seguroId, setModalIsOpen, onUpdate }
                 setAseguradoras(aseguradorasData);
                 setVehiculos(vehiculosData);
                 setFilteredData({ aseguradoras: aseguradorasData, vehiculos: vehiculosData });
-                
+
                 if (tipoModal === "editar" && seguroId) {
                     const seguroData = await obtenerSeguroVehicularPorId(seguroId);
                     setFormData({
@@ -60,7 +60,7 @@ const VehiculosSegurosModel = ({ tipoModal, seguroId, setModalIsOpen, onUpdate }
     };
 
     const openModal = (campo) => setModalVisible(prev => ({ ...prev, [campo]: true }));
-    
+
     const selectOption = (id, tipo) => {
         const selected = tipo === "aseguradora" ? aseguradoras.find(item => item.id === id) : vehiculos.find(item => item.id === id);
         setFormData(prev => ({ ...prev, [`id_${tipo}`]: selected.id }));

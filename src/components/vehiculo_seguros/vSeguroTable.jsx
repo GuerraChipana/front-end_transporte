@@ -3,6 +3,7 @@ import { cambiarEstadoSeguroVehicular } from "../../services/vehiculo_seguros";
 import { getUserRoleFromToken } from "../../utils/authHelper";
 
 const SeguroVehicularTabla = ({ seguros, onEdit, onChangeState }) => {
+  const rol = getUserRoleFromToken();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -44,29 +45,30 @@ const SeguroVehicularTabla = ({ seguros, onEdit, onChangeState }) => {
           <th>Estado de Vencimiento</th>
           <th>Aseguradora</th>
           <th>Vehículo</th>
-          <th>Acciones</th>
+          {(rol === "superadministrador" || rol === "administrador") && (<th>Acciones</th>)}
+
         </tr>
       </thead>
       <tbody>
         {seguros.map((seguro) => (
           <tr key={seguro.id_vehseg}>
             <td>{seguro.id_vehseg}</td>
-                        <td>{seguro.n_poliza}</td>
+            <td>{seguro.n_poliza}</td>
             <td>{seguro.fecha_vigencia_desde}</td>
             <td>{seguro.fecha_vigencia_hasta}</td>
             <td>{seguro.estado_vencimiento}</td>
-           <td>{seguro.id_aseguradora.aseguradora}</td>
+            <td>{seguro.id_aseguradora.aseguradora}</td>
             <td>
               {seguro.id_vehiculo.placa} <br />
               <img src={seguro.id_vehiculo.imagen_url} width={55} alt="Vehículo" />
             </td>
-
-            <td>
+            {(rol === "superadministrador" || rol === "administrador") && (<td>
               <button onClick={() => onEdit(seguro.id_vehseg)}>Editar</button>
               <button onClick={() => handleChangeState(seguro.id_vehseg, seguro.estado)}>
                 {seguro.estado === 1 ? 'Desactivar' : 'Activar'}
               </button>
-            </td>
+            </td>)}
+
           </tr>
         ))}
       </tbody>
