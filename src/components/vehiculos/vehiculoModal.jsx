@@ -3,7 +3,7 @@ import { listarPersonas } from "../../services/personas"; // Función para obten
 import { registrarVehiculo, actualizarVehiculo, obtenerVehiculoPorId } from "../../services/vehiculos"; // Funciones para gestionar vehículos
 import { validateVehiculo } from "../../utils/validationHelper"; // Función de validación
 
-const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose,onVehiculoUpdated }) => {
+const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose, onVehiculoUpdated }) => {
     const [vehiculo, setVehiculo] = useState({
         imagen_url: "",
         placa: "",
@@ -123,7 +123,12 @@ const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose,onVehiculoUpdated }) 
                 onClose(); // Cierra el modal
             } catch (error) {
                 setLoading(false);
-                setErrores([error.message || "Hubo un error al guardar el vehículo."]);
+                if (error.response) {
+                    const backendErrors = error.response.data.errors || {};
+                    setErrores(backendErrors);
+                } else {
+                    alert(error.message || 'Error al procesar la solicitud');
+                }
             }
         }
     };
