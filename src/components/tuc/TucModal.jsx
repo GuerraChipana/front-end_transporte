@@ -5,11 +5,11 @@ import { actualizarTuc, registrarTuc, obtenerTucPorId } from "../../services/tuc
 
 const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
   const [formData, setFormData] = useState({
-    n_tuc: "",
-    ano_tuc: "",
-    id_asociacion: "",
-    id_vehiculo: "",
-    fecha_desde: "",
+    n_tuc: '',
+    ano_tuc: '',
+    id_asociacion: '',
+    id_vehiculo: '',
+    fecha_desde: '',
   });
 
 
@@ -19,11 +19,11 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
   const [modalVisible, setModalVisible] = useState({ asociacion: false, vehiculo: false });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({
-    n_tuc: "",
-    ano_tuc: "",
-    id_asociacion: "",
-    id_vehiculo: "",
-    fecha_desde: "",
+    n_tuc: '',
+    ano_tuc: '',
+    id_asociacion: '',
+    id_vehiculo: '',
+    fecha_desde: '',
   });
 
 
@@ -46,7 +46,10 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
           });
         }
       } catch (error) {
-        console.error("Error loading data:", error);
+        if (error.response && error.response.status === 404) {
+
+          alert("Error loading data:", error);
+        }
       }
     };
     loadData();
@@ -55,7 +58,17 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
   // manejar el cambio 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+
+    // Si el campo es n_tuc o ano_tuc, conviértelo a número
+    if (name === 'n_tuc' || name === 'ano_tuc') {
+      // Solo convierte a número si el valor no está vacío
+      setFormData(prev => ({
+        ...prev,
+        [name]: value ? Number(value) : ""
+      }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   // manejar el cambio de búsqueda
@@ -80,25 +93,30 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      let response;
       console.log("Datos del formulario:", formData); // Aquí se muestra el estado del formulario
-      // Asegurarte de que los campos numéricos sean números
       const formDataToSend = {
         ...formData,
-        n_tuc: formData.n_tuc ? Number(formData.n_tuc) : "",  // Asegúrate de que sea un número
-        ano_tuc: formData.ano_tuc ? Number(formData.ano_tuc) : "",  // Asegúrate de que sea un número
+        n_tuc: Number(formData.n_tuc),
+        ano_tuc: Number(formData.ano_tuc),
       };
       setLoading(true);
       if (tipoModal === "crear") {
-        await registrarTuc(formDataToSend);
+        response = await registrarTuc(formDataToSend);
       } else if (tipoModal === "editar") {
-        await actualizarTuc(tucId, formDataToSend);
+        response = await actualizarTuc(tucId, formDataToSend);
       }
       setLoading(false);
       onUpdate();
       setModalIsOpen(false);
     } catch (error) {
       setLoading(false);
-      setErrors([error.message || "Hubo un error al guardar el seguro."]);
+      if (error.response) {
+        const backendErrors = error.response.data.errors || {};
+        setErrors(backendErrors);
+      } else {
+        alert(error.message || 'Error al procesar la solicitud');
+      }
     }
   };
 

@@ -1,6 +1,5 @@
 import api from "./api";
 
-// Create a new association
 export const registrarAsociacion = async (formdata) => {
   try {
     const response = await api.post("/asociaciones", formdata);
@@ -14,7 +13,6 @@ export const registrarAsociacion = async (formdata) => {
   }
 };
 
-// Update an existing association
 export const actualizarAsociacion = async (id, formdata) => {
   try {
     const response = await api.patch(`/asociaciones/edit/${id}`, formdata);
@@ -28,7 +26,6 @@ export const actualizarAsociacion = async (id, formdata) => {
   }
 };
 
-// Get association by ID
 export const obtenerAsociacionPorId = async (id) => {
   try {
     const response = await api.get(`/asociaciones/listar/${id}`);
@@ -42,7 +39,6 @@ export const obtenerAsociacionPorId = async (id) => {
   }
 };
 
-// List all associations
 export const listarAsociaciones = async () => {
   try {
     const response = await api.get("/asociaciones/listar");
@@ -56,7 +52,6 @@ export const listarAsociaciones = async () => {
   }
 };
 
-// Change the status of an association
 export const cambiarEstadoAsociacion = async (id, estado) => {
   try {
     const response = await api.patch(`/asociaciones/estado/${id}`, estado);
