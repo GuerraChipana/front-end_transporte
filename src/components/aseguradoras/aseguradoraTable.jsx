@@ -17,7 +17,7 @@ const AseguradoraTabla = ({ aseguradoras, onEdit, onChangeState }) => {
 
       if (!detalleBaja || detalleBaja.length < 15) {
         setError("Debe proporcionar un motivo válido para la baja (mínimo 15 caracteres).");
-        setTimeout(() => setError(null), 5000);
+        setTimeout(() => setError(null), 2500);
         return;
       }
     }

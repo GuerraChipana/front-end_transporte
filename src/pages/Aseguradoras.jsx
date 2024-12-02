@@ -3,7 +3,7 @@ import AseguradoraTabla from '../components/aseguradoras/aseguradoraTable';
 import { listarAseguradoras } from '../services/aseguradoras';
 import { getUserRoleFromToken } from '../utils/authHelper';
 import AseguradoraModal from '../components/aseguradoras/aseguradoraModal';
-import '../styles/Aseguradora.css';  
+import '../styles/Aseguradora.css';
 
 const Aseguradoras = () => {
   const [aseguradoras, setAseguradoras] = useState([]);
@@ -55,9 +55,10 @@ const Aseguradoras = () => {
       </div>
 
       {(rol === "superadministrador" || rol === "administrador") && (
-      <div>
-        <button className="aseguradora-button aseguradora-button-create" onClick={() => { setModalIsOpen(true); setTipoModal("crear"); }}>Crear Aseguradora</button>
-      </div>
+        <div>
+          <button className="aseguradora-button aseguradora-button-create" onClick={() => { setModalIsOpen(true); setTipoModal("crear"); }}>
+            Crear Aseguradora</button>
+        </div>
       )}
       <AseguradoraTabla
         aseguradoras={filtroAseguradora}

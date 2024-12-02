@@ -15,7 +15,7 @@ export const registrarConductor = async (formdata) => {
 
 export const actualizarConductor = async (id, formdata) => {
   try {
-    const response = await api.patch(`/conductores/${id}`, formdata);
+    const response = await api.patch(`/conductores/edit/${id}`, formdata);
     return response.data;
   } catch (error) {
     if (error.response) {

@@ -27,7 +27,6 @@ const AsociacionTabla = ({ asociaciones, onEdit, onEstado }) => {
             onEstado();  // Actualizar el estado de la lista después de la operación.
         } catch (error) {
             setError("Error al cambiar el estado de la asociación.");
-            console.error("Error al cambiar estado:", error);  // Imprimir el error para depuración.
         } finally {
             setLoading(false);  // Desactivar estado de carga
         }

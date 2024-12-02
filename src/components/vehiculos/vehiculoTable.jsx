@@ -1,4 +1,3 @@
-import React from "react";
 import { cambiarEstadoVehiculo } from "../../services/vehiculos";
 import _ from 'lodash';
 import { getUserRoleFromToken } from "../../utils/authHelper";

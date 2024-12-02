@@ -81,7 +81,12 @@ const VehiculosSegurosModel = ({ tipoModal, seguroId, setModalIsOpen, onUpdate }
             setModalIsOpen(false);
         } catch (error) {
             setLoading(false);
-            setErrores([error.message || "Hubo un error al guardar el seguro."]);
+            if (error.response) {
+                const backendErrors = error.response.data.errors || {};
+                setErrores(backendErrors);
+            } else {
+                alert(error.message || 'Error al procesar la solicitud');
+            }
         }
     };
 
