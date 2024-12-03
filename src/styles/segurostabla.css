@@ -1,0 +1,128 @@
+/* Contenedor general de la tabla */
+.segurotabla-container {
+    width: 100%;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+/* Estilo general de la tabla */
+.segurotabla-container table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Encabezados de la tabla */
+.segurotabla-container th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Estilo de las celdas de la tabla */
+.segurotabla-container td {
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 15px;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+/* Filas pares con fondo ligeramente diferente */
+.segurotabla-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo cuando pasas el mouse por encima de una fila */
+.segurotabla-container tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Estilo de botones de acción */
+.segurotabla-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+    border: none;
+    font-weight: bold;
+}
+
+/* Botón de editar */
+.segurotabla-btn-editar {
+    background-color: #007bff;
+    color: white;
+}
+
+.segurotabla-btn-editar:hover {
+    background-color: #0056b3;
+}
+
+/* Botón de cambiar estado */
+.segurotabla-btn-cambiar-estado {
+    background-color: #bf1b05;
+    color: white;
+}
+
+.segurotabla-btn-cambiar-estado:hover {
+    background-color: #f93218;
+}
+
+/* Imagen de vehículo en las filas */
+.segurotabla-img-vehiculo {
+    width: 40px;
+    height: 40px;
+    
+    object-fit: cover;
+}
+
+/* Mensajes de error */
+.segurotabla-error {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Paginación */
+.segurotabla-paginacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.segurotabla-paginacion button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.segurotabla-paginacion button:hover {
+    background-color: #45a049;
+}
+
+.segurotabla-paginacion span {
+    font-size: 14px;
+    display: inline-block;
+    padding: 8px;
+    line-height: 32px;
+}

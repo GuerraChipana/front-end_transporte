@@ -1,0 +1,115 @@
+/* Estilos generales de la tabla */
+.asociacion-tabla-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  margin: 20px auto;
+  width: 95%;
+  max-width: 1200px;
+}
+
+.asociacion-tabla-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: fixed; /* Para mejorar la apariencia de la tabla */
+}
+
+.asociacion-tabla-container th,
+.asociacion-tabla-container td {
+  text-align: left;
+  padding: 12px 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.asociacion-tabla-container th {
+  background-color: #4CAF50;
+  color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.asociacion-tabla-container tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.asociacion-tabla-container tr:hover {
+  background-color: #e1e1e1;
+}
+
+/* Estilo para los botones */
+.asociacion-tabla-container button {
+  padding: 8px 16px;
+  font-size: 14px;
+  margin: 0 5px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Botón de Editar */
+.asociacion-tabla-container button.edit-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.asociacion-tabla-container button.edit-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Botón de Activar/Desactivar */
+.asociacion-tabla-container button.toggle-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.asociacion-tabla-container button.toggle-button:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
+
+/* Paginación */
+.asociacion-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.asociacion-pagination button {
+  padding: 8px 15px;
+  font-size: 14px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 5px;
+}
+
+.asociacion-pagination button:hover {
+  background-color: #2980b9;
+}
+
+.asociacion-pagination .disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.error-message {
+  padding: 10px;
+  background-color: #ffcccb;
+  color: #d8000c;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

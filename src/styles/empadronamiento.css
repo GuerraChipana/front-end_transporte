@@ -1,0 +1,74 @@
+/* Estilos para la página de Empadronamiento */
+
+.empadronamiento-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f6f9;
+  }
+  
+  .empadronamiento-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .empadronamiento-search-container {
+    margin-bottom: 20px;
+  }
+  
+  .empadronamiento-search-input {
+    width: 100%;
+    padding: 8px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+  }
+  
+  /* Estilo para los botones en la misma línea */
+  .empadronamiento-buttons-container {
+    display: flex;
+    justify-content: space-between; /* Alinea los botones a los extremos */
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .empadronamiento-button {
+    padding: 6px 12px; /* Reducido el tamaño del botón */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px; /* Reducido el tamaño de la fuente */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .empadronamiento-button:hover {
+    background-color: #45a049;
+  }
+  
+  .empadronamiento-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .empadronamiento-button-create {
+    background-color: #007BFF;
+  }
+  
+  .empadronamiento-button-create:hover {
+    background-color: #0056b3;
+  }
+  
+  .empadronamiento-tabla-container {
+    margin-top: 20px;
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  

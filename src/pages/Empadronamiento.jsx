@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react"
-import { listarEmpadronamiento } from "../services/empadronamiento"
-import { getUserRoleFromToken } from "../utils/authHelper"
-import EmpadronamientoModal from "../components/empadronamiento/EmpadronamientoModal"
-import EmpadronamientoTabla from "../components/empadronamiento/EmpadronamientoTable"
+import { useState, useEffect } from "react";
+import { listarEmpadronamiento } from "../services/empadronamiento";
+import { getUserRoleFromToken } from "../utils/authHelper";
+import EmpadronamientoModal from "../components/empadronamiento/EmpadronamientoModal";
+import EmpadronamientoTabla from "../components/empadronamiento/EmpadronamientoTable";
+import '../styles/empadronamiento.css'
 
 const Empadronamiento = () => {
   const rol = getUserRoleFromToken();
@@ -11,6 +12,7 @@ const Empadronamiento = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [empadronamientoId, setEmpadronamientoId] = useState(null);
   const [buscarEmpadronamiento, setBuscarEmpadronamiento] = useState('');
+  const [mostrarDesactivados, setMostrarDesactivados] = useState(false); // Estado para controlar si se muestran desactivados
 
   useEffect(() => {
     const fetchEmpadronamientos = async () => {
@@ -19,13 +21,22 @@ const Empadronamiento = () => {
         setEmpadronamientos(empadronamientoData);
       } catch (error) {
         console.error('Error al obtener las asociaciones', error);
-      };
+      }
     };
     fetchEmpadronamientos();
   }, []);
-  const filtroEmpadronamiento = empadronamientos.filter((empadronamiento) =>
-    String(empadronamiento.n_empadronamiento).toLowerCase().includes(buscarEmpadronamiento.toLowerCase())
-  );
+
+  const filtroEmpadronamiento = empadronamientos.filter((empadronamiento) => {
+    const esActivo = empadronamiento.estado === 1;
+    const esDesactivado = empadronamiento.estado === 0;
+    
+    // Si mostrarDesactivados es false, solo mostrar activos
+    return String(empadronamiento.n_empadronamiento)
+      .toLowerCase()
+      .includes(buscarEmpadronamiento.toLowerCase()) && 
+      (!mostrarDesactivados ? esActivo : esDesactivado); // Si mostrarDesactivados es true, mostrar desactivados
+  });
+
   const handleUpdate = () => {
     const fetchEmpadronamientos = async () => {
       try {
@@ -37,22 +48,42 @@ const Empadronamiento = () => {
     };
     fetchEmpadronamientos();
   };
+
   return (
-    <div>
+    <div className="empadronamiento-container">
       <h2>Gestión de Empadronamientos</h2>
-      <div className="empadronamientos-seach-container">
-        <input type="text" placeholder="Buscar N° Empadronamiento"
+      
+      <div className="empadronamiento-search-container">
+        <input 
+          type="text" 
+          placeholder="Buscar N° Empadronamiento"
           value={buscarEmpadronamiento}
-          onChange={(e) => setBuscarEmpadronamiento(e.target.value)} />
+          onChange={(e) => setBuscarEmpadronamiento(e.target.value)} 
+          className="empadronamiento-search-input"
+        />
       </div>
-      <div>
+      
+      {/* Contenedor para los botones alineados en la misma línea */}
+      <div className="empadronamiento-buttons-container">
+        {/* Botón para alternar entre activos y desactivados */}
+        <button 
+          className="empadronamiento-button" 
+          onClick={() => setMostrarDesactivados(!mostrarDesactivados)} // Alternar estado
+        >
+          {mostrarDesactivados ? "Mostrar activos" : "Mostrar desactivados"} {/* Cambiar texto del botón */}
+        </button>
+
+        {/* Botón para crear empadronamiento */}
         {(rol === "superadministrador" || rol === "administrador") && (
-          <button className="empadronamientos-button empadronamientos-button-create"
-            onClick={() => { setModalIsOpen(true); setTipoModal('crear') }}>
+          <button 
+            className="empadronamiento-button empadronamiento-button-create"
+            onClick={() => { setModalIsOpen(true); setTipoModal('crear') }}
+          >
             Crear Empadronamiento
           </button>
-        )};
+        )}
       </div>
+
       <EmpadronamientoTabla
         empradronamientos={filtroEmpadronamiento}
         onEdit={(id_empa) => {
@@ -60,8 +91,8 @@ const Empadronamiento = () => {
           setTipoModal('editar');
           setModalIsOpen(true);
         }}
-        onEstado={handleUpdate} />
-
+        onEstado={handleUpdate} 
+      />
 
       {modalIsOpen && (
         <EmpadronamientoModal
@@ -70,9 +101,9 @@ const Empadronamiento = () => {
           setModalIsOpen={setModalIsOpen}
           onUpdate={handleUpdate}
         />
-      )};
+      )}
     </div>
   );
 };
 
-export default Empadronamiento
+export default Empadronamiento;

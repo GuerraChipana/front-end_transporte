@@ -1,0 +1,123 @@
+/* Contenedor principal de la página */
+.tuc-page-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Estilo para el encabezado */
+.tuc-header {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Contenedor para la barra de búsqueda */
+.tuc-search-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+/* Input de búsqueda */
+.tuc-search-input {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.tuc-search-input:focus {
+  border-color: #007bff;
+}
+
+/* Contenedor para los botones de crear y filtro */
+.tuc-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Estilo para el botón de crear */
+.tuc-create-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tuc-create-button:hover {
+  background-color: #218838;
+}
+
+/* Botón de filtro activo/desactivado */
+.tuc-filter-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.tuc-filter-button.active {
+  background-color: #28a745;
+}
+
+.tuc-filter-button:hover {
+  background-color: #0056b3;
+}
+
+/* Contenedor para la tabla */
+.tuc-table-container {
+  margin-top: 30px;
+}
+
+/* Estilo para la tabla de TUC */
+.tuc-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tuc-table th, .tuc-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.tuc-table th {
+  background-color: #f4f4f4;
+  font-weight: 600;
+}
+
+/* Estilo para los modales */
+.tuc-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tuc-modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+}

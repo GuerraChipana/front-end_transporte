@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { registrarEmpadronamiento, actualizarEmpadronamiento, obtenerEmpadronamientoPorId } from "../../services/empadronamiento";
 import { listarVehiculos } from "../../services/vehiculos";
+import '../../styles/empadronamientoModal.css';
 
 const EmpadronamientoModal = ({ tipoModal, empadronamientoId, setModalIsOpen, onUpdate }) => {
-
     const [formData, setFormData] = useState({
         n_empadronamiento: '',
         id_vehiculo: '',
@@ -27,7 +27,7 @@ const EmpadronamientoModal = ({ tipoModal, empadronamientoId, setModalIsOpen, on
                 if (tipoModal === 'editar' && empadronamientoId) {
                     const empadronamientoData = await obtenerEmpadronamientoPorId(empadronamientoId);
                     setFormData({
-                        n_empadronamiento: Number(empadronamientoData.n_empadronamiento),  // Se debe corregir esto
+                        n_empadronamiento: Number(empadronamientoData.n_empadronamiento),
                         id_vehiculo: empadronamientoData.id_vehiculo?.id || "",
                     });
                 }
@@ -85,7 +85,7 @@ const EmpadronamientoModal = ({ tipoModal, empadronamientoId, setModalIsOpen, on
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validateForm()) return;  // Si hay errores, no enviamos el formulario
+        if (!validateForm()) return;
 
         setLoading(true);
         try {
@@ -109,11 +109,16 @@ const EmpadronamientoModal = ({ tipoModal, empadronamientoId, setModalIsOpen, on
         }
     };
 
+    // Función para manejar el cierre del modal al hacer clic en "Cancelar"
+    const handleCancel = () => {
+        setModalIsOpen(false);  // Cierra el modal
+    };
+
     return (
-        <div>
-            <h3>{tipoModal === 'crear' ? "Registrar Empadronamiento" : "Editar Empadronamiento"}</h3>
-            <form onSubmit={handleSubmit}>
-                <label>N° Empadronamiento</label>
+        <div className="empadronamiento-modal__wrapper">
+            <h3 className="empadronamiento-modal__header">{tipoModal === 'crear' ? "Registrar Empadronamiento" : "Editar Empadronamiento"}</h3>
+            <form onSubmit={handleSubmit} className="empadronamiento-modal__form">
+                <label className="empadronamiento-modal__label">N° Empadronamiento</label>
                 <input
                     type="text"
                     name="n_empadronamiento"
@@ -121,38 +126,48 @@ const EmpadronamientoModal = ({ tipoModal, empadronamientoId, setModalIsOpen, on
                     onChange={handleChange}
                     placeholder="Número de Empadronamiento"
                     required
+                    className="empadronamiento-modal__input"
                 />
-                {errors.n_empadronamiento && <p className="error">{errors.n_empadronamiento}</p>}
+                {errors.n_empadronamiento && <p className="empadronamiento-modal__error">{errors.n_empadronamiento}</p>}
 
-                <button type="button" onClick={openModal}>
+                <button type="button" onClick={openModal} className="empadronamiento-modal__select-btn">
                     {formData.id_vehiculo ? `Vehiculo: ${vehiculos.find(a => a.id === formData.id_vehiculo)?.placa}` : "Seleccionar Vehículo"}
                 </button>
-                {errors.id_vehiculo && <p className="error">{errors.id_vehiculo}</p>}
+                {errors.id_vehiculo && <p className="empadronamiento-modal__error">{errors.id_vehiculo}</p>}
 
-                {/* Botón de guardar o actualizar */}
-                <button type="submit" disabled={loading}>
-                    {loading ? "Guardando..." : tipoModal === 'crear' ? "Guardar" : "Actualizar"}
-                </button>
+                <div className="empadronamiento-modal__buttons">
+                    <button type="submit" disabled={loading} className="empadronamiento-modal__submit-btn">
+                        {loading ? "Guardando..." : tipoModal === 'crear' ? "Guardar" : "Actualizar"}
+                    </button>
+                    <button type="button" onClick={handleCancel} className="empadronamiento-modal__cancel-btn">
+                        Cancelar
+                    </button>
+                </div>
             </form>
 
             {/* Modal de búsqueda de vehículos */}
             {modalVisible && (
-                <div className="modal-buscar">
-                    <input
-                        type="text"
-                        onChange={handleSearchChange}
-                        placeholder="Buscar Vehículo"
-                    />
-                    <ul>
-                        {filteredData.vehiculos.map(vehiculo => (
-                            <li key={vehiculo.id}>
-                                <button onClick={() => selectOption(vehiculo.id)}>
-                                    {vehiculo.placa}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                    <button type="button" onClick={closeModal}>Cerrar</button> {/* Botón para cerrar el modal */}
+                <div className="vehiculo-search-modal">
+                    <div className="vehiculo-search-modal__content">
+                        <div className="empadronamiento-modal__content">
+                            <input
+                                type="text"
+                                onChange={handleSearchChange}
+                                placeholder="Buscar Vehículo"
+                                className="vehiculo-search-modal__search-input"
+                            />
+                            <ul className="vehiculo-search-modal__vehiculos-list">
+                                {filteredData.vehiculos.map(vehiculo => (
+                                    <li key={vehiculo.id} className="vehiculo-search-modal__vehiculo-item">
+                                        <button onClick={() => selectOption(vehiculo.id)} className="vehiculo-search-modal__vehiculo-btn">
+                                            {vehiculo.placa}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                            <button type="button" onClick={closeModal} className="vehiculo-search-modal__close-btn">X</button>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

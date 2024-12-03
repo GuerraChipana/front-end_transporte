@@ -1,0 +1,41 @@
+/* General Modal Styles */
+/* Contenedor del modal (fondo oscuro semitransparente) */
+.asociacion-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);  /* Fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegúrate de que se muestre encima de otros elementos */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease; /* Para un efecto de desvanecimiento */
+  }
+  
+  /* Contenido del modal (la ventana emergente) */
+  .asociacion-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  /* Animación para la aparición del modal */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  

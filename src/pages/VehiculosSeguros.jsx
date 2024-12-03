@@ -3,7 +3,7 @@ import { listarSegurosVehiculares } from '../services/vehiculo_seguros';
 import { getUserRoleFromToken } from '../utils/authHelper';
 import SeguroVehicularTabla from '../components/vehiculo_seguros/vSeguroTable';
 import VehiculosSegurosModel from '../components/vehiculo_seguros/vSeguroModal';
-
+import '../styles/seguros.css'
 const SeguroVehiculares = () => {
   const rol = getUserRoleFromToken();
   const [seguros, setSeguros] = useState([]);

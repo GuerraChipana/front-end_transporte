@@ -1,0 +1,297 @@
+/* Modal Principal de Seguro Vehicular */
+.seguro-vehicular-modal__wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px; /* Ajusta el tamaño máximo del modal */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Botones de Acción dentro del Modal */
+  .seguro-vehicular-modal__buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  
+  /* Botón de Cancelar */
+  .seguro-vehicular-modal__cancel-btn {
+    padding: 12px 18px;
+    background-color: #e6e6e6;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .seguro-vehicular-modal__cancel-btn:hover {
+    background-color: #ccc;
+  }
+  
+  /* Encabezado del Modal */
+  .seguro-vehicular-modal__header {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4a90e2;
+    margin-bottom: 15px;
+  }
+  
+  /* Formulario dentro del Modal */
+  .seguro-vehicular-modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Etiquetas de los campos */
+  .seguro-vehicular-modal__label {
+    font-weight: bold;
+    color: #333;
+    font-size: 1rem;
+  }
+  
+  /* Estilo para los Inputs */
+  .seguro-vehicular-modal__input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .seguro-vehicular-modal__input:focus {
+    border-color: #4a90e2;
+  }
+  
+  /* Error en los formularios */
+  .seguro-vehicular-modal__error {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: -15px;
+  }
+  
+  /* Botón para seleccionar la Aseguradora o Vehículo */
+  .seguro-vehicular-modal__select-btn {
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+  }
+  
+  .seguro-vehicular-modal__select-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Botón de Submit (Registrar o Actualizar) */
+  .seguro-vehicular-modal__submit-btn {
+    padding: 12px 20px;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .seguro-vehicular-modal__submit-btn:disabled {
+    background-color: #ccc;
+  }
+  
+  .seguro-vehicular-modal__submit-btn:hover:enabled {
+    background-color: #357abd;
+  }
+  
+  /* Modal de búsqueda de Aseguradoras */
+  .aseguradora-search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9998;
+  }
+  
+  /* Contenido del Modal de Aseguradora */
+  .aseguradora-search-modal__content {
+    position: relative;
+    background-color: white;
+    padding: 25px;
+    max-width: 450px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Input de búsqueda dentro del modal de Aseguradora */
+  .aseguradora-search-modal__search-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.95rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .aseguradora-search-modal__search-input:focus {
+    border-color: #4a90e2;
+  }
+  
+  /* Lista de Aseguradoras */
+  .aseguradora-search-modal__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Elemento de Aseguradora en la lista */
+  .aseguradora-search-modal__item {
+    margin-bottom: 10px;
+  }
+  
+  /* Botón para seleccionar una Aseguradora */
+  .aseguradora-search-modal__select-btn {
+    padding: 12px;
+    font-size: 1rem;
+    width: 100%;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s;
+  }
+  
+  .aseguradora-search-modal__select-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Botón para cerrar el Modal de Aseguradora */
+  .aseguradora-search-modal__close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 12px;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .aseguradora-search-modal__close-btn:hover {
+    background-color: #e45c4d;
+  }
+  
+  /* Modal de búsqueda de Vehículos */
+  .vehiculo-search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9998;
+  }
+  
+  /* Contenido del Modal de Vehículo */
+  .vehiculo-search-modal__content {
+    position: relative;
+    background-color: white;
+    padding: 25px;
+    max-width: 450px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Input de búsqueda dentro del modal de Vehículo */
+  .vehiculo-search-modal__search-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.95rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .vehiculo-search-modal__search-input:focus {
+    border-color: #4a90e2;
+  }
+  
+  /* Lista de Vehículos */
+  .vehiculo-search-modal__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Elemento de Vehículo en la lista */
+  .vehiculo-search-modal__item {
+    margin-bottom: 10px;
+  }
+  
+  /* Botón para seleccionar un Vehículo */
+  .vehiculo-search-modal__select-btn {
+    padding: 12px;
+    font-size: 1rem;
+    width: 100%;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s;
+  }
+  
+  .vehiculo-search-modal__select-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Botón para cerrar el Modal de Vehículo */
+  .vehiculo-search-modal__close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 12px;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .vehiculo-search-modal__close-btn:hover {
+    background-color: #e45c4d;
+  }
+  

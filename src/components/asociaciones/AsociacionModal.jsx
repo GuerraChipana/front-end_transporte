@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { registrarAsociacion, actualizarAsociacion, obtenerAsociacionPorId } from '../../services/asociaciones';
+import '../../styles/asociacionesModal.css'
 
 const AsociacionModal = ({ tipoModal, asociacionId, setModalIsOpen, onUpdate }) => {
   const [formData, setFormData] = useState({
@@ -70,9 +71,12 @@ const AsociacionModal = ({ tipoModal, asociacionId, setModalIsOpen, onUpdate }) 
     { label: 'Documento', name: 'documento' },
   ];
 
+  // Renderiza el modal solo si `setModalIsOpen` es verdadero
+  if (!setModalIsOpen) return null; // Si el modal no debe ser visible, no se renderiza nada
+
   return (
-    <div>
-      <div>
+    <div className="asociacion-modal-container">
+      <div className="asociacion-modal-content">
         <h3>{tipoModal === 'crear' ? 'Registrar Seguro Vehicular' : 'Editar Seguro Vehicular'}</h3>
         <form onSubmit={handleSubmit}>
           {fields.map((field) => (

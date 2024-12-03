@@ -37,7 +37,6 @@ const VehiculosTable = ({ vehiculos, onEdit, onChangeState }) => {
                     <th>Propietario 1</th>
                     <th>Propietario 2</th>
                     <th>Año de compra</th>
-                    <th>Estado</th>
                     {(rol === "superadministrador" || rol === "administrador") && (<th>Acciones</th>)}
                 </tr>
             </thead>
@@ -54,14 +53,12 @@ const VehiculosTable = ({ vehiculos, onEdit, onChangeState }) => {
                         <td>{`${vehiculo.propietario1.dni} ${_.startCase(vehiculo.propietario1.nombre.toLowerCase())}`}</td>
                         <td>{vehiculo.propietario2 ? `${vehiculo.propietario2.dni} ${_.startCase(vehiculo.propietario2.nombre.toLowerCase())}` : "No asignado"}</td>
                         <td>{vehiculo.ano_de_compra}</td>
-                        <td>{vehiculo.estado === 1 ? "Activo" : "Inactivo"}</td>
                         <td>
                             {(rol === "superadministrador" || rol === "administrador") && (
                                 <>
                                     <button onClick={() => onEdit(vehiculo.id)}>Editar</button>
                                     <button onClick={() => handleChangeState(vehiculo.id, vehiculo.estado)}>
-                                        Cambiar Estado
-                                    </button>
+                                        {vehiculo.estado === 1 ? 'Desactivar' : 'Activar'}                                    </button>
                                 </>
                             )}
                         </td>

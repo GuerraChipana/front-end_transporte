@@ -1,0 +1,215 @@
+/* Contenedor principal de la tabla Tuc */
+.tuc-tabla-container {
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  width: 95%;
+  max-width: 1200px;
+}
+
+/* Estilo de la tabla Tuc */
+.tuc-tabla-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 20px;
+}
+
+/* Estilo para las celdas y cabeceras de la tabla */
+.tuc-tabla-table th,
+.tuc-tabla-table td {
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+  word-wrap: break-word;
+}
+
+.tuc-tabla-table th {
+  background-color: #05488b;
+  color: white;
+}
+
+.tuc-tabla-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.tuc-tabla-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.tuc-tabla-table td img {
+  border-radius: 8px;
+  max-width: 40px;
+}
+
+/* Botones de la tabla Tuc */
+.tuc-tabla-button {
+  padding: 6px 12px;
+  font-size: 12px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: white;
+  width: 100px;
+  transition: background-color 0.3s ease;
+}
+
+.tuc-tabla-button:hover {
+  background-color: #2980b9;
+}
+
+.tuc-tabla-button-desactivar {
+  background-color: #e74c3c;
+}
+
+.tuc-tabla-button-desactivar:hover {
+  background-color: #c0392b;
+}
+
+.tuc-tabla-button-editar {
+  background-color: #3498db;
+}
+
+.tuc-tabla-button-editar:hover {
+  background-color: #006ab1;
+}
+
+/* Alineación de los botones de acción dentro de la tabla */
+.tuc-tabla-acciones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Contenedor de paginación */
+.tuc-tabla-pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.tuc-tabla-pagination-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  margin: 0 5px;
+  border: none;
+  background-color: #001c9a;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tuc-tabla-pagination-button:hover {
+  background-color: #082bc6;
+}
+
+.tuc-tabla-pagination-button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.tuc-tabla-pagination-button.active {
+  background-color: #3498db;
+}
+
+/* Estilo de los mensajes de error */
+.tuc-tabla-error-message {
+  padding: 10px;
+  background-color: #ffcccb;
+  color: #d8000c;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* Estado de vigencia - Colores y diseño en forma de óvalo */
+.tuc-tabla-estado {
+  font-weight: bold;
+  padding: 5px 8px;
+  border-radius: 20px;
+  font-size: 10px; /* Ajusta el tamaño del texto para que se vea mejor */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Colores según el estado de vigencia */
+.tuc-tabla-estado.no-vencido {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.tuc-tabla-estado.vencido {
+  background-color: #e67e22;
+  color: white;
+}
+
+/* Media Queries para Responsividad */
+
+/* Para dispositivos con pantallas de hasta 768px (tabletas y móviles) */
+@media screen and (max-width: 768px) {
+  .tuc-tabla-table th,
+  .tuc-tabla-table td {
+    padding: 8px; /* Reducimos el padding para pantallas pequeñas */
+    font-size: 14px; /* Reducimos el tamaño de la fuente */
+  }
+
+  /* Alineamos los botones de acción en una sola columna */
+  .tuc-tabla-acciones {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Aseguramos que los botones ocupen menos espacio */
+  .tuc-tabla-button {
+    width: 80px;
+    font-size: 10px; /* Ajustamos el tamaño del texto */
+  }
+
+  /* Hacemos que las celdas con estado (vencido, no vencido) también ocupen menos espacio */
+  .tuc-tabla-estado {
+    font-size: 8px;
+    padding: 4px 6px; /* Reducimos el padding */
+  }
+
+  /* Para la paginación */
+  .tuc-tabla-pagination-container {
+    flex-direction: column;
+  }
+}
+
+/* Para dispositivos con pantallas de hasta 480px (móviles pequeños) */
+@media screen and (max-width: 480px) {
+  .tuc-tabla-container {
+    width: 100%; /* La tabla ocupará todo el ancho disponible */
+  }
+
+  .tuc-tabla-table th,
+  .tuc-tabla-table td {
+    font-size: 12px; /* Reducimos aún más el tamaño de la fuente */
+    padding: 6px; /* Reducimos el padding */
+  }
+
+  .tuc-tabla-button {
+    width: 70px; /* Hacemos los botones aún más pequeños */
+  }
+
+  /* Los botones de acción ocupan más espacio en pantallas pequeñas */
+  .tuc-tabla-acciones {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tuc-tabla-estado {
+    font-size: 7px;
+    padding: 3px 5px;
+  }
+}

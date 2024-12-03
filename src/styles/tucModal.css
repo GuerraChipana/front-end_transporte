@@ -1,0 +1,206 @@
+/* Estilos Generales para el Modal */
+.tuc-modal-container-custom {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow-y: auto;
+  }
+  
+  .tuc-modal-container-custom.visible {
+    display: flex; /* Mostrar cuando sea necesario */
+  }
+  
+  /* Estilo de la ventana del modal */
+  .tuc-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px; /* Ajustar el tamaño */
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  /* Animación de entrada del modal */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Estilo para el botón de cerrar (si se desea) */
+  .tuc-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  /* Estilo de la búsqueda en los modales */
+  .modal-buscar-custom input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .modal-buscar-custom ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .modal-buscar-custom li {
+    padding: 8px;
+    background-color: #f7f7f7;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .modal-buscar-custom li:hover {
+    background-color: #e1e1e1;
+  }
+  
+  .modal-buscar-custom button {
+    all: unset;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  /* Estilos del formulario dentro del modal */
+  .tuc-modal-content form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .tuc-modal-content label {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .tuc-modal-content input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Estilos de los botones dentro del modal */
+  .tuc-modal-content button[type="button"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para el botón de "Guardar" y "Cancelar" con el mismo tamaño */
+  .tuc-modal-content button[type="submit"], /* Guardar */
+  .tuc-modal-content button[type="button"].cancelar { /* Cancelar */
+    padding: 12px 0;  /* Ajustar el padding para que tengan el mismo alto */
+    font-size: 16px;   /* Tamaño de fuente igual */
+    width: 100%;       /* Ancho 100% para ocupar todo el contenedor */
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;     /* Asegura que el botón sea de bloque */
+    margin-bottom: 15px; /* Separación entre los botones */
+  }
+  
+  /* Estilos para el botón "Guardar" (azul) */
+  .tuc-modal-content button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .tuc-modal-content button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos para el botón "Cancelar" (gris) */
+  .tuc-modal-content button[type="button"].cancelar {
+    background-color: #888;
+    color: white;
+    border: none;
+  }
+  
+  .tuc-modal-content button[type="button"].cancelar:hover {
+    background-color: #666;
+  }
+  
+  /* Estilos para los botones "Seleccionar Asociación" y "Seleccionar Vehículo" */
+  .tuc-modal-content button[type="button"].seleccionar {
+    background-color: #28a745; /* Verde */
+    color: white;
+    border: none;
+  }
+  
+  .tuc-modal-content button[type="button"].seleccionar:hover {
+    background-color: #218838;
+  }
+  
+  /* Estilos para los botones dentro del modal */
+  .tuc-modal-content button[type="button"]:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  /* Mensajes de error */
+  .tuc-modal-content p {
+    color: red;
+    font-size: 12px;
+    margin: 0;
+  }
+  
+  /* Estilo adicional para los botones de selección (asociación, vehículo) */
+  button[type="button"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    width: 100%;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #e1e1e1;
+  }
+  
+  button[type="button"]:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  /* Estilos para el fondo oscurecido */
+  .tuc-modal-container-custom {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
