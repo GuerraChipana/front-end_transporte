@@ -1,0 +1,154 @@
+/* Estilos generales para la tabla */
+.vehiculos-table-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 2px;
+  background-color: #f4f7fc;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
+}
+
+.vehiculos-table {
+  width: 100%;
+  max-width: 1150px; /* Limitar el ancho máximo de la tabla */
+  margin: 0 auto; /* Cenar la tabla */
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.vehiculos-table th {
+  text-align: center;
+  padding: 5px 0;
+  font-size: 12px;
+}
+.vehiculos-table td {
+  padding: 10px 10px; /* Reducir el espaciado */
+  text-align: center;
+  border-bottom: 1px solid #e1e1e1;
+  font-size: 16px; /* Aumentar el tamaño de la letra */
+  color: #000000; /* Hacer las letras más notorias */
+}
+
+.vehiculos-table th {
+  background-color: #003b76;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.vehiculos-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.vehiculos-table tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Efecto de zoom sobre la imagen */
+.vehiculos-table img {
+  transition: transform 0.3s ease;
+  max-width: 50px; /* Tamaño más pequeño para la imagen */
+  height: auto;
+}
+
+.vehiculos-table img:hover {
+  transform: scale(4);
+}
+
+/* Estilos para los botones */
+.vehiculos-table .button-editar,
+.vehiculos-table .button-cambiar-estado {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  font-size: 14px; /* Reducir el tamaño de la letra */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.vehiculos-table .button-editar {
+  background-color: #003b76;
+  padding: 8px 30px;
+  color: white;
+}
+
+.vehiculos-table .button-editar:hover {
+  background-color: #005ab4;
+  transform: scale(1.05);
+}
+
+.vehiculos-table .button-cambiar-estado {
+  color: white;
+}
+
+.vehiculos-table .button-desactivar {
+  background-color: #c61e0c;
+}
+
+.vehiculos-table .button-desactivar:hover {
+  background-color: #ff1900;
+  transform: scale(1.05);
+}
+
+.vehiculos-table .button-activar {
+  padding: 8px 27px;
+  background-color: #c61e0c;
+}
+
+.vehiculos-table .button-activar:hover {
+  background-color: #ff1900;
+}
+
+/* Estilos para la paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #f2f2f2;
+}
+
+.pagination .active {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .vehiculos-table th,
+  .vehiculos-table td {
+    font-size: 12px; /* Reducir aún más en pantallas pequeñas */
+    padding: 8px 12px;
+  }
+
+  .pagination button {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+
+  .vehiculos-table .button-editar,
+  .vehiculos-table .button-cambiar-estado {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

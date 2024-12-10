@@ -1,0 +1,491 @@
+/* Estilos generales del modal */
+.vehiculo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.vehiculo-modal-content {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 550px; /* Aumenté el máximo para más espacio */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 70%;
+  padding-top: revert-layer;
+}
+
+.vehiculo-modal h3 {
+  text-align: center;
+  margin-bottom: 11px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Estilos del formulario */
+.vehiculo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacio entre elementos */
+}
+
+.vehiculo-form label {
+  font-weight: bold;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #000000;
+}
+.vehiculo-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.vehiculo-input,
+.vehiculo-input-file,
+.vehiculo-search-input {
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 14px;
+  border: 0.7px 0 1px black;
+  font-size: 1rem;
+  width: 200px; /* Establece un ancho fijo más pequeño */
+  max-width: 100%;
+}
+.vehiculo-input {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.vehiculo-input:focus,
+.vehiculo-search-input:focus {
+  border-color: #4e9fdd;
+  outline: none;
+}
+
+.vehiculo-form-row {
+  margin-bottom: 5px; /* Espacio entre las filas */
+}
+.imagen-row {
+  display: grid;
+  grid-template-columns: 1fr; /* Solo una columna para la imagen */
+  gap: 10px;
+}
+.vehiculo-form-row .vehiculo-input,
+.vehiculo-form-row .vehiculo-select-button {
+  width: 40%; /* Hacemos los inputs más pequeños para que quepan en una fila */
+}
+
+.vehiculo-form-row .vehiculo-input-file {
+  width: 100%;
+}
+
+/* Medios para pantallas pequeñas */
+@media (max-width: 768px) {
+  .vehiculo-modal-content {
+    width: 95%;
+  }
+
+  .vehiculo-form {
+    gap: 8px;
+  }
+
+  .vehiculo-input,
+  .vehiculo-input-file,
+  .vehiculo-search-input,
+  .vehiculo-select-button,
+  .vehiculo-submit-button,
+  .vehiculo-close-button {
+    font-size: 0.9rem;
+  }
+
+  .vehiculo-modal h3 {
+    font-size: 1.2rem;
+  }
+  .vehiculo-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    gap: 15px; /* Espacio entre las celdas */
+  }
+  .vehiculo-form-row .vehiculo-input,
+  .vehiculo-form-row .vehiculo-select-button {
+    width: 100%; /* En pantallas pequeñas, los campos ocupan todo el ancho */
+  }
+}
+
+/* Botón para cerrar el Modal de Vehículo */
+.vehiculo-modal-personas-modal__close-btn {
+  top: 10px;
+  right: 10px;
+  padding: 12px;
+  background-color: #c11606;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.vehiculo-modal-personas-modal__close-btn:hover {
+  background-color: #b81a09;
+}
+.vehiculo-search-modal__close-btn:hover {
+  background-color: #ff1900;
+  transform: scale(1.05);
+}
+
+/* Estilo para el modal de propietarios */
+.vehiculo-modal-personas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* Más alto para estar sobre el formulario */
+  overflow: hidden;
+}
+
+.vehiculo-modal-personas-content {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  width: 100%; /* Ancho ajustado al contenido */
+  max-width: 400px; /* Máximo ancho para no hacer el modal tan grande */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 70%; /* Evitar que el modal sea demasiado alto */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.vehiculo-modal-personas h4 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Estilo para la lista de personas */
+.vehiculo-personas-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px; /* Altura máxima para la lista */
+  overflow-y: auto;
+  font-size: 1rem; /* Asegurarnos de que el texto sea legible */
+  word-wrap: break-word; /* Evita que las palabras largas desborden */
+  box-sizing: border-box; /* Incluye padding y border dentro del ancho total */
+}
+
+/* Estilo para cada opción en la lista */
+.vehiculo-persona-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+  color: black; /* Aseguramos que el texto sea negro */
+  transition: background-color 0.3s; /* Efecto al pasar el mouse */
+}
+/* Cambiar fondo a plomo cuando se pasa el mouse */
+.vehiculo-persona-item:hover {
+  color: black; /* Aseguramos que el texto permanezca negro */
+}
+
+/* Estilos generales del modal */
+.vehiculo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.vehiculo-modal-content {
+  background-color: #fff;
+  padding: 10px 10px 40px 40px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px; /* Aumenté el máximo para más espacio */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 100%;
+  padding-top: revert-layer;
+}
+
+.vehiculo-modal h3 {
+  text-align: center;
+  margin-bottom: 11px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Estilos del formulario */
+.vehiculo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacio entre elementos */
+}
+
+.vehiculo-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.vehiculo-input,
+.vehiculo-input-file {
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 14px;
+  border: 0.7px 0 1px black;
+  font-size: 1rem;
+  width: 200px; /* Establece un ancho fijo más pequeño */
+  max-width: 100%;
+}
+.vehiculo-search-input {
+  width: 60%;
+  position: relative;
+  left: 20px;
+  margin-top: -35px;
+}
+.vehiculo-input {
+  padding: 8px;
+  margin-top: 2px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 150px;
+}
+.vehiculo-input:focus,
+.vehiculo-search-input:focus {
+  border-color: #4e9fdd;
+  outline: none;
+}
+
+.vehiculo-select-button {
+  background-color: #e5e0e0;
+  width: 95%;
+  color: white;
+  padding: 8px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.vehiculo-select-button:hover {
+  background-color: #a1a1a2;
+}
+.vehiculo-submit-button {
+  padding: 12px 4px;
+  background-color: #003b76;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 10%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 40%;
+}
+
+.vehiculo-submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.vehiculo-submit-button:hover:not(:disabled) {
+  background-color: #005ebc;
+  transform: scale(1.05);
+}
+
+.vehiculo-close-button {
+  padding: 12px 4px;
+  background-color: #c61e0c;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 5%;
+  width: 40%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.vehiculo-close-button:hover {
+  background-color: #ff1900;
+  transform: scale(1.05);
+}
+
+.vehiculo-form-row {
+  margin-bottom: 1px; /* Espacio entre las filas */
+}
+.imagen-row {
+  width: 91%;
+  display: grid;
+  grid-template-columns: 1fr; /* Solo una columna para la imagen */
+  gap: 10px;
+}
+
+/* Estilos para la grid de formulario */
+.vehiculo-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+  gap: 8px; /* Espacio entre las celdas */
+}
+
+/* Medios para pantallas pequeñas */
+@media (max-width: 768px) {
+  .vehiculo-modal-content {
+    width: 95%;
+  }
+
+  .vehiculo-form {
+    gap: 8px;
+  }
+
+  .vehiculo-modal h3 {
+    font-size: 1.2rem;
+  }
+
+  /* En pantallas pequeñas, mostramos los campos en una sola columna */
+  .vehiculo-form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna */
+    gap: 15px; /* Espacio entre los campos */
+  }
+
+  /* Aseguramos que los campos tomen el 100% del ancho en pantallas pequeñas */
+  .vehiculo-input-wrapper {
+    width: 100%;
+  }
+}
+
+.vehiculo-select-button {
+  text-align: center;
+  color: #000000;
+  font-size: medium;
+  transition: background-color 0.3s;
+}
+
+/* Estilo para el modal de propietarios */
+.vehiculo-modal-personas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* Más alto para estar sobre el formulario */
+  overflow: hidden;
+}
+
+.vehiculo-modal-personas-content {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  width: 100%; /* Ancho ajustado al contenido */
+  max-width: 400px; /* Máximo ancho para no hacer el modal tan grande */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 70%; /* Evitar que el modal sea demasiado alto */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.vehiculo-modal-personas h4 {
+  text-align: center;
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Estilo para la lista de personas */
+.vehiculo-personas-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px; /* Altura máxima para la lista */
+  overflow-y: auto;
+  font-size: 1rem; /* Asegurarnos de que el texto sea legible */
+  word-wrap: break-word; /* Evita que las palabras largas desborden */
+  box-sizing: border-box; /* Incluye padding y border dentro del ancho total */
+}
+
+/* Estilo para cada opción en la lista */
+.vehiculo-persona-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+  color: black; /* Aseguramos que el texto sea negro */
+  transition: background-color 0.3s; /* Efecto al pasar el mouse */
+}
+
+/* Cambiar fondo a plomo cuando se pasa el mouse */
+.vehiculo-persona-item:hover {
+  color: black; /* Aseguramos que el texto permanezca negro */
+}
+
+/* Estilo de botón de selección con fondo azul */
+.vehiculo-persona-button {
+  padding: 4px 20px;
+  text-align: justify;
+  width: 80%;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.vehiculo-persona-button:hover {
+  background-color: #d4d8db;
+}
+
+/* Estilo para el botón de cierre */
+.vehiculo-modal-personas-modal__close-btn {
+  background-color: #a90e00;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  align-self: flex-end;
+  left: 5px;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.vehiculo-modal-personas-modal__close-btn:hover {
+  background-color: #c81d0a;
+  transform: scale(1.05);
+}

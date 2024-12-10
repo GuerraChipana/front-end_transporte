@@ -1,0 +1,165 @@
+/* Estilos generales para la tabla */
+.conductor-tabla-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px;
+  background-color: #f4f7fc;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
+}
+
+.conductor-tabla {
+  width: 100%;
+  max-width: 1200px; /* Limitar el ancho máximo de la tabla */
+  margin: 0 auto; /* Centrar la tabla */
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+/* Reducir el ancho de la columna de Restricción */
+.conductor-tabla-cell.restriccion {
+  width: 100px; /* Ajusta este valor según lo que necesites */
+  padding: 5px 10px;
+  font-size: 13px; /* Reducir tamaño de la fuente */
+  text-align: center; /* Alinear texto al centro si es necesario */
+}
+
+.conductor-tabla-cell.vehiculos {
+  font-size: 13px;
+}
+
+.conductor-tabla-cell.persona {
+  text-transform: capitalize; 
+  line-height: 1.4; 
+  font-size: 12px; 
+  word-wrap: break-word; 
+}
+
+.conductor-tabla th {
+  text-align: center;
+  padding: 10px 2.5px;
+  color: #fff;
+  background-color: #003b76;
+  font-weight: 600;
+}
+
+.conductor-tabla td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #e1e1e1;
+  color: #000;
+}
+
+.conductor-tabla tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.conductor-tabla tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Efecto de zoom sobre la imagen */
+.conductor-tabla img {
+  transition: transform 0.3s ease;
+  max-width: 50px;
+  height: auto;
+}
+
+.conductor-tabla img:hover {
+  transform: scale(1.5);
+}
+
+/* Estilos para los botones */
+.conductor-tabla-button-editar,
+.conductor-tabla-button-cambiar-estado {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.conductor-tabla-button-editar {
+  background-color: #003b76;
+  color: white;
+}
+
+.conductor-tabla-button-editar:hover {
+  background-color: #005ab4;
+  transform: scale(1.05);
+}
+
+.conductor-tabla-button-cambiar-estado {
+  color: white;
+}
+
+.conductor-tabla-button-desactivar {
+  background-color: #c61e0c;
+}
+
+.conductor-tabla-button-desactivar:hover {
+  background-color: #ff1900;
+  transform: scale(1.05);
+}
+
+.conductor-tabla-button-activar {
+  padding: 8px 27px;
+  background-color: #007bff;
+}
+
+.conductor-tabla-button-activar:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para la paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #f2f2f2;
+}
+
+.pagination .active {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .conductor-tabla th,
+  .conductor-tabla td {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .pagination button {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+
+  .conductor-tabla-button-editar,
+  .conductor-tabla-button-cambiar-estado {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

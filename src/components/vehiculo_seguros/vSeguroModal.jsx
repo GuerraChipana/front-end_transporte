@@ -105,9 +105,10 @@ const VehiculosSegurosModel = ({ tipoModal, seguroId, setModalIsOpen, onUpdate }
                     <button type="button" onClick={() => openModal("vehiculo")} className="seguro-vehicular-modal__select-btn">
                         {formData.id_vehiculo ? `Vehículo: ${vehiculos.find(v => v.id === formData.id_vehiculo)?.placa}` : "Seleccionar Vehículo"}
                     </button>
+                    <label>N° Poliza:</label>
                     <input type="text" name="n_poliza" value={formData.n_poliza} onChange={handleChange} className="seguro-vehicular-modal__input" placeholder="Número de Póliza" required />
-                    <input type="date" name="fecha_vigencia_desde" value={formData.fecha_vigencia_desde} onChange={handleChange} className="seguro-vehicular-modal__input" required />
-                    <input type="date" name="fecha_vigencia_hasta" value={formData.fecha_vigencia_hasta} onChange={handleChange} className="seguro-vehicular-modal__input" required />
+                    <label>Fecha de vigencia desde:</label><input type="date" name="fecha_vigencia_desde" value={formData.fecha_vigencia_desde} onChange={handleChange} className="seguro-vehicular-modal__input" required />
+                    <label>Fecha de vigencia hasta:</label><input type="date" name="fecha_vigencia_hasta" value={formData.fecha_vigencia_hasta} onChange={handleChange} className="seguro-vehicular-modal__input" required />
                     <button type="submit" className="seguro-vehicular-modal__submit-btn" disabled={loading}>{loading ? "Cargando..." : tipoModal === "crear" ? "Registrar" : "Actualizar"}</button>
                 </form>
                 <button type="button" onClick={() => setModalIsOpen(false)} className="seguro-vehicular-modal__cancel-btn">Cerrar</button>
@@ -115,14 +116,26 @@ const VehiculosSegurosModel = ({ tipoModal, seguroId, setModalIsOpen, onUpdate }
 
             {/* Modal de aseguradora */}
             {modalVisible.aseguradora && (
-                <div className="aseguradora-search-modal">
-                    <div className="aseguradora-search-modal__content">
-                        <button className="aseguradora-search-modal__close-btn" onClick={() => closeModal("aseguradora")}>Cerrar</button>
-                        <input type="text" onChange={(e) => handleSearchChange(e, "aseguradoras")} className="aseguradora-search-modal__search-input" placeholder="Buscar Aseguradora" />
-                        <ul className="aseguradora-search-modal__list">
+                <div className="modal-visible-aseguradora">
+                    <div className="modal-aseguradora-content">
+                        {/* Botón de cerrar */}
+                        <button className="modal-aseguradora-close-btn" onClick={() => closeModal("aseguradora")}>Cerrar</button>
+
+                        {/* Input de búsqueda */}
+                        <input
+                            type="text"
+                            onChange={(e) => handleSearchChange(e, "aseguradoras")}
+                            className="modal-aseguradora-search-input"
+                            placeholder="Buscar Aseguradora"
+                        />
+
+                        {/* Lista de aseguradoras filtradas */}
+                        <ul className="modal-aseguradora-list">
                             {filteredData.aseguradoras.map(aseguradora => (
-                                <li key={aseguradora.id} className="aseguradora-search-modal__item">
-                                    <button className="aseguradora-search-modal__select-btn" onClick={() => selectOption(aseguradora.id, "aseguradora")}>{aseguradora.aseguradora}</button>
+                                <li key={aseguradora.id} className="modal-aseguradora-item">
+                                    <button className="modal-aseguradora-select-btn" onClick={() => selectOption(aseguradora.id, "aseguradora")}>
+                                        {aseguradora.aseguradora}
+                                    </button>
                                 </li>
                             ))}
                         </ul>
@@ -132,20 +145,34 @@ const VehiculosSegurosModel = ({ tipoModal, seguroId, setModalIsOpen, onUpdate }
 
             {/* Modal de vehículo */}
             {modalVisible.vehiculo && (
-                <div className="vehiculo-search-modal">
-                    <div className="vehiculo-search-modal__content">
-                        <button className="vehiculo-search-modal__close-btn" onClick={() => closeModal("vehiculo")}>Cerrar</button>
-                        <input type="text" onChange={(e) => handleSearchChange(e, "vehiculos")} className="vehiculo-search-modal__search-input" placeholder="Buscar Vehículo" />
-                        <ul className="vehiculo-search-modal__list">
+                <div className="modal-visible-vehiculo">
+                    <div className="modal-vehiculo-content">
+                        {/* Botón de cerrar */}
+                        <button className="modal-vehiculo-close-btn" onClick={() => closeModal("vehiculo")}>Cerrar</button>
+
+                        {/* Input de búsqueda */}
+                        <input
+                            type="text"
+                            onChange={(e) => handleSearchChange(e, "vehiculos")}
+                            className="modal-vehiculo-search-input"
+                            placeholder="Buscar Vehículo"
+                        />
+
+                        {/* Lista de vehículos filtrados */}
+                        <ul className="modal-vehiculo-list">
                             {filteredData.vehiculos.map(vehiculo => (
-                                <li key={vehiculo.id} className="vehiculo-search-modal__item">
-                                    <button className="vehiculo-search-modal__select-btn" onClick={() => selectOption(vehiculo.id, "vehiculo")}>{vehiculo.placa}</button>
+                                <li key={vehiculo.id} className="modal-vehiculo-item">
+                                    <button className="modal-vehiculo-select-btn" onClick={() => selectOption(vehiculo.id, "vehiculo")}>
+                                        {vehiculo.placa}
+                                    </button>
                                 </li>
                             ))}
                         </ul>
                     </div>
                 </div>
             )}
+
+
         </div>
     );
 };

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { registrarConductor, actualizarConductor, obtenerConductorPorId } from "../../services/conductores";
 import { listarVehiculos } from "../../services/vehiculos";
 import { listarPersonas } from "../../services/personas";
+import '../../styles/conductorModal.css';
 
 const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) => {
     const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
         categoria: "",
         fecha_desde: "",
         g_sangre: "",
+        restriccion: "",
         vehiculos: [],
     });
 
@@ -28,7 +30,6 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
                 setPersonas(personasData);
                 setFilteredData({ vehiculos: vehiculosData, personas: personasData });
 
-                // Si es un modal de edición, obtener los datos del conductor
                 if (tipoModal === "editar" && conductorId) {
                     const conductoresData = await obtenerConductorPorId(conductorId);
                     setFormData({
@@ -38,6 +39,7 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
                         categoria: conductoresData.categoria,
                         fecha_desde: conductoresData.fecha_desde,
                         n_licencia: conductoresData.n_licencia,
+                        restriccion: conductoresData.restriccion || "",
                     });
                 }
             } catch (error) {
@@ -75,6 +77,12 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
         const selected = tipo === "persona" ? personas.find(item => item.id === id) : vehiculos.find(item => item.id === id);
         if (tipo === "persona") {
             setFormData(prev => ({ ...prev, id_persona: selected.id }));
+        } else if (tipo === "vehiculo") {
+            const vehiculosSeleccionados = formData.vehiculos.includes(selected.id)
+                ? formData.vehiculos.filter(vehiculoId => vehiculoId !== selected.id)
+                : [...formData.vehiculos, selected.id];
+
+            setFormData(prev => ({ ...prev, vehiculos: vehiculosSeleccionados }));
         }
         closeModal(tipo);
     };
@@ -87,7 +95,6 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
             delete formDataToSend.id_persona; // Eliminar el campo 'id_persona' 
         }
 
-        // Asegurarse de que los vehículos sean números (no cadenas)
         formDataToSend.vehiculos = formDataToSend.vehiculos.map(vehiculo => Number(vehiculo));
 
         try {
@@ -113,58 +120,84 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
     };
 
     return (
-        <div>
-            <div>
-                <h3>{tipoModal === "crear" ? "Registrar Conductor" : "Editar Conductor"}</h3>
-                {errores.length > 0 && <ul>{errores.map((error, index) => <li key={index}>{error}</li>)}</ul>}
-                <form onSubmit={handleSubmit}>
-                    {/* Solo se muestra en 'crear', no en 'editar' */}
+        <div className="modal-conductor-container">
+            <div className="modal-conductor-wrapper">
+                <h3 className="conductor-modal-title-label">{tipoModal === "crear" ? "Registrar Conductor" : "Editar Conductor"}</h3>
+                {errores.length > 0 && <ul className="error-list">{errores.map((error, index) => <li key={index}>{error}</li>)}</ul>}
+                <form className="modal-conductor-form" onSubmit={handleSubmit}>
                     {tipoModal === "crear" && (
-                        <div>
+                        <div className="modal-conductor-select-button">
                             <button type="button" onClick={() => openModal("persona")}>
                                 {formData.id_persona ? `Persona: ${personas.find(v => v.id === formData.id_persona)?.dni}` : "Seleccionar Persona"}
                             </button>
                         </div>
                     )}
-                    <div>
-                        <label>N° Licencia:</label>
-                        <input type="text" name="n_licencia" value={formData.n_licencia} onChange={handleChange} placeholder="Numero de Licencia" required />
+
+                    <div className="modal-conductor-input-group">
+                        <label htmlFor="n_licencia">N° Licencia:</label>
+                        <input type="text" name="n_licencia" value={formData.n_licencia} onChange={handleChange} placeholder="Número de Licencia" required />
                     </div>
-                    <div>
-                        <label>Categoria:</label>
+
+                    <div className="modal-conductor-input-group">
+                        <label htmlFor="categoria">Categoría:</label>
                         <input type="text" name="categoria" value={formData.categoria} onChange={handleChange} required />
                     </div>
-                    <div>
-                        <label>Fecha desde:</label>
+
+                    <div className="modal-conductor-input-group">
+                        <label htmlFor="fecha_desde">Fecha desde:</label>
                         <input type="date" name="fecha_desde" value={formData.fecha_desde} onChange={handleChange} required />
                     </div>
-                    <div>
-                        <label>Grupo Sanguineo:</label>
+
+                    <div className="modal-conductor-input-group">
+                        <label htmlFor="g_sangre">Grupo Sanguíneo:</label>
                         <input type="text" name="g_sangre" value={formData.g_sangre} onChange={handleChange} required />
                     </div>
-                    <div>
-                        <label>Vehiculos a conducir:</label>
-                        <select
-                            multiple
-                            name="vehiculos"
-                            value={formData.vehiculos}
-                            onChange={handleChange}
-                        >
-                            {vehiculos.map((vehiculo) => (
-                                <option key={vehiculo.id} value={vehiculo.id}>
-                                    {vehiculo.placa}
-                                </option>
-                            ))}
-                        </select>
+
+                    <div className="modal-conductor-input-group">
+                        <label htmlFor="restriccion">Restricción:</label>
+                        <input type="text" name="restriccion" value={formData.restriccion} onChange={handleChange} placeholder="Restricción (opcional)" />
                     </div>
-                    <button type="submit" disabled={loading}>{loading ? "Cargando..." : tipoModal === "crear" ? "Registrar" : "Actualizar"}</button>
+
+                    <div className="modal-conductor-select-button">
+                        <button type="button" onClick={() => openModal("vehiculo")}>
+                            {formData.vehiculos.length > 0 ? `Vehículos seleccionados` : "Seleccionar Vehículos"}
+                        </button>
+                    </div>
+
+                    <div className="modal-conductor-vehiculos">
+                        <label>Vehículos:</label>
+                        <div className="modal-conductor-vehiculos-seleccionados">
+                            {formData.vehiculos.map((vehiculoId) => {
+                                const vehiculo = vehiculos.find(v => v.id === vehiculoId);
+                                return (
+                                    <span key={vehiculoId} className="modal-conductor-vehiculo-etiqueta">
+                                        {vehiculo?.placa}
+                                        <button type="button" onClick={() => selectOption(vehiculoId, "vehiculo")} className="vehiculo-remove-button">❌</button>
+                                    </span>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    <div className="conductor-button-container">
+                        <button className="modal-conductor-close-button" onClick={() => setModalIsOpen(false)}>Cancelar</button>
+                        <button type="submit" disabled={loading} className="modal-conductor-submit-button">
+                            {loading ? "Cargando..." : tipoModal === "crear" ? "Registrar" : "Actualizar"}
+                        </button>
+                    </div>
                 </form>
+
 
                 {/* Modal de Selección de Persona */}
                 {modalVisible.persona && (
-                    <div className="modal-buscar">
-                        <input type="text" onChange={(e) => handleSearchChange(e, "personas")} placeholder="Buscar Persona por DNI" />
-                        <ul>
+                    <div className="modal-conductor-buscar">
+                        <input
+                            className="modal-conductor-buscar-input"
+                            type="text"
+                            onChange={(e) => handleSearchChange(e, "personas")}
+                            placeholder="Buscar Persona por DNI"
+                        />
+                        <ul className="modal-conductor-buscar-lista">
                             {filteredData.personas.map(persona => (
                                 <li key={persona.id}>
                                     <button onClick={() => selectOption(persona.id, "persona")}>
@@ -173,22 +206,36 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
                                 </li>
                             ))}
                         </ul>
+                        <button className="close" onClick={() => closeModal("persona")}>
+                            Cerrar
+                        </button>
                     </div>
                 )}
 
                 {/* Modal de Selección de Vehículo */}
                 {modalVisible.vehiculo && (
-                    <div className="modal-buscar">
-                        <input type="text" onChange={(e) => handleSearchChange(e, "vehiculos")} placeholder="Buscar Vehículo" />
-                        <ul>
+                    <div className="modal-conductor-buscar">
+                        <input
+                            className="modal-conductor-buscar-input"
+                            type="text"
+                            onChange={(e) => handleSearchChange(e, "vehiculos")}
+                            placeholder="Buscar Vehículo"
+                        />
+                        <ul className="modal-conductor-buscar-lista">
                             {filteredData.vehiculos.map(vehiculo => (
                                 <li key={vehiculo.id}>
-                                    <button onClick={() => selectOption(vehiculo.id, "vehiculo")}>{vehiculo.placa}</button>
+                                    <button onClick={() => selectOption(vehiculo.id, "vehiculo")}>
+                                        {vehiculo.placa}
+                                    </button>
                                 </li>
                             ))}
                         </ul>
+                        <button className="close" onClick={() => closeModal("vehiculo")}>
+                            Cerrar
+                        </button>
                     </div>
                 )}
+
             </div>
         </div>
     );

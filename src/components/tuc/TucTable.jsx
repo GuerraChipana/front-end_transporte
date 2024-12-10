@@ -60,13 +60,13 @@ const TucTabla = ({ tucs, onEdit, onEstado }) => {
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody className="td-tuc-container">
                     {currentTucs.map((tuc) => (
                         <tr key={tuc.id_tuc}>
                             <td>{tuc.id_tuc}</td>
                             <td>
                                 {tuc.id_vehiculo.placa} <br />
-                                <img src={tuc.id_vehiculo ? tuc.id_vehiculo.imagen_url : ""} width={40} alt="Imagen del vehiculo" />
+                                <img src={tuc.id_vehiculo ? tuc.id_vehiculo.imagen_url : ""}  alt="Imagen del vehiculo" />
                             </td>
                             <td>{tuc.n_tuc}</td>
                             <td>{tuc.ano_tuc}</td>

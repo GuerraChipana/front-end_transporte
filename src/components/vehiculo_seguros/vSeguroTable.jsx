@@ -56,11 +56,11 @@ const SeguroVehicularTabla = ({ seguros, onEdit, onChangeState }) => {
           <tr>
             <th>ID</th>
             <th>Poliza</th>
+            <th>Vehículo</th>
             <th>Fecha Vigencia Desde</th>
             <th>Fecha Vigencia Hasta</th>
             <th>Estado de Vencimiento</th>
             <th>Aseguradora</th>
-            <th>Vehículo</th>
             {(rol === "superadministrador" || rol === "administrador") && (<th>Acciones</th>)}
           </tr>
         </thead>
@@ -69,14 +69,15 @@ const SeguroVehicularTabla = ({ seguros, onEdit, onChangeState }) => {
             <tr key={seguro.id_vehseg}>
               <td>{seguro.id_vehseg}</td>
               <td>{seguro.n_poliza}</td>
-              <td>{seguro.fecha_vigencia_desde}</td>
-              <td>{seguro.fecha_vigencia_hasta}</td>
-              <td>{seguro.estado_vencimiento}</td>
-              <td>{seguro.id_aseguradora.aseguradora}</td>
               <td>
                 {seguro.id_vehiculo.placa} <br />
                 <img src={seguro.id_vehiculo.imagen_url} alt="Vehículo" className="segurotabla-img-vehiculo" />
               </td>
+              <td>{seguro.fecha_vigencia_desde}</td>
+              <td>{seguro.fecha_vigencia_hasta}</td>
+              <td>{seguro.estado_vencimiento}</td>
+              <td>{seguro.id_aseguradora.aseguradora}</td>
+
               {(rol === "superadministrador" || rol === "administrador") && (
                 <td>
                   <button className="segurotabla-btn segurotabla-btn-editar" onClick={() => onEdit(seguro.id_vehseg)}>Editar</button>

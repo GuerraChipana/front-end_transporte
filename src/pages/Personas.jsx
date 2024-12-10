@@ -157,8 +157,10 @@ const Personas = () => {
             placeholder="Contraseña de consulta"
             required
           />
-          <button type="submit">Registrar</button>
-          <button type="button" onClick={() => setIsRegistroOpen(false)}>Cancelar</button>
+          <div className='personas-container-button-acepp'>
+            <button type="submit">Registrar</button>
+            <button type="button" onClick={() => setIsRegistroOpen(false)}>Cancelar</button>
+          </div>
         </form>
       </div>
     </div>
@@ -191,8 +193,10 @@ const Personas = () => {
             placeholder="Domicilio"
             required
           />
-          <button type="submit">Guardar Cambios</button>
-          <button type="button" onClick={() => setPersonaSeleccionada(null)}>Cancelar</button>
+          <div className='personas-container-button-acepp'>
+            <button type="submit">Guardar Cambios</button>
+            <button type="button" onClick={() => setPersonaSeleccionada(null)}>Cancelar</button>
+          </div>
         </form>
       </div>
     </div>
@@ -200,7 +204,7 @@ const Personas = () => {
 
   return (
     <div className="personas-container">
-      <h1>Personas </h1>
+      <h1>Gestión de Personas </h1>
       <div className="search-register-container">
         <div className="search-container">
           <input
@@ -271,14 +275,14 @@ const Personas = () => {
 
       {/* Paginación */}
       <div className="pagination">
-        <button 
-          onClick={() => handlePageChange(currentPage - 1)} 
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
           Anterior
         </button>
         {[...Array(totalPages)].map((_, index) => (
-          <button 
+          <button
             key={index + 1}
             onClick={() => handlePageChange(index + 1)}
             className={currentPage === index + 1 ? 'active' : ''}
@@ -286,8 +290,8 @@ const Personas = () => {
             {index + 1}
           </button>
         ))}
-        <button 
-          onClick={() => handlePageChange(currentPage + 1)} 
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
           Siguiente

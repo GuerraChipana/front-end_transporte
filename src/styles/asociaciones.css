@@ -4,15 +4,15 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
+    margin: 0 ;
     width: 95%;
     max-width: 1200px;
   }
   
   .asoaciones-gestion-title {
-    font-size: 24px;
+    font-size: 30px;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   
   /* Estilo para el campo de búsqueda */
@@ -21,13 +21,14 @@
   }
   
   .asoaciones-search-input {
-    width: 100%;
+    width: 98%;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
     margin-bottom: 20px;
+    margin-left: 15px;
   }
   
   /* Filtro de estado */
@@ -45,7 +46,8 @@
   
   .asoaciones-button {
     padding: 8px 16px;
-    font-size: 14px;
+    font-size: 16px;
+    margin-left: 20px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
@@ -67,6 +69,7 @@
   
   /* Botón de Crear Asociación */
   .asoaciones-button-create {
+    margin-right: 15px;
     background-color: #4CAF50;
   }
   
@@ -74,44 +77,7 @@
     background-color: #45a049;
   }
   
-  /* Estilo para la tabla */
-  .asociacion-tabla-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow-x: auto;
-    margin: 20px auto;
-    width: 95%;
-    max-width: 1200px;
-  }
-  
-  .asociacion-tabla-container table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  .asociacion-tabla-container th,
-  .asociacion-tabla-container td {
-    text-align: left;
-    padding: 12px 15px;
-    font-size: 14px;
-  }
-  
-  .asociacion-tabla-container th {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .asociacion-tabla-container tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .asociacion-tabla-container tr:hover {
-    background-color: #e1e1e1;
-  }
-  
+
   /* Error message */
   .error-message {
     padding: 10px;

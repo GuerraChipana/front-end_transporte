@@ -62,14 +62,14 @@ const TUC = () => {
         <input 
           type="text"
           className='tuc-search-input'
-          placeholder='Buscar por numero de placa'
+          placeholder='Buscar por número de placa'
           value={buscarPlaca}
           onChange={(e) => setBuscarPlaca(e.target.value)} 
         />
         <input 
           type="text"
           className='tuc-search-input'
-          placeholder='Buscar por numero de Tuc'
+          placeholder='Buscar por número de Tuc'
           value={buscarTuc}
           onChange={(e) => setBuscarTuc(e.target.value)} 
         />

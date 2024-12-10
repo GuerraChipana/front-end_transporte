@@ -4,6 +4,7 @@ import { getUserRoleFromToken } from '../utils/authHelper';
 import SeguroVehicularTabla from '../components/vehiculo_seguros/vSeguroTable';
 import VehiculosSegurosModel from '../components/vehiculo_seguros/vSeguroModal';
 import '../styles/seguros.css'
+
 const SeguroVehiculares = () => {
   const rol = getUserRoleFromToken();
   const [seguros, setSeguros] = useState([]);
@@ -11,6 +12,7 @@ const SeguroVehiculares = () => {
   const [tipoModal, setTipoModal] = useState('crear');
   const [seguroId, setSeguroId] = useState(null);
   const [buscarPlaca, setBuscarPlaca] = useState('');
+  const [mostrarActivos, setMostrarActivos] = useState(true); // Estado para filtrar por seguros activos o inactivos
 
   // Fetch all insurances on mount
   useEffect(() => {
@@ -25,9 +27,10 @@ const SeguroVehiculares = () => {
     fetchSeguros();
   }, []);
 
-  // Filter insurances by vehicle plate
+  // Filter insurances by vehicle plate and active/inactive status
   const filtroSeguros = seguros.filter((seguro) =>
-    seguro.id_vehiculo.placa.toLowerCase().includes(buscarPlaca.toLowerCase())
+    seguro.id_vehiculo.placa.toLowerCase().includes(buscarPlaca.toLowerCase()) &&
+    (mostrarActivos ? seguro.estado === 1 : seguro.estado === 0)
   );
 
   // Update the insurance list
@@ -56,7 +59,15 @@ const SeguroVehiculares = () => {
         />
       </div>
 
-      <div>
+      <div className="seguro-vehicular-buttons-container">
+        {/* Botón para activar/desactivar los filtros de activos/inactivos */}
+        <button
+          className="seguro-vehicular-button"
+          onClick={() => setMostrarActivos(!mostrarActivos)}
+        >
+          {mostrarActivos ? 'Ver Inactivos' : 'Ver Activos'}
+        </button>
+
         {(rol === "superadministrador" || rol === "administrador") && (
           <button
             className="seguro-vehicular-button seguro-vehicular-button-create"

@@ -1,12 +1,23 @@
 import { useState } from "react";
 import { getUserRoleFromToken } from "../../utils/authHelper";
 import { cambiarEstadoConductores } from "../../services/conductores";
+import '../../styles/conductorTabla.css';
 
 const ConductoresTable = ({ conductores, onEdit, onEstado }) => {
     const rol = getUserRoleFromToken();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    // Paginación
+    const [currentPage, setCurrentPage] = useState(1);
+    const recordsPerPage = 15;
+
+    // Calcular los registros a mostrar según la página
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = conductores.slice(indexOfFirstRecord, indexOfLastRecord);
+
+    // Función para manejar el cambio de estado
     const ManejoCambioEstado = async (id, estado) => {
         const estadoCambio = estado === 1 ? 0 : 1;
         let detalleBaja = "";
@@ -25,54 +36,75 @@ const ConductoresTable = ({ conductores, onEdit, onEstado }) => {
             onEstado();
         } catch (error) {
             setError("Error al cambiar el estado del conductor");
-        } finally { setLoading(false) };
-
-
+        } finally {
+            setLoading(false);
+        }
     };
+
+    // Cambiar la página actual
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    // Calcular el número total de páginas
+    const totalPages = Math.ceil(conductores.length / recordsPerPage);
+
     return (
-        <div>
-            {error && <div className="error-message">{error}</div>}
-            <table>
+        <div className="conductor-tabla-container">
+            {error && <div className="conductor-tabla-error-message">{error}</div>}
+            <table className="conductor-tabla">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>DNI</th>
-                        <th>Persona</th>
-                        <th>N°Licencia</th>
-                        <th>Fecha desde</th>
-                        <th>Fecha hasta</th>
-                        <th>Clase</th>
-                        <th>categoria</th>
-                        <th>Restriccion</th>
-                        <th>Sangre</th>
-                        <th>Vehiculos:</th>
+                        <th className="conductor-tabla-header">ID</th>
+                        <th className="conductor-tabla-header">DNI</th>
+                        <th className="conductor-tabla-header">Persona</th>
+                        <th className="conductor-tabla-header">N°Licencia</th>
+                        <th className="conductor-tabla-header">Fecha desde</th>
+                        <th className="conductor-tabla-header">Fecha hasta</th>
+                        <th className="conductor-tabla-header">Clase</th>
+                        <th className="conductor-tabla-header">Categoría</th>
+                        <th className="conductor-tabla-header">Restricción</th>
+                        <th className="conductor-tabla-header">Sangre</th>
+                        <th className="conductor-tabla-header">Vehículos</th>
+                        {(rol === "superadministrador" || rol === "administrador") && <th className="conductor-tabla-header">Acciones</th>}
                     </tr>
                 </thead>
                 <tbody>
-                    {conductores.map((conductor) => (
+                    {currentRecords.map((conductor) => (
                         <tr key={conductor.id}>
-                            <td>{conductor.id}</td>
-                            <td>{conductor.id_persona.dni}<img src={conductor.id_persona.foto} width={45} /></td>
-                            <td>{`${conductor.id_persona.nombre} ${conductor.id_persona.apellidos}`}</td>
-                            <td>{conductor.n_licencia}</td>
-                            <td>{conductor.fecha_desde}</td>
-                            <td>{conductor.fecha_hasta}</td>
-                            <td>{conductor.clase}</td>
-                            <td>{conductor.categoria}</td>
-                            <td>{conductor.restriccion || "Sin restricción"}</td>
-                            <td>{conductor.g_sangre}</td>
-                            <td>
-                                {conductor.vehiculos.map((vehiculo, index) => (
-                                    <div key={index}>{vehiculo.placa}</div>
-                                ))}
+                            <td className="conductor-tabla-cell">{conductor.id}</td>
+                            <td className="conductor-tabla-cell">
+                                {conductor.id_persona.dni}
+                                <div className="conductor-tabla-foto-container">
+                                    <img src={conductor.id_persona.foto} width={45} alt="Foto de conductor" />
+                                </div>
+                            </td>
+                            <td className="conductor-tabla-cell persona">{`${conductor.id_persona.nombre} ${conductor.id_persona.apellidos}`}</td>
+                            <td className="conductor-tabla-cell">{conductor.n_licencia}</td>
+                            <td className="conductor-tabla-cell">{conductor.fecha_desde}</td>
+                            <td className="conductor-tabla-cell">{conductor.fecha_hasta}</td>
+                            <td className="conductor-tabla-cell">{conductor.clase}</td>
+                            <td className="conductor-tabla-cell">{conductor.categoria}</td>
+                            <td className="conductor-tabla-cell restriccion">{conductor.restriccion || "Sin restricción"}                            </td>
+                            <td className="conductor-tabla-cell">{conductor.g_sangre}</td>
+                            <td className="conductor-tabla-cell vehiculos">
+                                <ul className="conductor-tabla-vehiculo-list">
+                                    {conductor.vehiculos.map((vehiculo, index) => (
+                                        <li key={index}>{vehiculo.placa}</li>
+                                    ))}
+                                </ul>
                             </td>
                             {(rol === "superadministrador" || rol === "administrador") && (
-                                <td>
-                                    <button onClick={() => onEdit(conductor.id)} disabled={loading}>
+                                <td className="conductor-tabla-actions">
+                                    <button
+                                        onClick={() => onEdit(conductor.id)}
+                                        className="conductor-tabla-button-editar"
+                                        disabled={loading}>
                                         {loading ? "Cargando..." : "Editar"}
                                     </button>
                                     <button
                                         onClick={() => ManejoCambioEstado(conductor.id, conductor.estado)}
+                                        className={`conductor-tabla-button-cambiar-estado ${conductor.estado === 1 ? 'conductor-tabla-button-desactivar' : 'conductor-tabla-button-activar'}`}
                                         disabled={loading}>
                                         {loading ? "Cargando..." : conductor.estado === 1 ? 'Desactivar' : 'Activar'}
                                     </button>
@@ -82,7 +114,33 @@ const ConductoresTable = ({ conductores, onEdit, onEstado }) => {
                     ))}
                 </tbody>
             </table>
-        </div >
+
+            {/* Paginación */}
+            <div className="pagination">
+                <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                >
+                    Anterior
+                </button>
+                {[...Array(totalPages)].map((_, index) => (
+                    <button
+                        key={index + 1}
+                        className={currentPage === index + 1 ? "active" : ""}
+                        onClick={() => handlePageChange(index + 1)}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+                <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                >
+                    Siguiente
+                </button>
+            </div>
+        </div>
     );
 };
-export default ConductoresTable
+
+export default ConductoresTable;

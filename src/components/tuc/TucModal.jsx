@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { listarAsociaciones } from "../../services/asociaciones";
 import { listarVehiculos } from "../../services/vehiculos";
 import { actualizarTuc, registrarTuc, obtenerTucPorId } from "../../services/tuc";
-import '../../styles/tucModal.css'
+import '../../styles/tucModal.css';
 
 const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
   const [formData, setFormData] = useState({
@@ -125,12 +125,13 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
   return (
     <div className="tuc-modal-container-custom visible">
       <div className="tuc-modal-content">
-        <h3>{tipoModal === "crear" ? "Registrar nuevo Tuc" : "Editar Tuc"}</h3>
+        <h3 className="tuc-modal-content-title">{tipoModal === "crear" ? "Registrar nuevo Tuc" : "Editar Tuc"}</h3>
         <form onSubmit={handleSubmit}>
           {fields.map((field) => (
             <div key={field.name}>
               <label>{field.label}</label>
               <input
+              className="tuc-NTUC_Compra"
                 type="number"
                 name={field.name}
                 value={formData[field.name]}
@@ -141,12 +142,11 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
             </div>
           ))}
 
-          <button type="button" className="seleccionar" onClick={() => openModal("asociacion")}>
+          <button type="button" className="tuc-seleccionar" onClick={() => openModal("asociacion")}>
             {formData.id_asociacion ? `Asociación: ${asociaciones.find(a => a.id === formData.id_asociacion)?.nombre}` : "Seleccionar Asociación"}
           </button>
 
-
-          <button type="button" className="seleccionar" onClick={() => openModal("vehiculo")}>
+          <button type="button" className="tuc-seleccionar" onClick={() => openModal("vehiculo")}>
             {formData.id_vehiculo ? `Vehículo: ${vehiculos.find(v => v.id === formData.id_vehiculo)?.placa}` : "Seleccionar Vehículo"}
           </button>
           <div>
@@ -155,10 +155,10 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="guardar" disabled={loading}>
+            <button type="submit" className="tuc-guardar" disabled={loading}>
               Guardar
             </button>
-            <button type="button" className="cancelar" onClick={handleCancel}>
+            <button type="button" className="tuc-cancelar" onClick={handleCancel}>
               Cancelar
             </button>
           </div>
@@ -166,10 +166,10 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
 
         {/* Modal de Asociación */}
         {modalVisible.asociacion && (
-          <div className="tuc-modal-container-custom visible">
-            <div className="tuc-modal-content">
-              <button className="tuc-modal-close" onClick={() => setModalVisible(prev => ({ ...prev, asociacion: false }))}>×</button>
-              <div className="modal-buscar-custom">
+          <div className="tuc-modal-container-busqueda visible">
+            <div className="tuc-modal-content-busqueda">
+              <button className="tuc-modal-close" onClick={() => setModalVisible(prev => ({ ...prev, asociacion: false }))}>Cerrar</button>
+              <div className="tuc-modal-buscar">
                 <input type="text" onChange={(e) => handleSearchChange(e, "asociaciones")} placeholder="Buscar Asociación" />
                 <ul>
                   {filteredData.asociaciones.map(asociacion => (
@@ -185,11 +185,11 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
 
         {/* Modal de Vehículo */}
         {modalVisible.vehiculo && (
-          <div className="tuc-modal-container-custom visible">
-            <div className="tuc-modal-content">
-              <button className="tuc-modal-close" onClick={() => setModalVisible(prev => ({ ...prev, vehiculo: false }))}>×</button>
-              <div className="modal-buscar-custom">
-                <input type="text" onChange={(e) => handleSearchChange(e, "vehiculos")} placeholder="Buscar Vehículo" />
+          <div className="tuc-modal-container-busqueda visible">
+            <div className="tuc-modal-content-busqueda">
+              <button className="tuc-modal-close" onClick={() => setModalVisible(prev => ({ ...prev, vehiculo: false }))}>Cerrar</button>
+              <div className="tuc-modal-buscar">
+                <input type="text" onChange={(e) => handleSearchChange(e, "vehiculos")} placeholder="Buscar Placa de Vehículo" />
                 <ul>
                   {filteredData.vehiculos.map(vehiculo => (
                     <li key={vehiculo.id}>

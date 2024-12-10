@@ -1,11 +1,11 @@
 /* Estilo general para el contenedor */
 .empadronamiento-tabla-container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 40px auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #fffbfb;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0, 0.1);
   overflow: hidden;
 }
 
@@ -19,7 +19,7 @@
 .empadronamiento-tabla-container table th {
   position: sticky;
   top: 0;
-  background-color: #05488b;
+  background-color: #003b76;
   z-index: 2; /* Asegura que los encabezados estén sobre el contenido */
 }
 
@@ -53,24 +53,21 @@
 
 /* Estilos de las cabeceras */
 .empadronamiento-tabla-container th {
-  background-color: #3498db;
+  background-color: #000000;
   color: white;
   padding: 10px 20px;
   text-align: center;
   font-size: 14px;
   font-weight: 600;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
   cursor: pointer;
+
 }
 
 /* Estilo para las celdas de la tabla */
 .empadronamiento-tabla-container td {
   padding: 10px 20px;
   text-align: center;
-  font-size: 14px;
-  font-weight: 500;
-  color: #555555;
+  font-size: 16px;
 }
 
 /* Estilo para filas alternas */
@@ -112,21 +109,22 @@
 
 /* Botón de editar */
 .empadronamiento-tabla-container button.edit-button {
-  background-color: #4CAF50;
+  background-color: #003b76;
+  padding: 7px 28px;
 }
 
 .empadronamiento-tabla-container button.edit-button:hover {
-  background-color: #45a049;
+  background-color: #0260be;
   transform: scale(1.05);
 }
 
 /* Botón de activar/desactivar */
 .empadronamiento-tabla-container button.toggle-button {
-  background-color: #f44336;
+  background-color: #bf0b0b;
 }
 
 .empadronamiento-tabla-container button.toggle-button:hover {
-  background-color: #e53935;
+  background-color: #ff0400;
   transform: scale(1.05);
 }
 

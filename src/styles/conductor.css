@@ -1,0 +1,81 @@
+/* Estilos específicos para la gestión de conductores */
+.conductor-gestion-container {
+    padding: 10px;
+    background-color: #f4f7fc;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding-right: 41px;
+  }
+  
+  .conductor-search-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between; /* Alinear el campo de búsqueda y los botones a los extremos */
+    align-items: center;
+  }
+  
+  .conductor-search-container input {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  
+  .conductor-botones-container {
+    display: flex;
+    justify-content: space-between; /* Alinear botones a los extremos */
+    width: 100%;
+  }
+  
+  .conductor-toggle-button-container {
+    margin-right: 10px; 
+    margin-bottom: 5px;
+  }
+  
+  .conductor-toggle-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .conductor-toggle-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .conductor-button-create {
+    padding: 10px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .conductor-button-create:hover {
+    background-color: #218838;
+  }
+  
+  .conductor-button {
+    padding: 10px 16px;
+    background-color: #003b76;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .conductor-button:hover {
+    background-color: #005ab4;
+  }
+  

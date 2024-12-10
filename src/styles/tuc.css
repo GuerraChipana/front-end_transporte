@@ -6,9 +6,9 @@
 
 /* Estilo para el encabezado */
 .tuc-header {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin: -10px 0 15px 0;
   color: #333;
 }
 
@@ -25,6 +25,7 @@
   padding: 10px;
   font-size: 16px;
   width: 250px;
+  margin: 0 10px 0 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
   transition: border-color 0.3s ease;
@@ -40,34 +41,38 @@
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  margin-top: 20px;
+  flex-direction: row-reverse;
 }
 
 /* Estilo para el botón de crear */
 .tuc-create-button {
-  background-color: #28a745;
+  background-color: #1cbf42;
   color: #fff;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 13px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .tuc-create-button:hover {
-  background-color: #218838;
+  background-color: #05b90e;
+  transform: scale(1.05);
 }
 
-/* Botón de filtro activo/desactivado */
+/* Eliminar borde y contorno del botón */
 .tuc-filter-button {
-  background-color: #007bff;
+  background-color: #015272;
   color: white;
-  padding: 10px 15px;
+  padding: 10px 15.5mm;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 12px;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none; /* Eliminar borde */
+  outline: none; /* Eliminar el contorno al hacer clic */
 }
 
 .tuc-filter-button.active {
@@ -75,7 +80,8 @@
 }
 
 .tuc-filter-button:hover {
-  background-color: #0056b3;
+  background-color: #3498db;
+  transform: scale(1.05);
 }
 
 /* Contenedor para la tabla */
@@ -90,7 +96,8 @@
   margin-top: 20px;
 }
 
-.tuc-table th, .tuc-table td {
+.tuc-table th,
+.tuc-table td {
   padding: 12px;
   text-align: left;
   border: 1px solid #ddd;
