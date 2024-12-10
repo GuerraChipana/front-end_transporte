@@ -74,6 +74,7 @@ const Usuarios = memo(() => {
     }
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+
   const handleSubmitUsuario = async (e) => {
     e.preventDefault();
     try {
@@ -87,7 +88,6 @@ const Usuarios = memo(() => {
   };
 
   const handleCambiarEstado = async (nuevoEstado) => {
-    // Verificar si se está cambiando de activo a inactivo y el detalle de baja no está completo
     if (nuevoEstado === "0" && detalleBaja.length < 15) {
       showErrorMessage("El detalle de baja debe tener al menos 15 caracteres.");
       return;
@@ -143,7 +143,7 @@ const Usuarios = memo(() => {
         return (
           <FormModal title="Crear Usuario" onClose={cerrarModal} modalClass="crear-usuario">
             <form onSubmit={handleSubmitUsuario}>
-              {["nombres", "Apellido Paterno", "Apellido Materno", "DNI", "email", "username", "password"].map(field => (
+              {["nombre", "apPaterno", "apMaterno", "dni", "email", "username", "password"].map(field => (
                 <InputField key={field} name={field} value={formData[field]} onChange={handleInputChange} required />
               ))}
               <SelectField name="rol" value={formData.rol} onChange={handleInputChange} options={rolesOptions} />
@@ -229,15 +229,27 @@ const FormModal = ({ title, children, onClose, modalClass = "" }) => (
     </div>
   </div>
 );
+const InputField = ({ name, value, onChange, required = false }) => {
+  const isDni = name === "dni";  // Solo aplicar patrón en el campo 'dni'
+  const isEmail = name === "email";  // Especificar que 'email' debe ser un input de tipo email
+  const isPassword = name === "password";  // Especificar que 'password' debe ser un input de tipo password
+  const isNombre = name === "nombre";  // Especificar que no hay limitación para 'nombre'
 
+  return (
+    <div className="form-group">
+      <label>{name.charAt(0).toUpperCase() + name.slice(1)}:</label>
+      <input
+        type={isEmail ? "email" : isPassword ? "password" : "text"}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        maxLength={isDni ? 8 : undefined}   // Limitar la longitud del 'dni' a 8 caracteres
+      />
+    </div>
+  );
+};
 
-const InputField = ({ name, value, onChange, required = false }) => (
-  <div className="form-group">
-    <label>{name.charAt(0).toUpperCase() + name.slice(1)}:</label>
-    <input type="text" name={name} value={value} onChange={onChange} required={required}
-      pattern={name === "dni" ? "^[0-9]{8}$" : ""} maxLength={name === "dni" ? 8 : undefined} />
-  </div>
-);
 
 const SelectField = ({ name, value, onChange, options }) => (
   <div className="form-group">

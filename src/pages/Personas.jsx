@@ -59,6 +59,12 @@ const Personas = () => {
       email: personaSeleccionada.email,
       domicilio: personaSeleccionada.domicilio,
     };
+
+    // Si el email está vacío, no incluirlo en los datos enviados
+    if (!personaSeleccionada.email) {
+      delete personaData.email;
+    }
+
     try {
       await actualizarPersona(personaSeleccionada.id, personaData);
       fetchPersonas();
@@ -70,6 +76,7 @@ const Personas = () => {
       }
     }
   };
+
 
   const handleCambiarEstado = async (personaId, nuevoEstado) => {
     const detalleBaja = nuevoEstado === 0 ? prompt("Indique el motivo de baja (mínimo 15 caracteres):") : "";
@@ -90,8 +97,20 @@ const Personas = () => {
 
   const handleRegistrarPersona = async (e) => {
     e.preventDefault();
+    // Crear el objeto de datos, verificando si el email está vacío
+    const personaData = {
+      dni: nuevaPersona.dni,
+      telefono: nuevaPersona.telefono,
+      password_consulta: nuevaPersona.password_consulta,
+    };
+
+    // Si el email no está vacío, agregarlo al objeto
+    if (nuevaPersona.email) {
+      personaData.email = nuevaPersona.email;
+    }
+
     try {
-      await registrarPersona(nuevaPersona);
+      await registrarPersona(personaData);
       fetchPersonas();
       setIsRegistroOpen(false);
       setNuevaPersona({ dni: '', telefono: '', email: '', password_consulta: '' });
@@ -103,6 +122,7 @@ const Personas = () => {
       }
     }
   };
+
 
   const handleSearch = (e) => {
     setDniBuscar(e.target.value);
@@ -148,7 +168,6 @@ const Personas = () => {
             value={nuevaPersona.email}
             onChange={(e) => setNuevaPersona({ ...nuevaPersona, email: e.target.value })}
             placeholder="Email"
-            required
           />
           <input
             type="password"
@@ -184,7 +203,6 @@ const Personas = () => {
             value={personaSeleccionada.email}
             onChange={(e) => setPersonaSeleccionada({ ...personaSeleccionada, email: e.target.value })}
             placeholder="Email"
-            required
           />
           <input
             type="text"

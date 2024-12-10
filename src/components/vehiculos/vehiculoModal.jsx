@@ -88,7 +88,7 @@ const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose, onVehiculoUpdated })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         // Validación de tipo de archivo antes de enviar el formulario
         if (file) {
             const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
@@ -97,23 +97,23 @@ const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose, onVehiculoUpdated })
                 return; // No continuar con el envío si el tipo de archivo es incorrecto
             }
         }
-
+    
         // Validación: propietario1 no puede ser igual a propietario2
         if (vehiculo.propietario1 === vehiculo.propietario2) {
             alert("El propietario 1 no puede ser igual al propietario 2.");
             return;
         }
-
+    
         setLoading(true);
         const formData = new FormData();
-
+    
         // Si hay un archivo de imagen, se agrega al formData, de lo contrario solo se agrega la URL
         if (file) {
             formData.append('imagen', file);
         } else {
             formData.append('imagen_url', vehiculo.imagen_url);
         }
-
+    
         // Agregar el resto de los campos relevantes
         formData.append('placa', vehiculo.placa);
         formData.append('n_tarjeta', vehiculo.n_tarjeta);
@@ -122,7 +122,11 @@ const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose, onVehiculoUpdated })
         formData.append('color', vehiculo.color);
         formData.append('ano_de_compra', vehiculo.ano_de_compra);
         formData.append('propietario1', vehiculo.propietario1);
-        formData.append('propietario2', vehiculo.propietario2 || null);
+    
+        // Solo agregar propietario2 si tiene un valor
+        if (vehiculo.propietario2) {
+            formData.append('propietario2', vehiculo.propietario2);
+        }
     
         try {
             if (tipo === "crear") {
@@ -139,6 +143,7 @@ const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose, onVehiculoUpdated })
             alert(error.message || 'Error al procesar la solicitud');
         }
     };
+    
 
 
     const handleSearchChange = (e) => {

@@ -76,8 +76,26 @@ const EmpadronamientoTabla = ({ empradronamientos, onEdit, onEstado }) => {
                             <td>
                                 <img src={empadronamiento.id_vehiculo.imagen_url} alt="Vehiculo" />
                             </td>
-                            <td>{empadronamiento.id_vehiculo.propietario1.dni} <br />{empadronamiento.id_vehiculo.propietario1.nombre}</td>
-                            <td>{empadronamiento.id_vehiculo.propietario2.dni} <br />{empadronamiento.id_vehiculo.propietario2.nombre}</td>
+                            <td>
+                                {empadronamiento.id_vehiculo.propietario1 ? (
+                                    <>
+                                        {empadronamiento.id_vehiculo.propietario1.dni || "No disponible"} <br />
+                                        {empadronamiento.id_vehiculo.propietario1.nombre || "Sin nombre"}
+                                    </>
+                                ) : (
+                                    <span>No disponible</span>
+                                )}
+                            </td>
+                            <td>
+                                {empadronamiento.id_vehiculo.propietario2 ? (
+                                    <>
+                                        {empadronamiento.id_vehiculo.propietario2.dni || "No disponible"} <br />
+                                        {empadronamiento.id_vehiculo.propietario2.nombre || "Sin nombre"}
+                                    </>
+                                ) : (
+                                    <span>No disponible</span>
+                                )}
+                            </td>
                             {(rol === "superadministrador" || rol === "administrador") && (
                                 <td>
                                     <button className="edit-button" onClick={() => onEdit(empadronamiento.id_empa)} disabled={loading}>
