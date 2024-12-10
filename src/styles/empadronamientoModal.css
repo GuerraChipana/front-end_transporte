@@ -1,0 +1,182 @@
+/* Estilos generales del modal */
+.empadronamiento-modal-wrapper {
+  position: fixed; /* Cambiado para que se quede fijo en la pantalla */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Para centrar el modal */
+  max-width: 400px;
+  width: 100%; /* Se asegura de que ocupe todo el ancho en pantallas pequeñas */
+  padding: 40px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  z-index: 1010; /* Asegura que esté por encima del modal de búsqueda */
+}
+
+.empadronamiento-modal-header {
+  font-size: 24px;
+  margin-top: -10px;
+  padding: 10px 0;
+  text-align: center;
+  color: #333;
+}
+
+.empadronamiento-modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.empadronamiento-modal-label {
+  font-size: 18px;
+  color: #313131;
+}
+
+.empadronamiento-modal-input {
+  width: 95%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.empadronamiento-modal-select-btn {
+  padding: 12px;
+  background-color: #caced3;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-weight: 700;
+}
+
+.empadronamiento-modal-select-btn:hover {
+  background-color: #7e7e7e;
+}
+
+.empadronamiento-modal-error {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.empadronamiento-modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.empadronamiento-modal-submit-btn,
+.empadronamiento-modal-cancel-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.empadronamiento-modal-submit-btn {
+  background-color: #003b76;
+  color: white;
+}
+
+.empadronamiento-modal-submit-btn:disabled {
+  background-color: #ccc;
+}
+
+.empadronamiento-modal-submit-btn:hover {
+  background-color: #0055ab;
+  transform: scale(1.05);
+}
+
+.empadronamiento-modal-cancel-btn {
+  background-color: #9b0303;
+  color: white;
+}
+
+.empadronamiento-modal-cancel-btn:hover {
+  background-color: #d40000;
+  transform: scale(1.05);
+}
+
+/* Estilos para el modal de búsqueda de vehículos */
+.empadronamiento-vehicular-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.empadronamiento-vehicular-modal-content {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  position: relative;
+  width: 60%;
+  max-width: 350px; /* Reducción del ancho máximo */
+  max-height: 400px; /* Reducción de la altura máxima */
+  overflow-y: auto; /* Para que si el contenido se desborda, aparezca un scroll */
+}
+
+.empadronamiento-vehicular-modal-close-btn {
+  position: absolute;
+  top: 35px;
+  right: 15px;
+  background-color: #a80404;
+  border: none;
+  color: #ccc;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 5px 5px;
+  cursor: pointer;
+}
+.empadronamiento-vehicular-modal-close-btn:hover {
+  background-color: #df0d0d;
+}
+
+.empadronamiento-vehicular-modal-search-container {
+  margin-top: 10px; /* Se reduce el espacio superior */
+}
+
+.empadronamiento-vehicular-modal-search-input {
+  width: 60%;
+  margin-left: 15px;
+  padding: 8px; /* Se reduce el tamaño del padding */
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.empadronamiento-vehicular-modal-vehiculos-list {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+  max-height: 200px; /* Limita la altura de la lista de vehículos */
+  overflow-y: auto; /* Agrega desplazamiento vertical si la lista es larga */
+}
+
+.empadronamiento-vehicular-modal-vehiculo-btn {
+  width: 90%;
+  padding: 10px;
+  background-color: #ffffff;
+  margin: 2px;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.empadronamiento-vehicular-modal-vehiculo-btn:hover {
+  background-color: #e2e2e2;
+}

@@ -1,0 +1,213 @@
+/* Contenedor del modal */
+.tuc-modal-container-custom,
+.tuc-modal-container-busqueda {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3); /* Fondo más suave */
+  z-index: 1000;
+  opacity: 0; /* Inicialmente oculto */
+  transition: opacity 0.3s ease;
+}
+
+.tuc-modal-container-custom.visible,
+.tuc-modal-container-busqueda.visible {
+  opacity: 1; /* Mostrar el modal */
+}
+
+.tuc-modal-content{
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 450px; /* Tamaño moderado */
+  max-height: 90vh; /* Máxima altura del modal */
+  overflow-y: auto; /* Agregar scroll si es necesario */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.tuc-modal-content-busqueda {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px; /* Tamaño moderado */
+  max-height: 90vh; /* Máxima altura del modal */
+  overflow-y: auto; /* Agregar scroll si es necesario */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Cerrar modal */
+.tuc-modal-close {
+  position: absolute;
+  top: 35px;
+  border-radius: 5px;
+  right: 25px;
+  font-size: 16px;
+  background: none;
+  background-color: #a80404; /* Contorno gris */
+  color: #fafafa;
+  padding: 8px 10px; /* Añadir espacio alrededor del texto */
+  cursor: pointer;
+  border: none;
+  transition: border-color 0.3s, background-color 0.3s; /* Transiciones suaves */
+}
+
+/* Cambiar color del contorno al pasar el mouse */
+.tuc-modal-close:hover {
+  background-color: #cf0808; /* Fondo gris claro cuando pasa el ratón */
+}
+
+.tuc-modal-content-title{
+  text-align: center;
+}
+
+/* Estilo general de los botones */
+.tuc button {
+  padding: 8px 16px;
+  margin: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.tuc-seleccionar {
+  background-color: #c8d0d8; /* Azul profesional */
+  font-size: 16px;
+  border: none;
+  padding: 8px;
+  border-radius: 5px 5px;
+  color: rgb(0, 0, 0);
+}
+
+.tuc-seleccionar:hover {
+  background-color: #8e9296;
+}
+
+.tuc-guardar {
+  background-color: #003b76; /* Verde */
+  padding:8px 82px;
+  margin-right: 6px;
+  color: white;
+  border: none;
+border-radius: 5%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.tuc-guardar:hover {
+  background-color: #0057af;
+transform: scale(1.05);
+}
+
+.tuc-cancelar {
+  background-color: #a80404; /* Rojo */
+  padding:8px 82px;
+  margin-left: 8px;
+  color: white;  border: none;
+  border-radius: 5%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.tuc-cancelar:hover {
+  background-color: #a80404;
+  transform: scale(1.05);
+}
+
+/* Estilo de los inputs */
+.tuc form div {
+  margin-bottom: 12px;
+}
+
+.tuc form label {
+  font-size: 16px;
+  
+  margin-left: 2px;
+  color: #2e2a2a;
+}
+
+
+/* Error de validación */
+.tuc p {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Modal de búsqueda */
+.tuc-modal-buscar {
+  margin-top: 15px;
+}
+
+.tuc-modal-buscar input {
+  width: 64%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin: 0 0 10px 7px;
+  
+}
+
+.tuc-modal-buscar ul {
+  list-style: none;
+  padding: 0;
+  max-height: 300px; /* Limitar la altura de la lista */
+  overflow-y: auto; /* Permitir scroll si la lista es muy larga */
+  margin: 0;
+}
+
+.tuc-modal-buscar li {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.tuc-modal-buscar button {
+  width: 95%;
+  padding: 8px 15px;
+  background-color: hsl(0, 0%, 93%); /* Azul */
+  color: rgb(0, 0, 0);
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.tuc-modal-buscar button:hover {
+  background-color: hsl(0, 5%, 79%);
+  
+}
+
+/* Estilo para el contenedor del modal de búsqueda */
+.tuc-modal-container-busqueda .tuc-modal-content {
+  width: 400px; /* Tamaño moderado para el modal de búsqueda */
+  max-height: 80vh; /* Limitar la altura para que no se extienda demasiado */
+}
+
+/* Diseño del contenedor del formulario */
+.tuc-modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.tuc-NTUC_Compra {
+  width: 80%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #e4d48a;
+}
+
+/* Hacer que los modales se cierren al hacer clic en el fondo */
+.tuc-modal-container-custom,
+.tuc-modal-container-busqueda {
+  cursor: pointer;
+}
+
+.tuc-modal-container-custom .tuc-modal-content,
+.tuc-modal-container-busqueda .tuc-modal-content {
+  cursor: default;
+}

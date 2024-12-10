@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { registrarAsociacion, actualizarAsociacion, obtenerAsociacionPorId } from '../../services/asociaciones';
+import '../../styles/asociacionesModal.css'
 
 const AsociacionModal = ({ tipoModal, asociacionId, setModalIsOpen, onUpdate }) => {
   const [formData, setFormData] = useState({
@@ -70,28 +71,32 @@ const AsociacionModal = ({ tipoModal, asociacionId, setModalIsOpen, onUpdate }) 
     { label: 'Documento', name: 'documento' },
   ];
 
+  // Renderiza el modal solo si `setModalIsOpen` es verdadero
+  if (!setModalIsOpen) return null; // Si el modal no debe ser visible, no se renderiza nada
+
   return (
-    <div>
-      <div>
-        <h3>{tipoModal === 'crear' ? 'Registrar Seguro Vehicular' : 'Editar Seguro Vehicular'}</h3>
+    <div className="modal-asociacion-container-v1">
+      <div className="modal-asociacion-content-v1">
+        <h3 className='modal-asociacion-title-v1'>{tipoModal === 'crear' ? 'Registrar Seguro Vehicular' : 'Editar Seguro Vehicular'}</h3>
         <form onSubmit={handleSubmit}>
           {fields.map((field) => (
-            <div key={field.name}>
-              <label>{field.label}</label>
+            <div key={field.name} className="modal-asociacion-field-v1">
+              <label className="modal-asociacion-label-v1">{field.label}</label>
               <input
+                className="modal-asociacion-input-v1"
                 type="text"
                 name={field.name}
                 value={formData[field.name]}
                 onChange={handleChange}
                 required
               />
-              {errors[field.name] && <p style={{ color: 'red' }}>{errors[field.name]}</p>}
+              {errors[field.name] && <p className="modal-asociacion-error-v1">{errors[field.name]}</p>}
             </div>
           ))}
-          <button className="aseguradora-button" type="submit">
+          <button className="modal-asociacion-button-submit-v1" type="submit">
             {tipoModal === 'crear' ? 'Crear' : 'Actualizar'}
           </button>
-          <button className="aseguradora-button" type="button" onClick={() => setModalIsOpen(false)}>
+          <button className="modal-asociacion-button-cancel-v1" type="button" onClick={() => setModalIsOpen(false)}>
             Cancelar
           </button>
         </form>

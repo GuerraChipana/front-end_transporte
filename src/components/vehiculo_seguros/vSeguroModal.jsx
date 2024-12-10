@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { listarAseguradoras } from "../../services/aseguradoras";
 import { listarVehiculos } from "../../services/vehiculos";
 import { registrarSeguroVehicular, actualizarSeguroVehicular, obtenerSeguroVehicularPorId } from "../../services/vehiculo_seguros";
+import '../../styles/segurosModal.css';
 
 const VehiculosSegurosModel = ({ tipoModal, seguroId, setModalIsOpen, onUpdate }) => {
     const [formData, setFormData] = useState({
@@ -54,12 +55,14 @@ const VehiculosSegurosModel = ({ tipoModal, seguroId, setModalIsOpen, onUpdate }
         setFilteredData(prev => ({
             ...prev,
             [tipo]: tipo === "aseguradoras"
-                ? aseguradoras.filter(item => item.aseguradora.toLowerCase().includes(searchValue))
-                : vehiculos.filter(item => item.placa.toLowerCase().includes(searchValue))
+                ? aseguradoras.filter(item => item.aseguradora.toLowerCase().includes(searchValue) && item.estado === 1)
+                : vehiculos.filter(item => item.placa.toLowerCase().includes(searchValue) && item, estado === 1)
         }));
     };
 
     const openModal = (campo) => setModalVisible(prev => ({ ...prev, [campo]: true }));
+
+    const closeModal = (campo) => setModalVisible(prev => ({ ...prev, [campo]: false }));
 
     const selectOption = (id, tipo) => {
         const selected = tipo === "aseguradora" ? aseguradoras.find(item => item.id === id) : vehiculos.find(item => item.id === id);
@@ -91,50 +94,85 @@ const VehiculosSegurosModel = ({ tipoModal, seguroId, setModalIsOpen, onUpdate }
     };
 
     return (
-        <div className="modal">
-            <div className="modal-content">
+        <div className="seguro-vehicular-modal__wrapper">
+            <div className="seguro-vehicular-modal__content">
                 <h3>{tipoModal === "crear" ? "Registrar Seguro Vehicular" : "Editar Seguro Vehicular"}</h3>
-                {errores.length > 0 && <ul>{errores.map((error, index) => <li key={index}>{error}</li>)}</ul>}
-                <form onSubmit={handleSubmit}>
-                    <button type="button" onClick={() => openModal("aseguradora")}>
+                {errores.length > 0 && <ul className="seguro-vehicular-modal__error-list">{errores.map((error, index) => <li key={index}>{error}</li>)}</ul>}
+                <form onSubmit={handleSubmit} className="seguro-vehicular-modal__form">
+                    <button type="button" onClick={() => openModal("aseguradora")} className="seguro-vehicular-modal__select-btn">
                         {formData.id_aseguradora ? `Aseguradora: ${aseguradoras.find(a => a.id === formData.id_aseguradora)?.aseguradora}` : "Seleccionar Aseguradora"}
                     </button>
-                    <button type="button" onClick={() => openModal("vehiculo")}>
+                    <button type="button" onClick={() => openModal("vehiculo")} className="seguro-vehicular-modal__select-btn">
                         {formData.id_vehiculo ? `Vehículo: ${vehiculos.find(v => v.id === formData.id_vehiculo)?.placa}` : "Seleccionar Vehículo"}
                     </button>
-                    <input type="text" name="n_poliza" value={formData.n_poliza} onChange={handleChange} placeholder="Número de Póliza" required />
-                    <input type="date" name="fecha_vigencia_desde" value={formData.fecha_vigencia_desde} onChange={handleChange} required />
-                    <input type="date" name="fecha_vigencia_hasta" value={formData.fecha_vigencia_hasta} onChange={handleChange} required />
-                    <button type="submit" disabled={loading}>{loading ? "Cargando..." : tipoModal === "crear" ? "Registrar" : "Actualizar"}</button>
+                    <label>N° Poliza:</label>
+                    <input type="text" name="n_poliza" value={formData.n_poliza} onChange={handleChange} className="seguro-vehicular-modal__input" placeholder="Número de Póliza" required />
+                    <label>Fecha de vigencia desde:</label><input type="date" name="fecha_vigencia_desde" value={formData.fecha_vigencia_desde} onChange={handleChange} className="seguro-vehicular-modal__input" required />
+                    <label>Fecha de vigencia hasta:</label><input type="date" name="fecha_vigencia_hasta" value={formData.fecha_vigencia_hasta} onChange={handleChange} className="seguro-vehicular-modal__input" required />
+                    <button type="submit" className="seguro-vehicular-modal__submit-btn" disabled={loading}>{loading ? "Cargando..." : tipoModal === "crear" ? "Registrar" : "Actualizar"}</button>
                 </form>
-                <button onClick={() => setModalIsOpen(false)}>Cerrar</button>
+                <button type="button" onClick={() => setModalIsOpen(false)} className="seguro-vehicular-modal__cancel-btn">Cerrar</button>
             </div>
 
+            {/* Modal de aseguradora */}
             {modalVisible.aseguradora && (
-                <div className="modal-buscar">
-                    <input type="text" onChange={(e) => handleSearchChange(e, "aseguradoras")} placeholder="Buscar Aseguradora" />
-                    <ul>
-                        {filteredData.aseguradoras.map(aseguradora => (
-                            <li key={aseguradora.id}>
-                                <button onClick={() => selectOption(aseguradora.id, "aseguradora")}>{aseguradora.aseguradora}</button>
-                            </li>
-                        ))}
-                    </ul>
+                <div className="modal-visible-aseguradora">
+                    <div className="modal-aseguradora-content">
+                        {/* Botón de cerrar */}
+                        <button className="modal-aseguradora-close-btn" onClick={() => closeModal("aseguradora")}>Cerrar</button>
+
+                        {/* Input de búsqueda */}
+                        <input
+                            type="text"
+                            onChange={(e) => handleSearchChange(e, "aseguradoras")}
+                            className="modal-aseguradora-search-input"
+                            placeholder="Buscar Aseguradora"
+                        />
+
+                        {/* Lista de aseguradoras filtradas */}
+                        <ul className="modal-aseguradora-list">
+                            {filteredData.aseguradoras.map(aseguradora => (
+                                <li key={aseguradora.id} className="modal-aseguradora-item">
+                                    <button className="modal-aseguradora-select-btn" onClick={() => selectOption(aseguradora.id, "aseguradora")}>
+                                        {aseguradora.aseguradora}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             )}
 
+            {/* Modal de vehículo */}
             {modalVisible.vehiculo && (
-                <div className="modal-buscar">
-                    <input type="text" onChange={(e) => handleSearchChange(e, "vehiculos")} placeholder="Buscar Vehículo" />
-                    <ul>
-                        {filteredData.vehiculos.map(vehiculo => (
-                            <li key={vehiculo.id}>
-                                <button onClick={() => selectOption(vehiculo.id, "vehiculo")}>{vehiculo.placa}</button>
-                            </li>
-                        ))}
-                    </ul>
+                <div className="modal-visible-vehiculo">
+                    <div className="modal-vehiculo-content">
+                        {/* Botón de cerrar */}
+                        <button className="modal-vehiculo-close-btn" onClick={() => closeModal("vehiculo")}>Cerrar</button>
+
+                        {/* Input de búsqueda */}
+                        <input
+                            type="text"
+                            onChange={(e) => handleSearchChange(e, "vehiculos")}
+                            className="modal-vehiculo-search-input"
+                            placeholder="Buscar Vehículo"
+                        />
+
+                        {/* Lista de vehículos filtrados */}
+                        <ul className="modal-vehiculo-list">
+                            {filteredData.vehiculos.map(vehiculo => (
+                                <li key={vehiculo.id} className="modal-vehiculo-item">
+                                    <button className="modal-vehiculo-select-btn" onClick={() => selectOption(vehiculo.id, "vehiculo")}>
+                                        {vehiculo.placa}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             )}
+
+
         </div>
     );
 };

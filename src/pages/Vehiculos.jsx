@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import VehiculosTable from "../components/vehiculos/vehiculoTable";
 import VehiculoModal from "../components/vehiculos/vehiculoModal";
-import { listarVehiculos } from "../services/vehiculos"; // Importar la función para listar vehículos
+import { listarVehiculos } from "../services/vehiculos";
 import { getUserRoleFromToken } from "../utils/authHelper";
+import '../styles/vehiculos.css';
 
 const Vehiculos = () => {
   const [vehiculos, setVehiculos] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [tipoModal, setTipoModal] = useState("crear");
   const [vehiculoId, setVehiculoId] = useState(null);
-  const [searchPlaca, setSearchPlaca] = useState(""); // Estado para el filtro de placa
+  const [searchPlaca, setSearchPlaca] = useState("");
+  const [mostrarActivos, setMostrarActivos] = useState(true); // Estado para filtrar por activo/inactivo
 
-  // Obtener el rol del usuario desde el token
-  const rol = getUserRoleFromToken(); // Llamamos a la función para obtener el rol
+  const rol = getUserRoleFromToken();
 
   useEffect(() => {
     const fetchVehiculos = async () => {
@@ -38,38 +39,49 @@ const Vehiculos = () => {
 
   const handleAddVehiculo = () => {
     setTipoModal("crear");
-    setVehiculoId(null); // Al crear, no hay un vehículo específico
-    setModalIsOpen(true); // Abre el modal
+    setVehiculoId(null);
+    setModalIsOpen(true);
   };
 
-  // Filtrar los vehículos por placa
   const filteredVehiculos = vehiculos.filter((vehiculo) =>
-    vehiculo.placa.toLowerCase().includes(searchPlaca.toLowerCase())
+    vehiculo.placa.toLowerCase().includes(searchPlaca.toLowerCase()) &&
+    (mostrarActivos ? vehiculo.estado === 1 : vehiculo.estado === 0)
   );
 
   return (
-    <div>
+    <div className="vehiculo-gestion-container">
       <h2>Gestión de Vehículos</h2>
 
-      {/* Condicionalmente mostrar los botones solo si el rol es superadministrador o administrador */}
-      {(rol === "superadministrador" || rol === "administrador") && (
-        <div>
-          <button onClick={handleAddVehiculo}>Agregar Vehículo</button>
+      {/* Filtro y botones en la misma línea */}
+      <div className="vehiculo-filtro-y-botones">
+        <div className="vehiculo-filtro-container">
+          <input
+            type="text"
+            className="vehiculo-search-input"
+            placeholder="Buscar por placa"
+            value={searchPlaca}
+            onChange={(e) => setSearchPlaca(e.target.value)}
+          />
         </div>
-      )}
 
-      {/* Filtro de placa */}
-      <div>
-        <input
-          type="text"
-          placeholder="Buscar por placa"
-          value={searchPlaca}
-          onChange={(e) => setSearchPlaca(e.target.value)} // Actualizar el valor del filtro
-        />
+        {/* Botones de acción en la misma fila */}
+        <div className="vehiculo-botones-container">
+          {(rol === "superadministrador" || rol === "administrador") && (
+            <button className="vehiculo-button" onClick={handleAddVehiculo}>
+              Agregar Vehículo
+            </button>
+          )}
+          <button
+            className="vehiculo-toggle-button"
+            onClick={() => setMostrarActivos(!mostrarActivos)}
+          >
+            {mostrarActivos ? 'Ver Inactivos' : 'Ver Activos'}
+          </button>
+        </div>
       </div>
 
       <VehiculosTable
-        vehiculos={filteredVehiculos} // Pasa los vehículos filtrados
+        vehiculos={filteredVehiculos}
         onEdit={handleEdit}
         onChangeState={handleChangeState}
       />
@@ -79,7 +91,7 @@ const Vehiculos = () => {
         vehiculoId={vehiculoId}
         isOpen={modalIsOpen}
         onClose={() => setModalIsOpen(false)}
-        onVehiculoUpdated={handleChangeState} // Pasa la función para actualizar la tabla
+        onVehiculoUpdated={handleChangeState}
       />
     </div>
   );

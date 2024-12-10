@@ -24,53 +24,55 @@
   margin: 5px;
   font-size: 14px;
   font-weight: bold;
+  color: white;
+
 }
 
 /* Colores para los botones */
 .aseguradora-button-create {
-  background-color: #1a73d3; /* Azul para crear */
+  background-color: #003b76; /* Azul para crear */
 }
 
 .aseguradora-button-create:focus, 
 .aseguradora-button-create:active {
-  background-color: #1a73d3;
+  background-color: #0d6ecf;
   outline: none;
   box-shadow: none;
 }
 
 .aseguradora-button-edit {
-  background-color: #1a73d3; /* Azul para editar */
+  background-color: #003b76; /* Azul para editar */
 }
 
 .aseguradora-button-edit:focus, 
 .aseguradora-button-edit:active {
-  background-color: #1a73d3;
+  background-color: #003b76;
   outline: none;
   box-shadow: none;
 }
 
 .aseguradora-button-state {
-  background-color: #fa4700; /* Amarillo para cambiar estado */
+  background-color: #ed0000; /* Amarillo para cambiar estado */
 }
 
 .aseguradora-button-state:focus, 
 .aseguradora-button-state:active {
-  background-color: #fa4700;
+  background-color: #e70000;
   outline: none;
   box-shadow: none;
 }
 
 /* Efecto hover para botones */
 .aseguradora-button-create:hover {
-  background-color: #088ffd; /* Verde más oscuro para hover */
+  background-color: #003060; /* Verde más oscuro para hover */
 }
 
 .aseguradora-button-edit:hover {
-  background-color: #088ffd; /* Azul más oscuro para hover */
+  background-color: #006cd7; /* Azul más oscuro para hover */
 }
 
 .aseguradora-button-state:hover {
-  background-color: #e05200; /* Amarillo más oscuro para hover */
+  background-color: #ff0000; /* Amarillo más oscuro para hover */
 }
 
 /* Estilo para la tabla de aseguradoras */

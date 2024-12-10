@@ -1,0 +1,100 @@
+/* General Modal Styles */
+/* Contenedor del modal (fondo oscuro semitransparente) */
+.modal-asociacion-container-v1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegúrate de que se muestre encima de otros elementos */
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease; /* Para un efecto de desvanecimiento */
+}
+
+/* Contenido del modal (la ventana emergente) */
+.modal-asociacion-content-v1 {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeInModalV1 0.3s ease-out;
+}
+
+/* Animación para la aparición del modal */
+@keyframes fadeInModalV1 {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.modal-asociacion-title-v1{
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Estilo de los campos de formulario */
+.modal-asociacion-field-v1 {
+  margin-bottom: 15px;
+}
+
+.modal-asociacion-label-v1 {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: large;
+}
+
+.modal-asociacion-input-v1 {
+  width: 90%;
+  padding: 8px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-asociacion-error-v1 {
+  color: red;
+  font-size: 12px;
+}
+
+/* Estilo de botones */
+.modal-asociacion-button-submit-v1 {
+  background-color: #003b76;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+.modal-asociacion-button-cancel-v1 {
+  background-color: #8a0700;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+.modal-asociacion-button-submit-v1:hover {
+  background-color: #0060c0;
+}
+
+.modal-asociacion-button-cancel-v1:hover {
+  background-color: #e90c00;
+}
