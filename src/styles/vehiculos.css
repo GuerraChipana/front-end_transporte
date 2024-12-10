@@ -1,0 +1,65 @@
+/* Estilos específicos para la gestión de vehículos */
+.vehiculo-gestion-container {
+  width: 100%;
+  background-color: #f4f7fc;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding-right: -20px;
+}
+
+.vehiculo-filtro-y-botones {
+  display: flex;
+  flex-direction: column; /* Coloca el filtro en la parte superior */
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.vehiculo-filtro-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.vehiculo-search-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 300px;
+}
+
+.vehiculo-botones-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Espaciado entre los botones */
+}
+
+.vehiculo-button,
+.vehiculo-toggle-button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.vehiculo-button {
+  margin-left: 40px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+}
+
+.vehiculo-button:hover {
+  background-color: #218838;
+}
+
+.vehiculo-toggle-button {
+    margin-right: 2%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.vehiculo-toggle-button:hover {
+  background-color: #0056b3;
+}

@@ -1,11 +1,9 @@
-// services/usuarios.js
-import api from "./api"; // Importamos la instancia de Axios configurada
+import api from "./api";
 
 // Función para registrar un nuevo usuario
 export const registrarUsuario = async (nuevoUsuario) => {
   try {
-    // Aseguramos que el objeto `nuevoUsuario` tiene la estructura correcta
-    const response = await api.post("/users/registrar", nuevoUsuario); // Endpoint para registrar usuario
+    const response = await api.post("/users/registrar", nuevoUsuario);
     return response.data;
   } catch (error) {
     console.error("Error al registrar el usuario:", error);
@@ -16,11 +14,22 @@ export const registrarUsuario = async (nuevoUsuario) => {
 // Función para listar todos los usuarios
 export const listarUsuarios = async () => {
   try {
-    const response = await api.get("/users/listar"); // Endpoint para listar usuarios
+    const response = await api.get("/users/listar");
     return response.data;
   } catch (error) {
     console.error("Error al listar los usuarios:", error);
     throw new Error("Error al obtener la lista de usuarios");
+  }
+};
+
+// Función para cambiar el rol de un usuario
+export const cambiarRolUsuario = async (id, nuevoRol) => {
+  try {
+    const response = await api.patch(`/users/rol/${id}`, { rol: nuevoRol });
+    return response.data;
+  } catch (error) {
+    console.error("Error al cambiar el rol del usuario:", error);
+    throw new Error("Error al cambiar el rol del usuario");
   }
 };
 
@@ -35,19 +44,18 @@ export const obtenerUsuarioPorId = async (id) => {
   }
 };
 
-// Función para cambiar el rol de un usuario
-export const cambiarRolUsuario = async (id, nuevoRol) => {
+// Función para cambiar el estado de un usuario
+export const cambiarEstadoUsuario = async (id, estado) => {
   try {
-    // Creamos el objeto `cambiarRol` con el rol que se pasará al backend
-    const cambiarRol = {
-      rol: nuevoRol,
+    const cambioEstado = {
+      estado: estado.estado, // El nuevo estado del usuario (1 o 0)
+      detalle_baja: estado.detalle_baja || "", // Detalle de baja si el estado es inactivo
     };
-
-    const response = await api.patch(`/users/rol/${id}`, cambiarRol); // Endpoint para cambiar rol
+    const response = await api.patch(`/users/estado/${id}`, cambioEstado);
     return response.data;
   } catch (error) {
-    console.error("Error al cambiar el rol del usuario:", error);
-    throw new Error("Error al cambiar el rol del usuario");
+    console.error("Error al cambiar el estado del usuario:", error);
+    throw new Error("Error al cambiar el estado del usuario");
   }
 };
 
@@ -60,22 +68,5 @@ export const cambiarCredencialesUsuario = async (credenciales) => {
   } catch (error) {
     console.error("Error al cambiar las credenciales del usuario:", error);
     throw new Error("Error al cambiar las credenciales del usuario");
-  }
-};
-
-// Función para cambiar el estado de un usuario
-export const cambiarEstadoUsuario = async (id, estado) => {
-  try {
-    // El objeto `estado` debe incluir `estado` y `detalle_baja` (si aplica)
-    const cambioEstado = {
-      estado: estado.estado, // El nuevo estado del usuario (activo/inactivo)
-      detalle_baja: estado.detalle_baja || "", // Detalles sobre la baja (si corresponde)
-    };
-
-    const response = await api.patch(`/users/estado/${id}`, cambioEstado); // Endpoint para cambiar estado de usuario
-    return response.data;
-  } catch (error) {
-    console.error("Error al cambiar el estado del usuario:", error);
-    throw new Error("Error al cambiar el estado del usuario");
   }
 };

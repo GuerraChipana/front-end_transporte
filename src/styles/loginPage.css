@@ -1,0 +1,223 @@
+/* Establece un reset para el body */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #f0f0f0; /* Fondo predeterminado */
+  font-family: "Arial", sans-serif;
+}
+
+/* Estilos globales de la página de login */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url("../assets/logo-blanco2.png"); /* Imagen de fondo */
+  background-size: cover; /* Se asegura que la imagen cubra toda el área del fondo */
+  background-position: center center; /* Centra la imagen */
+  background-repeat: no-repeat; /* No repite la imagen */
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Contenedor del login */
+.login-container {
+  margin-top: 8%;
+  background: rgba(150, 144, 144, 0.18); /* Fondo translúcido */
+  padding: 30px;
+  border: 0.5px solid rgba(150, 144, 144, 0.18);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 7%;
+}
+
+/* Estilo para el título */
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #2a1790;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  position: relative; /* Necesario para posicionar el efecto de texto */
+
+  /* Efecto de texto iluminado o neón */
+  color: #1b09de; /* Color del texto (verde fosforescente suave) */
+  text-shadow: 0 0 10px rgba(9, 146, 112, 0.8), 0 0 20px rgba(18, 2, 189, 0.8),
+    0 0 30px rgba(0, 245, 183, 0.8); /* Efecto de resplandor */
+
+  /* Fondo con borde iluminado */
+  background: #2a1790;
+  -webkit-background-clip: text; 
+  color: transparent;
+  padding: 5px;
+}
+
+/* Estilo de los inputs (campos de texto y contraseña) */
+.login-container .input-container {
+  position: relative;
+  width: 100%;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px 40px 12px 40px; /* Añadimos espacio a los lados para los iconos */
+  margin: 10px 0;
+  border: 2px solid white;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: "Arial", sans-serif;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.722); /* Fondo translúcido */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+}
+
+/* Efecto al enfocar los inputs */
+.login-container input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Estilo del botón */
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: "Arial", sans-serif;
+}
+
+/* Efecto al pasar el ratón sobre el botón */
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo de los mensajes de error */
+.login-container .error {
+  color: #f44336;
+  margin-top: 10px;
+  font-size: 14px;
+  font-family: "Arial", sans-serif;
+}
+
+/* Estilo para los iconos (usuario y contraseña) */
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #050000;
+  font-size: 22px; /* Tamaño adecuado para los iconos */
+  pointer-events: none; /* Asegura que el icono no interfiera con el input */
+}
+
+/* Estilo para el icono de ojo en la contraseña */
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #8e8c8c;
+  font-size: 22px; /* Icono de ojo más grande */
+}
+
+/* Medias Queries para hacer la página responsiva */
+
+/* Estilo para pantallas de tamaño medio (tabletas, dispositivos de 600px a 1024px) */
+@media screen and (max-width: 1024px) {
+  .login-container {
+    max-width: 350px; /* Ajustar el ancho máximo para dispositivos medianos */
+    margin-top: 5%;
+    padding: 20px;
+  }
+
+  .login-container h2 {
+    font-size: 24px; /* Hacer el título un poco más pequeño */
+  }
+
+  .login-container input {
+    padding: 12px 35px 12px 35px; /* Reducir el padding para ajustarse mejor */
+  }
+
+  .icon {
+    font-size: 20px; /* Reducir el tamaño de los iconos */
+  }
+
+  .eye-icon {
+    font-size: 20px; /* Reducir el tamaño del icono de ojo */
+  }
+
+  .login-container button {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+/* Estilo para pantallas pequeñas (teléfonos, dispositivos de menos de 600px) */
+@media screen and (max-width: 600px) {
+  .login-container {
+    max-width: 280px; /* Reducir el ancho máximo en dispositivos pequeños */
+    padding: 15px;
+  }
+
+  .login-container h2 {
+    font-size: 22px; /* Reducir el tamaño del título */
+  }
+
+  .login-container input {
+    padding: 12px 30px 12px 30px; /* Reducir el padding */
+  }
+
+  .icon {
+    font-size: 18px; /* Reducir el tamaño de los iconos */
+  }
+
+  .eye-icon {
+    font-size: 18px; /* Reducir el tamaño del icono de ojo */
+  }
+
+  .login-container button {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+/* Estilo para pantallas extra pequeñas (teléfonos muy pequeños, dispositivos con menos de 400px de ancho) */
+@media screen and (max-width: 400px) {
+  .login-container {
+    max-width: 250px; /* Reducir aún más el ancho máximo */
+  }
+
+  .login-container h2 {
+    font-size: 20px; /* Hacer el título aún más pequeño */
+  }
+
+  .login-container input {
+    padding: 12px 25px 12px 25px; /* Ajustar aún más el padding */
+  }
+
+  .icon {
+    font-size: 16px; /* Reducir el tamaño de los iconos aún más */
+  }
+
+  .eye-icon {
+    font-size: 16px; /* Reducir el tamaño del icono de ojo aún más */
+  }
+
+  .login-container button {
+    padding: 10px;
+    font-size: 12px; /* Hacer el tamaño del botón más pequeño */
+  }
+}

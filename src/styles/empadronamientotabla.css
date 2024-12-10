@@ -1,0 +1,141 @@
+/* Estilo general para el contenedor */
+.empadronamiento-tabla-container {
+  max-width: 100%;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fffbfb;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0, 0.1);
+  overflow: hidden;
+}
+
+/* Tabla */
+.empadronamiento-tabla-container table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Arial', sans-serif;
+}
+/* Fijar la cabecera de la tabla */
+.empadronamiento-tabla-container table th {
+  position: sticky;
+  top: 0;
+  background-color: #003b76;
+  z-index: 2; /* Asegura que los encabezados estén sobre el contenido */
+}
+
+/* Agregar estilo para el contenedor de la paginación */
+.empadronamiento-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.empadronamiento-pagination button {
+  padding: 8px 15px;
+  font-size: 14px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 5px;
+}
+
+.empadronamiento-pagination button:hover {
+  background-color: #2980b9;
+}
+
+.empadronamiento-pagination .disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+/* Estilos de las cabeceras */
+.empadronamiento-tabla-container th {
+  background-color: #000000;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+}
+
+/* Estilo para las celdas de la tabla */
+.empadronamiento-tabla-container td {
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Estilo para filas alternas */
+.empadronamiento-tabla-container tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.empadronamiento-tabla-container tr:hover {
+  background-color: #ecf3f9;
+}
+
+/* Estilo para las imágenes */
+.empadronamiento-tabla-container td img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto al hacer clic en la imagen */
+.empadronamiento-tabla-container td img:hover {
+  transform: scale(3); /* Agranda la imagen */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra para resaltar la imagen */
+}
+
+/* Botones */
+.empadronamiento-tabla-container button {
+  padding: 8px 15px;
+  font-size: 12px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin: 5px;
+  font-weight: 600;
+}
+
+/* Botón de editar */
+.empadronamiento-tabla-container button.edit-button {
+  background-color: #003b76;
+  padding: 7px 28px;
+}
+
+.empadronamiento-tabla-container button.edit-button:hover {
+  background-color: #0260be;
+  transform: scale(1.05);
+}
+
+/* Botón de activar/desactivar */
+.empadronamiento-tabla-container button.toggle-button {
+  background-color: #bf0b0b;
+}
+
+.empadronamiento-tabla-container button.toggle-button:hover {
+  background-color: #ff0400;
+  transform: scale(1.05);
+}
+
+/* Mensajes de error */
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+}

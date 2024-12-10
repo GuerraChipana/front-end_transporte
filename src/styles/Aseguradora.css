@@ -1,0 +1,154 @@
+/* Estilos para toda la gestión de aseguradoras */
+.aseguradora-gestion-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.aseguradora-search-container {
+  margin-bottom: 20px;
+}
+
+.aseguradora-search-container input {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Botones de la tabla y acciones */
+.aseguradora-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+
+}
+
+/* Colores para los botones */
+.aseguradora-button-create {
+  background-color: #003b76; /* Azul para crear */
+}
+
+.aseguradora-button-create:focus, 
+.aseguradora-button-create:active {
+  background-color: #0d6ecf;
+  outline: none;
+  box-shadow: none;
+}
+
+.aseguradora-button-edit {
+  background-color: #003b76; /* Azul para editar */
+}
+
+.aseguradora-button-edit:focus, 
+.aseguradora-button-edit:active {
+  background-color: #003b76;
+  outline: none;
+  box-shadow: none;
+}
+
+.aseguradora-button-state {
+  background-color: #ed0000; /* Amarillo para cambiar estado */
+}
+
+.aseguradora-button-state:focus, 
+.aseguradora-button-state:active {
+  background-color: #e70000;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Efecto hover para botones */
+.aseguradora-button-create:hover {
+  background-color: #003060; /* Verde más oscuro para hover */
+}
+
+.aseguradora-button-edit:hover {
+  background-color: #006cd7; /* Azul más oscuro para hover */
+}
+
+.aseguradora-button-state:hover {
+  background-color: #ff0000; /* Amarillo más oscuro para hover */
+}
+
+/* Estilo para la tabla de aseguradoras */
+.aseguradora-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.aseguradora-table th,
+.aseguradora-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.aseguradora-table th {
+  background-color: #f4f4f4;
+}
+
+.aseguradora-table td {
+  word-wrap: break-word; /* Asegura que las celdas largas se ajusten correctamente */
+}
+
+/* Estilo de los mensajes de error */
+.aseguradora-error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* Estilos para el modal */
+.aseguradora-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aseguradora-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+}
+
+/* Estilos responsivos para la tabla */
+@media screen and (max-width: 768px) {
+  .aseguradora-table {
+    font-size: 12px; /* Reducir el tamaño de la fuente en pantallas pequeñas */
+  }
+
+  .aseguradora-table th, 
+  .aseguradora-table td {
+    padding: 8px; /* Reducir el padding */
+  }
+
+  .aseguradora-button {
+    font-size: 12px; /* Hacer los botones más pequeños en pantallas pequeñas */
+    padding: 8px 12px;
+  }
+
+  /* Hacer que las celdas de la tabla se ajusten a pantallas pequeñas */
+  .aseguradora-table td, 
+  .aseguradora-table th {
+    display: block;
+    width: 100%;
+    text-align: right;
+  }
+
+  .aseguradora-table td {
+    text-align: left;
+    padding-left: 20px; /* Alinear contenido a la izquierda */
+  }
+}

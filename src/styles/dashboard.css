@@ -1,0 +1,103 @@
+/* dashboard.css */
+
+/* Estilo general de la página */
+.dashboard-container {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7fc;
+  }
+  
+  .dashboard-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-title {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    color: #3e65a3;
+    margin-bottom: 20px;
+  }
+  
+  /* Contenedor para la sección del usuario e información institucional */
+  .user-institution-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  
+  /* Información del usuario (izquierda) */
+  .user-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .user-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .user-detail i {
+    font-size: 24px;
+    color: #3e65a3;
+    margin-bottom: 10px;
+  }
+  
+  .user-detail p {
+    font-size: 16px;
+  }
+  
+  /* Información Institucional (derecha) */
+  .institution-info {
+    flex: 2;
+    background-color: #f8f9fb;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .institution-info h3 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #3e65a3;
+    margin-bottom: 15px;
+  }
+  
+  .institution-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .institution-info li {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .institution-info a {
+    color: #0077cc;
+    text-decoration: none;
+  }
+  
+  .institution-info a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Estilos de carga y error */
+  .loading,
+  .error,
+  .no-user {
+    text-align: center;
+    font-size: 18px;
+    color: #f56c6c;
+    margin-top: 20px;
+  }
+  

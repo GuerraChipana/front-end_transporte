@@ -1,0 +1,226 @@
+/* Modal Principal */
+.modal-conductor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-conductor-wrapper {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px; /* Limita el tamaño máximo */
+  max-height: 800px;
+  overflow-y: auto; /* Añade scroll si el contenido es muy largo */
+}
+
+.conductor-modal-title-label {
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  padding-bottom: 5px;
+  font-size: 1.5rem;
+  width: 100%;
+  font-weight: bold;
+}
+
+.modal-conductor-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide el formulario en dos columnas */
+  gap: 30px; /* Espacio entre los campos */
+  width: 98.5%;
+}
+.modal-conductor-input-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal-conductor-input-group label {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.modal-conductor-input-group input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Botones de selección */
+.modal-conductor-select-button {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-conductor-select-button button {
+  padding: 25px;
+  font-size: 16px;
+  border: none;
+  background-color: #848484;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modal-conductor-select-button button:hover {
+  background-color: #b6bcc3;
+  transform: scale(1.05);
+}
+
+.conductor-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-conductor-close-button,
+.modal-conductor-submit-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  margin: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modal-conductor-close-button {
+  background-color: #a31306;
+  color: white;
+  margin-left: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modal-conductor-close-button:hover {
+  background-color: #df1600;
+  transform: scale(1.05);
+}
+
+.modal-conductor-submit-button {
+  background-color: #003b76;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  color: white;
+}
+
+.modal-conductor-submit-button:hover {
+  background-color: #0260be;
+  transform: scale(1.05);
+}
+
+.error-list {
+  color: red;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.error-list li {
+  font-size: 0.9rem;
+}
+
+/* Estilos de los Modales de Búsqueda */
+.modal-conductor-buscar {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 60%;
+  max-width: 350px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.modal-conductor-buscar-input {
+  width: 65%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.modal-conductor-buscar-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.modal-conductor-buscar-lista li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.modal-conductor-buscar-lista li:hover {
+  background-color: #f1f1f1;
+}
+
+.modal-conductor-buscar-lista button {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.modal-conductor-buscar-lista button:hover {
+  background-color: #f1f1f1;
+}
+
+.close {
+  position: absolute;
+  right: 25px;
+  top: 28px;
+  background-color: #a31306;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.close:hover {
+  background-color: #df1600;
+  transform: scale(1.05);
+}
+
+.modal-conductor-vehiculos {
+  gap: 5px;
+  display: flex;
+  content: normal;
+  text-align: justify;
+  padding-bottom: 5%;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-conductor-vehiculos-seleccionados {
+  margin-left: 4px;
+  font-size: 14px;
+}
+.vehiculo-remove-button {
+  margin-left: 5px;
+  font-size: 8px;
+}

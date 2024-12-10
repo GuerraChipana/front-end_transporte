@@ -1,0 +1,223 @@
+/* Estilos generales de la página */
+.personas-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f7fa; /* Fondo suave gris claro */
+}
+
+/* Contenedor de la tabla */
+.personas-container .table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla */
+.personas-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+/* Centrar el título */
+.personas-container h1 {
+  text-align: center;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.personas-container th,
+.personas-container td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #e0e0e0;
+}
+
+.personas-container th {
+  background-color: #003b76; /* Verde más brillante */
+  color: white;
+}
+
+.personas-container td {
+  background-color: #ffffff;
+}
+
+.personas-container td img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+/* Contenedor para el botón de registrar y el campo de búsqueda */
+.search-register-container {
+  display: flex; /* Usa Flexbox para alinear los elementos */
+  justify-content: space-between; /* Espacio entre los elementos */
+  align-items: center; /* Alinea verticalmente en el centro */
+  margin-top: 20px; /* Espacio superior */
+}
+
+/* Estilo para el campo de búsqueda */
+.search-container input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 250px;
+  transition: border-color 0.3s ease;
+}
+
+/* Estilo para el botón de registrar */
+.personas-container button {
+  padding: 8px 16px;
+  background-color: #003b76; /* Azul */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-left: 10px;
+}
+
+.personas-container button:hover {
+  background-color: #025eba;
+  transform: scale(1.05);
+}
+
+/* Botón de estado (Activar/Desactivar) */
+.personas-container button.btn-activar,
+.personas-container button.btn-desactivar {
+  background-color: #ac1606;
+}
+
+.personas-container button.btn-activar:hover,
+.personas-container button.btn-desactivar:hover {
+  background-color: #c61e0c;
+}
+
+/* Barra de búsqueda */
+.personas-container .search-container input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 250px;
+  margin-left: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.personas-container .search-container input:focus {
+  border-color: #4caf50; /* Verde cuando está enfocado */
+}
+
+.personas-container .search-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Estilos del modal */
+.personas-container .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.personas-container .modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.personas-container .modal-content h2 {
+  font-size: 24px;
+  color: #000000;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Estilo de los campos de texto en el modal */
+.personas-container .modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.personas-container .modal-content input:focus {
+  border-color: #4caf50; /* Verde */
+}
+
+/* Botones dentro del modal */
+.personas-container .modal-content button[type="submit"] {
+  padding: 12px 4px;
+  background-color: #003b76;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  margin-left: -1px;
+  cursor: pointer;
+  margin-right: 8%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 45%;
+}
+
+.personas-container .modal-content button[type="submit"]:hover {
+  background-color: #005ebc;
+  transform: scale(1.05);
+}
+
+.personas-container .modal-content button[type="button"] {
+  padding: 12px 4px;
+  background-color: #c61e0c;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 5%;
+  width: 45%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: block;
+}
+
+.personas-container .modal-content button[type="button"]:hover {
+  background-color: rgb(222, 5, 5);
+  transform: scale(1.05);
+}
+
+.personas-container-button-acepp {
+  display: flex;
+}
+
+/* Ajuste del tamaño máximo de la columna de Email */
+.personas-container table th:nth-child(5),
+.personas-container table td:nth-child(5) {
+  max-width: 250px; /* Ancho máximo */
+  overflow: hidden; /* Oculta el texto que excede el límite */
+  text-overflow: ellipsis; /* Añade "..." si el texto es muy largo */
+  white-space: nowrap; /* Evita el salto de línea en la celda */
+}
+
+/* Mensajes de error */
+.personas-container .modal-content p {
+  color: #f44336; /* Rojo de error */
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+}

@@ -1,0 +1,58 @@
+/* Estilos básicos para el contenedor de gestión de seguros */
+.seguro-vehicular-gestion-container {
+  padding: 20px;
+  background-color: #f4f7fc;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos del input de búsqueda */
+.seguro-vehicular-search-container {
+  margin-bottom: 20px;
+}
+
+.seguro-vehicular-search-container input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 250px;
+}
+
+/* Contenedor de botones (Activos/Inactivos y Crear Seguro) */
+.seguro-vehicular-buttons-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+/* Estilos generales de los botones */
+.seguro-vehicular-button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
+  border: none;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+  background-color: #257bd6;
+}
+
+.seguro-vehicular-button:hover {
+  background-color: #0056b3;
+
+  color: white;
+}
+
+.seguro-vehicular-button-create {
+  background-color: #28a745;
+  color: white;
+  border: none;
+}
+
+.seguro-vehicular-button-create:hover {
+  background-color: #218838;
+}
