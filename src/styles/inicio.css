@@ -3,47 +3,54 @@
   padding: 40px;
   font-family: "Arial", sans-serif;
   max-width: 1200px;
-  height: 100vh; /* Asegura que el contenedor tenga al menos la altura de la pantalla */
-  min-height: 100%; /* Asegura que el contenedor ocupe todo el alto disponible */
+  min-height: 100vh; /* Asegura que cubra toda la altura de la pantalla */
   margin: 0 auto;
   background-color: #f9f9f9;
-  background-image: url("/fondo_web2[1].jpg"); /* Ruta a la imagen de fondo */
-  background-size: cover; /* La imagen cubre toda el área */
-  background-position: center; /* Centra la imagen de fondo */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-image: url("/fondo_web2[1].jpg");
+  background-size: cover; /* Asegura que la imagen cubra el contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
   border-radius: 8px;
   box-sizing: border-box;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alinea el contenido desde la parte superior */
-  align-items: center; /* Centra el contenido horizontalmente */
+  justify-content: flex-start;
+  align-items: center;
 }
 
-/* Logo como título */
+/* Título con el logo */
 .inicio-title {
   margin-top: -3%;
   text-align: center;
-  margin-bottom: 10px; /* Separa el logo del resto del contenido */
+  margin-bottom: 10px;
 }
 
 .inicio-title img {
-  width: 400px; /* Ajusta el tamaño del logo según sea necesario */
+  width: 100%; /* Se adapta al ancho del contenedor */
+  max-width: 400px; /* Tamaño máximo de la imagen */
   height: auto;
 }
 
-/* El resto del CSS sigue igual... */
-
-/* Contenedor de las secciones de búsqueda (placa y empadronamiento) */
+/* Contenedor de búsqueda */
 .busqueda-container {
+  width: 70%;
   display: flex;
   justify-content: center;
   gap: 30px;
   margin-bottom: 30px;
-  flex-wrap: wrap; /* Permite que los elementos se ajusten si es necesario */
+  flex-wrap: wrap;
 }
 
-/* Sección de búsqueda por placa y empadronamiento (formulario) */
+@media (max-width: 768px) {
+  .busqueda-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Sección de búsqueda */
 .busqueda-placa-section,
 .busqueda-empadronamiento-section {
   flex: 1;
@@ -55,18 +62,10 @@
 
 .busqueda-placa-section.hidden,
 .busqueda-empadronamiento-section.hidden {
-  display: none; /* Ocultar cuando sea necesario */
+  display: none;
 }
 
-/* Ajuste cuando solo hay una sección visible */
-.busqueda-container > div {
-  max-width: 100%; /* No exceder el 100% del ancho disponible */
-  width: 100%; /* Asegurarse que ocupe todo el espacio disponible */
-  display: flex;
-  justify-content: center;
-}
-
-/* Estilo de los botones y entradas */
+/* Estilo de las entradas y botones */
 .busqueda-placa-input-group,
 .busqueda-empadronamiento-input-group {
   display: flex;
@@ -83,6 +82,18 @@
   border-radius: 8px;
   width: 70%;
   max-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .busqueda-placa-input,
+  .busqueda-empadronamiento-input {
+    width: 90%;
+  }
+
+  .busqueda-placa-button,
+  .busqueda-empadronamiento-button {
+    width: 90%;
+  }
 }
 
 .busqueda-placa-button,
@@ -104,54 +115,98 @@
 
 /* Tarjeta de resultados */
 .resultado-card {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 3 partes para los detalles, 1 parte para la imagen */
+  gap: 20px;
+  width: 80%;
   background-color: white;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  gap: 20px;
 }
 
+@media (max-width: 768px) {
+  .resultado-card {
+    grid-template-columns: 1fr; /* En móviles, la tarjeta será una sola columna */
+    width: 90%;
+  }
+
+  .resultado-card-image {
+    max-height: 200px; /* Limitar el tamaño de la imagen en pantallas pequeñas */
+  }
+}
+
+/* Detalles del vehículo */
 .resultado-card-info {
-  flex: 1;
   font-size: 1rem;
 }
 
+.resultado-card-info h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
 .resultado-card-info p {
+  margin: 5px 0; /* Se aumenta el margen entre los párrafos */
+  font-size: 1rem;
+}
+
+.resultado-card-seguro strong {
+  display: inline-block;
+  width: 150px; /* Ajusta el ancho del texto en negrita para que no se amontone */
+  margin-right: 10px; /* Añade espacio entre el texto fuerte y el contenido */
+  color: #333; /* Puedes ajustar el color si lo necesitas */
+}
+
+.resultado-card-info strong {
+  display: inline-block;
+  width: 150px; /* Ajusta el ancho del texto en negrita para que no se amontone */
+  margin-right: 10px; /* Añade espacio entre el texto fuerte y el contenido */
+  color: #333; /* Puedes ajustar el color si lo necesitas */
+}
+/* Estilo adicional para separar más los detalles */
+.resultado-card-info .detalle {
+  margin-bottom: 8px;
+}
+
+.resultado-card-info .detalle p {
   margin: 5px 0;
 }
-/* Estilo para los textos dentro de <strong> */
-.resultado-card-info p strong {
-  font-weight: bold; /* Asegura que el texto esté en negrita */
-  padding: 2px 4px; /* Añade un pequeño padding alrededor del texto para separarlo del borde */
-  border-radius: 4px; /* Borde redondeado para un look más suave */
-  background-color: #f0f0f0; /* Fondo gris claro para hacer el texto aún más visible */
-}
-
-.resultado-card-seguro p strong {
-  font-weight: bold; /* Asegura que el texto esté en negrita */
-  padding: 2px 4px; /* Añade un pequeño padding alrededor del texto para separarlo del borde */
-  border-radius: 4px; /* Borde redondeado para un look más suave */
-  background-color: #f0f0f0; /* Fondo gris claro para hacer el texto aún más visible */
-}
+/* Imagen del vehículo */
 .resultado-card-image {
-  max-width: 250px;
-  max-height: 180px;
+  display: flex;
+  justify-content: center; /* Centra la imagen horizontalmente */
+  align-items: center; /* Centra la imagen verticalmente */
+  text-align: center;
+  max-width: 100%;
+  max-height: 250px;
   border-radius: 8px;
   object-fit: cover;
-  flex-shrink: 0;
+  margin: 0 auto; /* Asegura que la imagen esté centrada en su contenedor */
 }
 
+/* Estilo de los seguros */
 .resultado-card-seguro {
-  background-color: #ffffff;
+  background-color: #f9f9f9;
   padding: 15px;
-  margin-top: 10px;
+  margin-top: -15px;
   border-radius: 5px;
 }
 
 .resultado-card-seguro p {
+  margin: 5px 0;
+}
+
+/* Estilo de los propietarios */
+.resultado-card-propietarios {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin-top: -30px;
+  border-radius: 5px;
+}
+
+.resultado-card-propietarios p {
   margin: 5px 0;
 }
 
@@ -186,12 +241,68 @@
   background-color: #c82333;
 }
 
-/* Animación de fade-in para las secciones */
+/* Animación de fade-in */
 @keyframes fadeIn {
   0% {
     opacity: 0;
   }
   100% {
     opacity: 1;
+  }
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+  /* Ajuste de la imagen del vehículo */
+  .resultado-card-image {
+    max-height: 150px;
+  }
+
+  /* Ajuste de márgenes y padding para mejor visualización */
+  .resultado-card {
+    padding: 15px;
+    width: 90%;
+  }
+
+  /* Ajuste de los botones para que sean más grandes en dispositivos móviles */
+  .busqueda-placa-button,
+  .busqueda-empadronamiento-button,
+  .inicio-clear-button {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+
+  /* Ajuste del tamaño de la fuente en los detalles */
+  .resultado-card-info {
+    font-size: 0.9rem;
+  }
+}
+
+/* Media Query para pantallas ultra pequeñas (móviles) */
+@media (max-width: 480px) {
+  .inicio-container {
+    padding: 20px;
+  }
+
+  .inicio-title img {
+    max-width: 300px;
+  }
+
+  .busqueda-placa-input,
+  .busqueda-empadronamiento-input {
+    font-size: 0.9rem;
+  }
+
+  .resultado-card-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .resultado-card {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .resultado-card-image {
+    max-height: 120px; /* Ajustar el tamaño de la imagen en pantallas muy pequeñas */
   }
 }

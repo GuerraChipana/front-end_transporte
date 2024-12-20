@@ -50,9 +50,9 @@ function Inicio() {
             return vehiculosSeguros.map((seguro, index) => (
                 <div key={index} className="resultado-card-seguro">
                     <h4>Seguro Vehicular:</h4>
-                    <p><strong>N° Póliza:</strong> {seguro.n_poliza}</p>
-                    <p><strong>Estado de vencimiento:</strong> {seguro.estado_vencimiento}</p>
-                    <p><strong>Fecha de vigencia hasta:</strong> {seguro.fecha_vigencia_hasta}</p>
+                    <p><strong>N° Póliza:   </strong> {seguro.n_poliza}</p>
+                    <p><strong>Estado de vencimiento:   </strong> {seguro.estado_vencimiento}</p>
+                    <p><strong>Fecha de vigencia hasta:  </strong>   {seguro.fecha_vigencia_hasta}</p>
                 </div>
             ));
         } else {
@@ -60,9 +60,30 @@ function Inicio() {
         }
     };
 
+    // Función para renderizar los propietarios
+    const renderPropietarios = (propietarios) => {
+        if (propietarios) {
+            return (
+                <div className="resultado-card-propietarios">
+                    <h4>Propietarios:</h4>
+                    {/* Aquí se muestran los propietarios uno debajo del otro */}
+                    {Object.keys(propietarios).map((key) => {
+                        const propietario = propietarios[key];
+                        return (
+                            <p key={key}>{`${propietario.nombre} ${propietario.apPaterno} ${propietario.apMaterno}`}</p>
+                        );
+                    })}
+                </div>
+            );
+        } else {
+            return <p>No hay propietarios disponibles.</p>;
+        }
+    };
+
     return (
         <div className="inicio-container">
-            <h1 className="inicio-title">  <img src="/logo-mdati.png" width={400} />
+            <h1 className="inicio-title">
+                <img src="/logo-mdati.png" width={400} alt="Logo" />
             </h1>
 
             {error && <div className="inicio-error">{error}</div>}
@@ -104,22 +125,26 @@ function Inicio() {
             {resultadosPlaca && resultadosPlaca.vehiculo && (
                 <div className="resultado-card">
                     <div className="resultado-card-info">
-                        <p><strong>N° Empadronamiento:</strong> {resultadosPlaca.empadronamiento?.n_empadronamiento || 'No disponible'}</p>
-                        <div className="resultado-card-info">
-                            <p><strong>N° Placa:</strong> {resultadosPlaca.vehiculo?.placa || 'No disponible'}</p>
-                            <p><strong>Marca:</strong> {resultadosPlaca.vehiculo?.marca || 'No disponible'}</p>
-                            <p><strong>N° Tarjeta:</strong> {resultadosPlaca.vehiculo?.n_tarjeta || 'No disponible'}</p>
-                            <p><strong>Asociación:</strong> {resultadosPlaca.asociacion || 'No disponible'}</p>
-                        </div>
-
-                        <div className="resultado-card-info">
-                            <p><strong>N° TUC:</strong> {resultadosPlaca.numeroTuc || 'No disponible'}</p>
-                            <p><strong>Estado de Vigencia de Tuc:</strong> {resultadosPlaca.estadoVigenciaTuc || 'No disponible'}</p>
-                        </div>
+                        <h3>Detalles del Vehículo</h3>
+                        <p><strong>N° Empadronamiento:  </strong> {resultadosPlaca.empadronamiento?.n_empadronamiento || 'No disponible'}</p>
+                        <p><strong>N° Placa:    </strong> {resultadosPlaca.vehiculo?.placa || 'No disponible'}</p>
+                        <p><strong>Marca:   </strong> {resultadosPlaca.vehiculo?.marca || 'No disponible'}</p>
+                        <p><strong>N° Tarjeta:  </strong> {resultadosPlaca.vehiculo?.n_tarjeta || 'No disponible'}</p>
+                        <p><strong>Asociación:  </strong> {resultadosPlaca.asociacion || 'No disponible'}</p>
+                        <p><strong>N° TUC:  </strong> {resultadosPlaca.numeroTuc || 'No disponible'}</p>
+                        <p><strong>Estado de Tuc:   </strong> {resultadosPlaca.estadoVigenciaTuc || 'No disponible'}</p>
                     </div>
 
-                    {renderSeguros(resultadosPlaca.vehiculosSeguros)}
+                    {/* Imagen del vehículo */}
                     <img className="resultado-card-image" src={resultadosPlaca.vehiculo?.imagen_url || ''} alt={resultadosPlaca.vehiculo?.marca || 'Imagen no disponible'} />
+
+                    {/* Renderización de seguros (ahora en la sección de propietarios) */}
+                    {renderSeguros(resultadosPlaca.vehiculosSeguros)}
+
+                    {/* Renderización de Propietarios (ahora en la sección de imagen) */}
+                    {renderPropietarios(resultadosPlaca.propietarios)}
+
+
                 </div>
             )}
 
@@ -127,24 +152,26 @@ function Inicio() {
             {resultadosEmpadronamiento && resultadosEmpadronamiento.vehiculo && (
                 <div className="resultado-card">
                     <div className="resultado-card-info">
-                        <p><strong>N° Empadronamiento:</strong> {resultadosEmpadronamiento.n_empadronamiento || 'No disponible'}</p>
-                        <div className="resultado-card-info">
-                            <p><strong>Placa:</strong> {resultadosEmpadronamiento.vehiculo?.placa || 'No disponible'}</p>
-                            <p><strong>Marca:</strong> {resultadosEmpadronamiento.vehiculo?.marca || 'No disponible'}</p>
-                            <p><strong>Número de Tarjeta:</strong> {resultadosEmpadronamiento.vehiculo?.n_tarjeta || 'No disponible'}</p>
-                            <p><strong>Asociación:</strong> {resultadosEmpadronamiento.asociacion || 'No disponible'}</p>
-                        </div>
-                        <div className="resultado-card-info">
-                            <p><strong>N° TUC:</strong> {resultadosEmpadronamiento.numeroTuc || 'No disponible'}</p>
-                            <p><strong>Estado de Vigencia:</strong> {resultadosEmpadronamiento.estadoVigenciaTuc || 'No disponible'}</p>
-                        </div>
+                        <h3>Detalles del Vehículo</h3>
+                        <p><strong>N° Empadronamiento:  </strong> {resultadosEmpadronamiento.n_empadronamiento || 'No disponible'}</p>
+                        <p><strong>Placa:   </strong> {resultadosEmpadronamiento.vehiculo?.placa || 'No disponible'}</p>
+                        <p><strong>Marca:   </strong> {resultadosEmpadronamiento.vehiculo?.marca || 'No disponible'}</p>
+                        <p><strong>N° Tarjeta:  </strong> {resultadosEmpadronamiento.vehiculo?.n_tarjeta || 'No disponible'}</p>
+                        <p><strong>Asociación:  </strong> {resultadosEmpadronamiento.asociacion || 'No disponible'}</p>
+                        <p><strong>N° TUC:  </strong> {resultadosEmpadronamiento.numeroTuc || 'No disponible'}</p>
+                        <p><strong>Estado de TUC:   </strong> {resultadosEmpadronamiento.estadoVigenciaTuc || 'No disponible'}</p>
                     </div>
-
-                    {renderSeguros(resultadosEmpadronamiento.vehiculosSeguros)}
+                    {/* Imagen del vehículo */}
                     <img className="resultado-card-image" src={resultadosEmpadronamiento.vehiculo?.imagen_url || ''} alt={resultadosEmpadronamiento.vehiculo?.marca || 'Imagen no disponible'} />
+
+
+                    {/* Renderización de seguros (ahora en la sección de propietarios) */}
+                    {renderSeguros(resultadosEmpadronamiento.vehiculosSeguros)}
+
+                    {/* Renderización de Propietarios (ahora en la sección de imagen) */}
+                    {renderPropietarios(resultadosEmpadronamiento.propietarios)}
                 </div>
             )}
-
             {/* Botón para limpiar las búsquedas */}
             <div className="inicio-clear-button-container">
                 <button className="inicio-clear-button" onClick={handleClear}>Limpiar Búsqueda</button>
