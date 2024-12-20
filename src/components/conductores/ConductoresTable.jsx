@@ -57,7 +57,7 @@ const ConductoresTable = ({ conductores, onEdit, onEstado }) => {
                     <tr>
                         <th className="conductor-tabla-header">ID</th>
                         <th className="conductor-tabla-header">DNI</th>
-                        <th className="conductor-tabla-header">Persona</th>
+                        <th className="conductor-tabla-header">Nombre</th>
                         <th className="conductor-tabla-header">N°Licencia</th>
                         <th className="conductor-tabla-header">Fecha desde</th>
                         <th className="conductor-tabla-header">Fecha hasta</th>

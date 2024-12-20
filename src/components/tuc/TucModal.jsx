@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { listarAsociaciones } from "../../services/asociaciones";
 import { listarVehiculos } from "../../services/vehiculos";
+import { listarEmpadronamiento } from "../../services/empadronamiento"; // Importa el servicio
 import { actualizarTuc, registrarTuc, obtenerTucPorId } from "../../services/tuc";
 import '../../styles/tucModal.css';
 
@@ -14,7 +15,7 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
   });
 
   const [asociaciones, setAsociaciones] = useState([]);
-  const [vehiculos, setVehiculos] = useState([]);
+  const [vehiculos, setVehiculos] = useState([]); // Solo vehículos empadronados
   const [filteredData, setFilteredData] = useState({ asociaciones: [], vehiculos: [] });
   const [modalVisible, setModalVisible] = useState({ asociacion: false, vehiculo: false });
   const [loading, setLoading] = useState(false);
@@ -29,10 +30,24 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [asociacionesData, vehiculosData] = await Promise.all([listarAsociaciones(), listarVehiculos()]);
+        // Cargar las asociaciones y vehículos (sin filtrar)
+        const [asociacionesData, vehiculosData, empadronamientosData] = await Promise.all([
+          listarAsociaciones(),
+          listarVehiculos(),
+          listarEmpadronamiento() // Cargar empadronamientos
+        ]);
+
         setAsociaciones(asociacionesData);
-        setVehiculos(vehiculosData);
-        setFilteredData({ asociaciones: asociacionesData, vehiculos: vehiculosData });
+
+        // Filtrar los vehículos empadronados usando los datos de empadronamiento
+        const vehiculosEmpadronados = vehiculosData.filter(vehiculo =>
+          empadronamientosData.some(empadronamiento =>
+            empadronamiento.id_vehiculo.id === vehiculo.id
+          )
+        );
+
+        setVehiculos(vehiculosEmpadronados); // Solo los vehículos empadronados
+        setFilteredData({ asociaciones: asociacionesData, vehiculos: vehiculosEmpadronados });
 
         if (tipoModal === "editar" && tucId) {
           const tucData = await obtenerTucPorId(tucId);
@@ -112,7 +127,6 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
     }
   };
 
-  // Función para manejar el "Cancelar"
   const handleCancel = () => {
     setModalIsOpen(false); // Cerrar el modal sin hacer cambios
   };
@@ -131,7 +145,7 @@ const TucModal = ({ tipoModal, tucId, setModalIsOpen, onUpdate }) => {
             <div key={field.name}>
               <label>{field.label}</label>
               <input
-              className="tuc-NTUC_Compra"
+                className="tuc-NTUC_Compra"
                 type="number"
                 name={field.name}
                 value={formData[field.name]}

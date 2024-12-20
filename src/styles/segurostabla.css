@@ -128,3 +128,29 @@
   padding: 8px;
   line-height: 32px;
 }
+
+
+
+/* Colores según el estado de vigencia */
+.segurotabla-estado.no-vencido {
+  background-color: #026600; /* Fondo verde */
+  color: white; /* Letra blanca */
+  padding: 7px 10px; /* Espaciado alrededor del texto */
+}
+.segurotabla-estado.no-vencido,
+.segurotabla-estado.vencido {
+  line-height: 1; /* Asegura que la línea no se estire innecesariamente */
+  vertical-align: middle; /* Alinea verticalmente el texto con el contenedor */
+  height: auto; /* Asegura que la altura sea ajustada automáticamente */
+  display: inline-block; /* Hace que el fondo solo cubra el texto */
+  margin-top: 20%;
+  margin-left: 10%;
+  font-weight: bold;
+  border-radius: 15px 15px;
+}
+
+.segurotabla-estado.vencido {
+  background-color: #c94000; /* Fondo naranja */
+  padding: 8px 20px; /* Espaciado alrededor del texto */
+  color: white; /* Letra blanca */
+}

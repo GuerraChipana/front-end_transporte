@@ -75,7 +75,9 @@ const SeguroVehicularTabla = ({ seguros, onEdit, onChangeState }) => {
               </td>
               <td>{seguro.fecha_vigencia_desde}</td>
               <td>{seguro.fecha_vigencia_hasta}</td>
-              <td>{seguro.estado_vencimiento}</td>
+              <td className={`segurotabla-estado ${seguro.estado_vencimiento === "Vencido" ? "vencido" : "no-vencido"}`}>
+                {seguro.estado_vencimiento}
+              </td>
               <td>{seguro.id_aseguradora.aseguradora}</td>
 
               {(rol === "superadministrador" || rol === "administrador") && (

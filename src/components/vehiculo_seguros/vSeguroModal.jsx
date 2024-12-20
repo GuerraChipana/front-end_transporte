@@ -56,7 +56,7 @@ const VehiculosSegurosModel = ({ tipoModal, seguroId, setModalIsOpen, onUpdate }
             ...prev,
             [tipo]: tipo === "aseguradoras"
                 ? aseguradoras.filter(item => item.aseguradora.toLowerCase().includes(searchValue) && item.estado === 1)
-                : vehiculos.filter(item => item.placa.toLowerCase().includes(searchValue) && item, estado === 1)
+                : vehiculos.filter(item => item.placa.toLowerCase().includes(searchValue) && item.estado === 1)
         }));
     };
 

@@ -1,0 +1,197 @@
+/* Estilo general de la página */
+.inicio-container {
+  padding: 40px;
+  font-family: "Arial", sans-serif;
+  max-width: 1200px;
+  height: 100vh; /* Asegura que el contenedor tenga al menos la altura de la pantalla */
+  min-height: 100%; /* Asegura que el contenedor ocupe todo el alto disponible */
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  background-image: url("/fondo_web2[1].jpg"); /* Ruta a la imagen de fondo */
+  background-size: cover; /* La imagen cubre toda el área */
+  background-position: center; /* Centra la imagen de fondo */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea el contenido desde la parte superior */
+  align-items: center; /* Centra el contenido horizontalmente */
+}
+
+/* Logo como título */
+.inicio-title {
+  margin-top: -3%;
+  text-align: center;
+  margin-bottom: 10px; /* Separa el logo del resto del contenido */
+}
+
+.inicio-title img {
+  width: 400px; /* Ajusta el tamaño del logo según sea necesario */
+  height: auto;
+}
+
+/* El resto del CSS sigue igual... */
+
+/* Contenedor de las secciones de búsqueda (placa y empadronamiento) */
+.busqueda-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap; /* Permite que los elementos se ajusten si es necesario */
+}
+
+/* Sección de búsqueda por placa y empadronamiento (formulario) */
+.busqueda-placa-section,
+.busqueda-empadronamiento-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.busqueda-placa-section.hidden,
+.busqueda-empadronamiento-section.hidden {
+  display: none; /* Ocultar cuando sea necesario */
+}
+
+/* Ajuste cuando solo hay una sección visible */
+.busqueda-container > div {
+  max-width: 100%; /* No exceder el 100% del ancho disponible */
+  width: 100%; /* Asegurarse que ocupe todo el espacio disponible */
+  display: flex;
+  justify-content: center;
+}
+
+/* Estilo de los botones y entradas */
+.busqueda-placa-input-group,
+.busqueda-empadronamiento-input-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.busqueda-placa-input,
+.busqueda-empadronamiento-input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 70%;
+  max-width: 300px;
+}
+
+.busqueda-placa-button,
+.busqueda-empadronamiento-button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.busqueda-placa-button:hover,
+.busqueda-empadronamiento-button:hover {
+  background-color: #0056b3;
+}
+
+/* Tarjeta de resultados */
+.resultado-card {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+}
+
+.resultado-card-info {
+  flex: 1;
+  font-size: 1rem;
+}
+
+.resultado-card-info p {
+  margin: 5px 0;
+}
+/* Estilo para los textos dentro de <strong> */
+.resultado-card-info p strong {
+  font-weight: bold; /* Asegura que el texto esté en negrita */
+  padding: 2px 4px; /* Añade un pequeño padding alrededor del texto para separarlo del borde */
+  border-radius: 4px; /* Borde redondeado para un look más suave */
+  background-color: #f0f0f0; /* Fondo gris claro para hacer el texto aún más visible */
+}
+
+.resultado-card-seguro p strong {
+  font-weight: bold; /* Asegura que el texto esté en negrita */
+  padding: 2px 4px; /* Añade un pequeño padding alrededor del texto para separarlo del borde */
+  border-radius: 4px; /* Borde redondeado para un look más suave */
+  background-color: #f0f0f0; /* Fondo gris claro para hacer el texto aún más visible */
+}
+.resultado-card-image {
+  max-width: 250px;
+  max-height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.resultado-card-seguro {
+  background-color: #ffffff;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.resultado-card-seguro p {
+  margin: 5px 0;
+}
+
+/* Mensaje de error */
+.inicio-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Botón de limpiar */
+.inicio-clear-button-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.inicio-clear-button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.inicio-clear-button:hover {
+  background-color: #c82333;
+}
+
+/* Animación de fade-in para las secciones */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -86,7 +86,7 @@ const EmpadronamientoModal = ({ tipoModal, empadronamientoId, setModalIsOpen, on
             <form onSubmit={handleSubmit} className="empadronamiento-modal-form">
                 <label className="empadronamiento-modal-label">N° Empadronamiento</label>
                 <input
-                    type="text"
+                    type="number"
                     name="n_empadronamiento"
                     value={formData.n_empadronamiento}
                     onChange={handleChange}

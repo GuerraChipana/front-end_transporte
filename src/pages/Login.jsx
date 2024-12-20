@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Usamos useNavigate en lugar de useHistory
 import { login } from '../services/auth';
 import '../styles/loginPage.css';  // Importamos el archivo de estilos
@@ -49,7 +49,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Contraseña"
             />
-            <span 
+            <span
               className="eye-icon"
               onClick={() => setShowPassword(!showPassword)}
             >

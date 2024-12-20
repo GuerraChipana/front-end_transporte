@@ -10,7 +10,7 @@ const Sidebar = ({ collapsed }) => {
         <div className={`sidebar-content ${collapsed ? 'collapsed' : ''}`}>
             <div className="sidebar-header">
                 <Link to="/dashboard">
-                    <img src="/src/assets/escudo-icon.ico" alt="Logo" className="sidebar-logo" />
+                    <img src="escudo-icon.ico" alt="Logo" className="sidebar-logo" />
                 </Link>
             </div>
 
@@ -22,8 +22,8 @@ const Sidebar = ({ collapsed }) => {
                 <li><Link to="/conductores"><i className="fas fa-user-tie"></i> <span>{collapsed ? '' : 'Conductores'}</span></Link></li>
                 <li><Link to="/vehiculos"><i className="fas fa-car"></i> <span>{collapsed ? '' : 'Vehículos'}</span></Link></li>
                 <li><Link to="/vehiculoseguros"><i className="fas fa-clipboard-list"></i> <span>{collapsed ? '' : 'Vehículos Seguros'}</span></Link></li>
-                <li><Link to="/tuc"><i className="fas fa-address-card"></i> <span>{collapsed ? '' : 'TUC'}</span></Link></li>
                 <li><Link to="/empadronamiento"><i className="fas fa-clipboard"></i> <span>{collapsed ? '' : 'Empadronamiento'}</span></Link></li>
+                <li><Link to="/tuc"><i className="fas fa-address-card"></i> <span>{collapsed ? '' : 'TUC'}</span></Link></li>
                 <li><Link to="/asociaciones"><i className="fas fa-handshake"></i> <span>{collapsed ? '' : 'Asociaciones'}</span></Link></li>
                 <li><Link to="/aseguradoras"><i className="fas fa-shield-alt"></i> <span>{collapsed ? '' : 'Aseguradoras'}</span></Link></li>
                 <li><Link to="/micuenta"><i className="fas fa-user"></i> <span>{collapsed ? '' : 'Mi Cuenta'}</span></Link></li>
@@ -38,7 +38,7 @@ const Sidebar = ({ collapsed }) => {
 const handleLogout = () => {
     sessionStorage.removeItem('token'); // Eliminar el token de sesión
     sessionStorage.removeItem('hasVisitedDashboard'); // Eliminar la clave
-    window.location.href = '/login'; // Redirigir al login
+    window.location.href = '/administracion'; // Redirigir al login
 };
 
 

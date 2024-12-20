@@ -88,7 +88,7 @@ const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose, onVehiculoUpdated })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         // Validación de tipo de archivo antes de enviar el formulario
         if (file) {
             const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
@@ -97,23 +97,23 @@ const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose, onVehiculoUpdated })
                 return; // No continuar con el envío si el tipo de archivo es incorrecto
             }
         }
-    
+
         // Validación: propietario1 no puede ser igual a propietario2
         if (vehiculo.propietario1 === vehiculo.propietario2) {
             alert("El propietario 1 no puede ser igual al propietario 2.");
             return;
         }
-    
+
         setLoading(true);
         const formData = new FormData();
-    
+
         // Si hay un archivo de imagen, se agrega al formData, de lo contrario solo se agrega la URL
         if (file) {
             formData.append('imagen', file);
         } else {
             formData.append('imagen_url', vehiculo.imagen_url);
         }
-    
+
         // Agregar el resto de los campos relevantes
         formData.append('placa', vehiculo.placa);
         formData.append('n_tarjeta', vehiculo.n_tarjeta);
@@ -122,12 +122,12 @@ const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose, onVehiculoUpdated })
         formData.append('color', vehiculo.color);
         formData.append('ano_de_compra', vehiculo.ano_de_compra);
         formData.append('propietario1', vehiculo.propietario1);
-    
+
         // Solo agregar propietario2 si tiene un valor
         if (vehiculo.propietario2) {
             formData.append('propietario2', vehiculo.propietario2);
         }
-    
+
         try {
             if (tipo === "crear") {
                 await registrarVehiculo(formData);
@@ -143,7 +143,7 @@ const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose, onVehiculoUpdated })
             alert(error.message || 'Error al procesar la solicitud');
         }
     };
-    
+
 
 
     const handleSearchChange = (e) => {
@@ -192,7 +192,7 @@ const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose, onVehiculoUpdated })
 
                         {/* Fila para los campos del vehículo */}
                         <div className="vehiculo-form-grid">
-                            {["placa", "n_tarjeta", "n_motor", "marca", "color", "ano_de_compra"].map((field) => (
+                            {["placa", "n_tarjeta", "n_motor", "ano_de_compra"].map((field) => (
                                 <div key={field} className="vehiculo-input-wrapper">
                                     <label>{field.replace('_', ' ').toUpperCase()}</label>
                                     <input
@@ -206,7 +206,48 @@ const VehiculoModal = ({ tipo, vehiculoId, isOpen, onClose, onVehiculoUpdated })
                                     />
                                 </div>
                             ))}
+
+                            {/* Marca (Combobox con 3 opciones) */}
+                            <div className="vehiculo-input-wrapper">
+                                <label>Marca</label>
+                                <select
+                                    name="marca"
+                                    value={vehiculo.marca}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="vehiculo-input"
+                                >
+                                    <option value="">Seleccionar Marca</option>
+                                    <option value="BAJAJ">BAJAJ</option>
+                                    <option value="TVS">TVS</option>
+                                    <option value="PIAGGIO">PIAGGIO</option>
+                                    <option value="GARUDA">GARUDA</option>
+                                    <option value="SSENDA">SSENDA</option>
+                                    <option value="ZEUZ2211">ZEUZ2211</option>
+                                </select>
+                            </div>
+
+                            {/* Color (Combobox con 3 opciones) */}
+                            <div className="vehiculo-input-wrapper">
+                                <label>Color</label>
+                                <select
+                                    name="color"
+                                    value={vehiculo.color}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="vehiculo-input"
+                                >
+                                    <option value="">Seleccionar Color</option>
+                                    <option value="Rojo">Rojo</option>
+                                    <option value="Azul">Azul</option>
+                                    <option value="Negro">Negro</option>
+                                    <option value="Blanco">Blanco</option>
+                                    <option value="Celeste">Celeste</option>
+                                    <option value="Amarillo">Amarillo</option>
+                                </select>
+                            </div>
                         </div>
+
 
 
                         {/* Botones para seleccionar propietarios */}

@@ -1,13 +1,41 @@
-// src/services/api.js
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Para redirigir al login si el token expira
 
 const api = axios.create({
-  baseURL: "http://localhost:3030",
+  baseURL: "", // Lo dejamos vacío por ahora
   headers: {
     "Content-Type": "application/json",
   },
 });
+
+// Función para verificar si el servidor local está activo
+const checkLocalhost = async () => {
+  const localhostURL = "http://localhost:3000/api/busqueda/hola";
+  const remoteURL = "https://servidor-transporte.onrender.com/api";
+
+  try {
+    // Intentamos hacer una solicitud al servidor local para comprobar si está activo
+    const response = await axios.get(localhostURL);
+    if (response.status === 200) {
+      // Si la solicitud es exitosa, usamos la URL local
+      return 'http://localhost:3000/api';
+    } else {
+      // Si el servidor local responde pero con un error, usamos la URL remota
+      return remoteURL;
+    }
+  } catch (error) {
+    // Si hay un error en la solicitud (es decir, el servidor local no está disponible), usamos la URL remota
+    return remoteURL;
+  }
+};
+
+// Configuramos la URL base de la API después de comprobar
+const setBaseURL = async () => {
+  const baseURL = await checkLocalhost();
+  api.defaults.baseURL = baseURL;
+};
+
+setBaseURL(); // Llamamos a la función para configurar el baseURL
 
 // Interceptor para añadir el token en cada solicitud
 api.interceptors.request.use(

@@ -22,6 +22,9 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
     const [loading, setLoading] = useState(false);
     const [errores, setErrores] = useState([]);
 
+    const categorias = ["B-I", "B-IIa", "B-IIb", "B-IIc"]; // Opciones de categorías
+    const gruposSanguineos = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"]; // Opciones de grupos sanguíneos
+
     useEffect(() => {
         const loadData = async () => {
             try {
@@ -140,7 +143,12 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
 
                     <div className="modal-conductor-input-group">
                         <label htmlFor="categoria">Categoría:</label>
-                        <input type="text" name="categoria" value={formData.categoria} onChange={handleChange} required />
+                        <select name="categoria" value={formData.categoria} onChange={handleChange} required>
+                            <option value="">Seleccionar categoría</option>
+                            {categorias.map(categoria => (
+                                <option key={categoria} value={categoria}>{categoria}</option>
+                            ))}
+                        </select>
                     </div>
 
                     <div className="modal-conductor-input-group">
@@ -150,7 +158,12 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
 
                     <div className="modal-conductor-input-group">
                         <label htmlFor="g_sangre">Grupo Sanguíneo:</label>
-                        <input type="text" name="g_sangre" value={formData.g_sangre} onChange={handleChange} required />
+                        <select name="g_sangre" value={formData.g_sangre} onChange={handleChange} required>
+                            <option value="">Seleccionar grupo sanguíneo</option>
+                            {gruposSanguineos.map(grupo => (
+                                <option key={grupo} value={grupo}>{grupo}</option>
+                            ))}
+                        </select>
                     </div>
 
                     <div className="modal-conductor-input-group">
@@ -186,7 +199,6 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
                         </button>
                     </div>
                 </form>
-
 
                 {/* Modal de Selección de Persona */}
                 {modalVisible.persona && (
@@ -235,7 +247,6 @@ const ConductoresModal = ({ tipoModal, conductorId, setModalIsOpen, onUpdate }) 
                         </button>
                     </div>
                 )}
-
             </div>
         </div>
     );
