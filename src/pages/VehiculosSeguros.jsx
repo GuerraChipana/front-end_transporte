@@ -3,11 +3,11 @@ import { listarSegurosVehiculares } from '../services/vehiculo_seguros';
 import { getUserRoleFromToken } from '../utils/authHelper';
 import SeguroVehicularTabla from '../components/vehiculo_seguros/vSeguroTable';
 import VehiculosSegurosModel from '../components/vehiculo_seguros/vSeguroModal';
-import '../styles/seguros.css'
+import '../styles/seguros.css';
 
 const SeguroVehiculares = () => {
   const rol = getUserRoleFromToken();
-  const [seguros, setSeguros] = useState([]);
+  const [seguros, setSeguros] = useState([]);  // Inicializamos como un array vacío
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [tipoModal, setTipoModal] = useState('crear');
   const [seguroId, setSeguroId] = useState(null);
@@ -19,26 +19,40 @@ const SeguroVehiculares = () => {
     const fetchSeguros = async () => {
       try {
         const segurosData = await listarSegurosVehiculares();
-        setSeguros(segurosData);
+        
+        // Verificamos que la respuesta sea un array
+        if (Array.isArray(segurosData)) {
+          setSeguros(segurosData);  // Si es un array, actualizamos el estado
+        } else {
+          console.error('Error: la respuesta no es un array', segurosData);
+          setSeguros([]);  // Si no es un array, establecemos un array vacío
+        }
       } catch (error) {
         console.error('Error al obtener los seguros vehiculares:', error);
+        setSeguros([]);  // En caso de error, establecemos un array vacío
       }
     };
     fetchSeguros();
-  }, []);
+  }, []);  // Este useEffect se ejecuta solo una vez cuando el componente se monta
 
-  // Filter insurances by vehicle plate and active/inactive status
+  // Filtrar seguros por placa y estado activo/inactivo
   const filtroSeguros = seguros.filter((seguro) =>
     seguro.id_vehiculo.placa.toLowerCase().includes(buscarPlaca.toLowerCase()) &&
     (mostrarActivos ? seguro.estado === 1 : seguro.estado === 0)
   );
 
-  // Update the insurance list
+  // Actualizar la lista de seguros
   const handleUpdate = () => {
     const fetchSeguros = async () => {
       try {
         const segurosData = await listarSegurosVehiculares();
-        setSeguros(segurosData);
+
+        // Verificamos que la respuesta sea un array
+        if (Array.isArray(segurosData)) {
+          setSeguros(segurosData);
+        } else {
+          console.error('Error: la respuesta no es un array', segurosData);
+        }
       } catch (error) {
         console.error('Error al obtener los seguros vehiculares:', error);
       }
@@ -74,7 +88,8 @@ const SeguroVehiculares = () => {
             onClick={() => { setModalIsOpen(true); setTipoModal('crear'); }}
           >
             Crear Seguro Vehicular
-          </button>)}
+          </button>
+        )}
       </div>
 
       <SeguroVehicularTabla
@@ -84,7 +99,7 @@ const SeguroVehiculares = () => {
           setTipoModal('editar');
           setModalIsOpen(true);
         }}
-        onChangeState={handleUpdate}  // Pass the update function to change state
+        onChangeState={handleUpdate}  // Pasamos la función para actualizar el estado
       />
 
       {modalIsOpen && (

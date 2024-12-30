@@ -28,8 +28,8 @@ const TUC = () => {
   }, []);
 
   // Filtrar por placa y número TUC
-  const filtroPlaca = tucs.filter((tuc) => tuc.id_vehiculo.placa.toLowerCase().includes(buscarPlaca.toLowerCase()));
-  const filtroTuc = tucs.filter((tuc) => String(tuc.n_tuc).toLowerCase().includes(buscarTuc.toLowerCase()));
+  const filtroPlaca = Array.isArray(tucs) ? tucs.filter((tuc) => tuc.id_vehiculo.placa.toLowerCase().includes(buscarPlaca.toLowerCase())) : [];
+  const filtroTuc = Array.isArray(tucs) ? tucs.filter((tuc) => String(tuc.n_tuc).toLowerCase().includes(buscarTuc.toLowerCase())) : [];
 
   // Combina ambos filtros
   const tucsFiltrados = filtroPlaca.filter((tuc) =>

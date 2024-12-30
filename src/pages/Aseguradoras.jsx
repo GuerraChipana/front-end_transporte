@@ -6,7 +6,7 @@ import AseguradoraModal from '../components/aseguradoras/aseguradoraModal';
 import '../styles/Aseguradora.css';
 
 const Aseguradoras = () => {
-  const [aseguradoras, setAseguradoras] = useState([]);
+  const [aseguradoras, setAseguradoras] = useState([]); // Inicializamos como un array vacío
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [tipoModal, setTipoModal] = useState("crear");
   const [aseguradoraId, setAseguradoraId] = useState(null);
@@ -17,14 +17,23 @@ const Aseguradoras = () => {
     const fetchAseguradora = async () => {
       try {
         const aseguradoraData = await listarAseguradoras();
-        setAseguradoras(aseguradoraData);
+
+        // Verificamos que la respuesta sea un array
+        if (Array.isArray(aseguradoraData)) {
+          setAseguradoras(aseguradoraData); // Si es un array, lo seteamos
+        } else {
+          console.error("Error: la respuesta no es un array", aseguradoraData);
+          setAseguradoras([]); // Establecemos un array vacío en caso de error
+        }
       } catch (error) {
         console.error("Error al obtener las aseguradoras:", error);
+        setAseguradoras([]); // En caso de error, establecemos un array vacío
       }
     };
     fetchAseguradora();
-  }, []);
+  }, []); // Se ejecuta solo una vez cuando el componente se monta
 
+  // Filtro de aseguradoras
   const filtroAseguradora = aseguradoras.filter((aseguradora) =>
     aseguradora.aseguradora.toLowerCase().includes(buscarNombre.toLowerCase())
   );
@@ -33,7 +42,12 @@ const Aseguradoras = () => {
     const fetchAseguradora = async () => {
       try {
         const aseguradoraData = await listarAseguradoras();
-        setAseguradoras(aseguradoraData);
+        // Verificamos que la respuesta sea un array
+        if (Array.isArray(aseguradoraData)) {
+          setAseguradoras(aseguradoraData);
+        } else {
+          console.error("Error: la respuesta no es un array", aseguradoraData);
+        }
       } catch (error) {
         console.error("Error al obtener las aseguradoras:", error);
       }
@@ -56,10 +70,18 @@ const Aseguradoras = () => {
 
       {(rol === "superadministrador" || rol === "administrador") && (
         <div>
-          <button className="aseguradora-button aseguradora-button-create" onClick={() => { setModalIsOpen(true); setTipoModal("crear"); }}>
-            Crear Aseguradora</button>
+          <button
+            className="aseguradora-button aseguradora-button-create"
+            onClick={() => {
+              setModalIsOpen(true);
+              setTipoModal("crear");
+            }}
+          >
+            Crear Aseguradora
+          </button>
         </div>
       )}
+      
       <AseguradoraTabla
         aseguradoras={filtroAseguradora}
         onEdit={(id) => {

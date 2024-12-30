@@ -1,0 +1,112 @@
+/* Estilos generales del modal */
+.personas-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente */
+    z-index: 1000;
+  }
+  
+  .personas-modal-content {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    width: 70%;
+    max-width: 600px; /* Reducir el tamaño del modal */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+  
+  .personas-modal-header {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  /* Sección de formulario */
+  .personas-form-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  .personas-modal-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .personas-modal-input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+  }
+  
+  .personas-modal-input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Estilo para los botones */
+  .personas-modal-button,
+  .personas-modal-cancel-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 10px;
+  }
+  
+  .personas-modal-button {
+    background-color: #003b76;
+    color: white;
+  }
+  
+  .personas-modal-button:hover {
+    background-color: #0058a3;
+    transform: scale(1.05);
+  }
+  
+  .personas-modal-cancel-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .personas-modal-cancel-button:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+  }
+  
+  /* Estilo para mensaje de error */
+  .personas-error-message {
+    color: #f44336;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .personas-modal-content {
+      width: 90%; /* Ajuste de modal en pantallas más pequeñas */
+    }
+  
+    .personas-form-section {
+      grid-template-columns: 1fr; /* En pantallas pequeñas, solo una columna */
+    }
+  }
+  

@@ -26,16 +26,17 @@ const Empadronamiento = () => {
     fetchEmpadronamientos();
   }, []);
 
-  const filtroEmpadronamiento = empadronamientos.filter((empadronamiento) => {
+  const filtroEmpadronamiento = Array.isArray(empadronamientos) ? empadronamientos.filter((empadronamiento) => {
     const esActivo = empadronamiento.estado === 1;
     const esDesactivado = empadronamiento.estado === 0;
-    
+
     // Si mostrarDesactivados es false, solo mostrar activos
     return String(empadronamiento.n_empadronamiento)
       .toLowerCase()
-      .includes(buscarEmpadronamiento.toLowerCase()) && 
+      .includes(buscarEmpadronamiento.toLowerCase()) &&
       (!mostrarDesactivados ? esActivo : esDesactivado); // Si mostrarDesactivados es true, mostrar desactivados
-  });
+  }) : []; // Si no es un array, devolver un array vacío
+
 
   const handleUpdate = () => {
     const fetchEmpadronamientos = async () => {
@@ -52,22 +53,22 @@ const Empadronamiento = () => {
   return (
     <div className="empadronamiento-container">
       <h2>Gestión de Empadronamientos</h2>
-      
+
       <div className="empadronamiento-search-container">
-        <input 
-          type="text" 
+        <input
+          type="text"
           placeholder="Buscar N° Empadronamiento"
           value={buscarEmpadronamiento}
-          onChange={(e) => setBuscarEmpadronamiento(e.target.value)} 
+          onChange={(e) => setBuscarEmpadronamiento(e.target.value)}
           className="empadronamiento-search-input"
         />
       </div>
-      
+
       {/* Contenedor para los botones alineados en la misma línea */}
       <div className="empadronamiento-buttons-container">
         {/* Botón para alternar entre activos y desactivados */}
-        <button 
-          className="empadronamiento-button" 
+        <button
+          className="empadronamiento-button"
           onClick={() => setMostrarDesactivados(!mostrarDesactivados)} // Alternar estado
         >
           {mostrarDesactivados ? "Mostrar activos" : "Mostrar desactivados"} {/* Cambiar texto del botón */}
@@ -75,7 +76,7 @@ const Empadronamiento = () => {
 
         {/* Botón para crear empadronamiento */}
         {(rol === "superadministrador" || rol === "administrador") && (
-          <button 
+          <button
             className="empadronamiento-button empadronamiento-button-create"
             onClick={() => { setModalIsOpen(true); setTipoModal('crear') }}
           >
@@ -91,7 +92,7 @@ const Empadronamiento = () => {
           setTipoModal('editar');
           setModalIsOpen(true);
         }}
-        onEstado={handleUpdate} 
+        onEstado={handleUpdate}
       />
 
       {modalIsOpen && (

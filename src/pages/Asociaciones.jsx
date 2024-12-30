@@ -7,28 +7,38 @@ import '../styles/asociaciones.css';
 
 const Asociaciones = () => {
   const rol = getUserRoleFromToken();
-  const [asociaciones, setAsociaciones] = useState([]);
+  const [asociaciones, setAsociaciones] = useState([]); // Inicializa como un array vacío
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [tipoModal, setTipoModal] = useState('crear');
   const [asociacionId, setAsociacionId] = useState(null);
   const [buscarAsociacion, setBuscarAsociacion] = useState('');
   const [mostrarDesactivados, setMostrarDesactivados] = useState(false); // Estado para alternar entre activos y desactivados
 
+  // Usamos useEffect para obtener las asociaciones al montar el componente
   useEffect(() => {
     const fetchAsociaciones = async () => {
       try {
         const asociacionData = await listarAsociaciones();
-        setAsociaciones(asociacionData);
+        
+        // Asegúrate de que los datos recibidos sean un array
+        if (Array.isArray(asociacionData)) {
+          setAsociaciones(asociacionData);
+        } else {
+          console.error('Error: la respuesta de la API no es un array', asociacionData);
+          setAsociaciones([]); // Establece un array vacío en caso de error
+        }
       } catch (error) {
         console.error(`Error al obtener las asociaciones:`, error);
+        setAsociaciones([]); // Establece un array vacío en caso de error
       }
     };
     fetchAsociaciones();
-  }, []);
+  }, []); // Se ejecuta solo una vez cuando el componente se monta
 
+  // Filtro de asociaciones
   const filtroAsociacion = asociaciones
     .filter((asociacion) =>
-      (asociacion.nombre).toLowerCase().includes(buscarAsociacion.toLowerCase())
+      asociacion.nombre.toLowerCase().includes(buscarAsociacion.toLowerCase())
     )
     .filter((asociacion) => {
       // Filtrar según el estado de mostrarDesactivados
@@ -39,7 +49,12 @@ const Asociaciones = () => {
     const fetchAsociaciones = async () => {
       try {
         const asociacionesData = await listarAsociaciones();
-        setAsociaciones(asociacionesData);
+        // Asegúrate de que los datos sean un array
+        if (Array.isArray(asociacionesData)) {
+          setAsociaciones(asociacionesData);
+        } else {
+          console.error('Error: la respuesta de la API no es un array', asociacionesData);
+        }
       } catch (error) {
         console.error('Error al obtener las asociaciones:', error);
       }
@@ -54,6 +69,7 @@ const Asociaciones = () => {
   return (
     <div className="asoaciones-gestion-container">
       <h2 className="asoaciones-gestion-title">Gestión de Asociaciones</h2>
+      
       <div className="asociaciones-seach-container">
         <input
           type="text"
@@ -63,6 +79,7 @@ const Asociaciones = () => {
           className="asoaciones-search-input"
         />
       </div>
+      
       <div className="asoaciones-filter-container">
         <div className="asoaciones-filter-buttons">
           <button
@@ -72,6 +89,7 @@ const Asociaciones = () => {
             {mostrarDesactivados ? "Mostrar Activos" : "Mostrar Desactivados"}
           </button>
         </div>
+        
         {(rol === "superadministrador" || rol === "administrador") && (
           <button
             className="asoaciones-button asoaciones-button-create"
@@ -85,6 +103,7 @@ const Asociaciones = () => {
         )}
       </div>
 
+      {/* Tabla de asociaciones */}
       <AsociacionTabla
         asociaciones={filtroAsociacion}
         onEdit={(id) => {
@@ -94,6 +113,8 @@ const Asociaciones = () => {
         }}
         onEstado={handleUpdate}
       />
+
+      {/* Modal para crear o editar una asociación */}
       {modalIsOpen && (
         <AsociacionModal
           tipoModal={tipoModal}

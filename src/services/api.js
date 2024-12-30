@@ -1,41 +1,73 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Para redirigir al login si el token expira
 
+// Inicializamos Axios sin baseURL inicialmente
 const api = axios.create({
-  baseURL: "", // Lo dejamos vacío por ahora
+  baseURL: "", // Inicialmente vacío, se configurará después
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// Función para verificar si el servidor local está activo
-const checkLocalhost = async () => {
-  const localhostURL = "http://localhost:3000/api/busqueda/hola";
-  const remoteURL = "https://servidor-transporte.onrender.com/api";
+// Función para verificar si alguno de los servidores está activo
+const checkServer = async () => {
+  const servers = [
+    "https://servidortransporte-copy-production.up.railway.app/api", // Servidor 1
+    "https://servidor-transporte.onrender.com/api", // Servidor 2
+    "https://servidor3.example.com/api", // Servidor 3 (puedes añadir más si es necesario)
+  ];
 
+  // Verificamos si ya existe una URL guardada en sessionStorage
+  const storedBaseURL = sessionStorage.getItem("baseURL");
+  if (storedBaseURL) {
+    // Si la baseURL ya está guardada en sessionStorage, la usamos
+    api.defaults.baseURL = storedBaseURL;
+    return; // Ya no necesitamos hacer más verificaciones
+  }
+
+  // Intentamos la primera URL
   try {
-    // Intentamos hacer una solicitud al servidor local para comprobar si está activo
-    const response = await axios.get(localhostURL);
+    const response = await axios.get(servers[0]);
     if (response.status === 200) {
-      // Si la solicitud es exitosa, usamos la URL local
-      return 'http://localhost:3000/api';
-    } else {
-      // Si el servidor local responde pero con un error, usamos la URL remota
-      return remoteURL;
+      api.defaults.baseURL = servers[0]; // Establecemos la primera URL como baseURL
+      sessionStorage.setItem("baseURL", servers[0]); // Guardamos la baseURL en sessionStorage
+      return;
     }
   } catch (error) {
-    // Si hay un error en la solicitud (es decir, el servidor local no está disponible), usamos la URL remota
-    return remoteURL;
+    console.log("Servidor 1 no disponible, probando con el siguiente...");
   }
+
+  // Intentamos la segunda URL
+  try {
+    const response = await axios.get(servers[1]);
+    if (response.status === 200) {
+      api.defaults.baseURL = servers[1]; // Establecemos la segunda URL como baseURL
+      sessionStorage.setItem("baseURL", servers[1]); // Guardamos la baseURL en sessionStorage
+      return;
+    }
+  } catch (error) {
+    console.log("Servidor 2 no disponible, probando con el siguiente...");
+  }
+
+  // Intentamos la tercera URL
+  try {
+    const response = await axios.get(servers[2]);
+    if (response.status === 200) {
+      api.defaults.baseURL = servers[2]; // Establecemos la tercera URL como baseURL
+      sessionStorage.setItem("baseURL", servers[2]); // Guardamos la baseURL en sessionStorage
+      return;
+    }
+  } catch (error) {
+    console.log("Servidor 3 no disponible.");
+  }
+
+  // Si ninguno de los servidores responde correctamente
+  throw new Error("No se pudo conectar con los servidores.");
 };
 
-// Configuramos la URL base de la API después de comprobar
-const setBaseURL = async () => {
-  const baseURL = await checkLocalhost();
-  api.defaults.baseURL = baseURL;
-};
-
-setBaseURL(); // Llamamos a la función para configurar el baseURL
+// Llamamos a la función para configurar el baseURL
+checkServer().catch((error) => {
+  console.error(error.message);
+});
 
 // Interceptor para añadir el token en cada solicitud
 api.interceptors.request.use(

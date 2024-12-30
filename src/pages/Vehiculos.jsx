@@ -43,10 +43,13 @@ const Vehiculos = () => {
     setModalIsOpen(true);
   };
 
-  const filteredVehiculos = vehiculos.filter((vehiculo) =>
-    vehiculo.placa.toLowerCase().includes(searchPlaca.toLowerCase()) &&
-    (mostrarActivos ? vehiculo.estado === 1 : vehiculo.estado === 0)
-  );
+  const filteredVehiculos = Array.isArray(vehiculos)
+    ? vehiculos.filter((vehiculo) =>
+      vehiculo.placa.toLowerCase().includes(searchPlaca.toLowerCase()) &&
+      (mostrarActivos ? vehiculo.estado === 1 : vehiculo.estado === 0)
+    )
+    : []; // Si no es un array, devolvemos un array vacío
+
 
   return (
     <div className="vehiculo-gestion-container">

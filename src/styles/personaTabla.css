@@ -1,0 +1,211 @@
+/* Estilos generales para la tabla */
+.persona-tabla-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px;
+  background-color: #f4f7fc;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
+}
+.persona-tabla-titulos {
+  background-color: #003b76;
+}
+.persona-tabla {
+  width: 100%;
+  max-width: 1000px; /* Limitar el ancho máximo de la tabla */
+  margin: 0 auto; /* Centrar la tabla */
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+.persona-tabla th {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #e1e1e1;
+  color: #ffffff;
+  font-size: 14px; /* Reducir tamaño de fuente */
+}
+
+.persona-tabla td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #e1e1e1;
+  color: #000;
+  font-size: 14px; /* Reducir tamaño de fuente */
+}
+
+/* Reducir el ancho de las columnas */
+.persona-tabla td:nth-child(1),
+.persona-tabla th:nth-child(1) {
+  /* ID */
+  width: 50px;
+}
+
+.persona-tabla td:nth-child(2),
+.persona-tabla th:nth-child(2) {
+  /* Foto */
+  width: 60px;
+}
+
+.persona-tabla td:nth-child(3),
+.persona-tabla th:nth-child(3) {
+  /* DNI */
+  width: 100px;
+}
+
+.persona-tabla td:nth-child(4),
+.persona-tabla th:nth-child(4) {
+  /* Nombres */
+  width: 120px;
+}
+
+.persona-tabla td:nth-child(5),
+.persona-tabla th:nth-child(5) {
+  /* Apellidos */
+  width: 120px;
+}
+
+/* Domicilio: Similar al apellido, queremos un texto dividido si es largo */
+.persona-tabla td:nth-child(6),
+.persona-tabla th:nth-child(6) {
+    max-width: 190px; /* Controlar el ancho máximo para la celda */
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Email: Truncar y dividir el texto si es necesario */
+.persona-tabla td:nth-child(7),
+.persona-tabla th:nth-child(7) {
+    max-width: 130px; /* Controlar el ancho máximo para la celda */
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.persona-tabla td:nth-child(8),
+.persona-tabla th:nth-child(8) {
+  /* Telefono */
+  width: 100px;
+}
+
+.persona-tabla td:nth-child(9),
+.persona-tabla th:nth-child(9) {
+  /* Acciones */
+  width: 150px;
+}
+
+.persona-tabla tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.persona-tabla tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Efecto de zoom sobre la imagen */
+.persona-tabla img {
+  transition: transform 0.3s ease;
+  max-width: 45px;
+  height: auto;
+}
+
+.persona-tabla img:hover {
+  transform: scale(1.5);
+}
+
+/* Estilos para los botones */
+.persona-tabla-button-editar,
+.persona-tabla-button-cambiar-estado {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.persona-tabla-button-editar {
+  background-color: #003b76;
+  color: white;
+}
+
+.persona-tabla-button-editar:hover {
+  background-color: #005ab4;
+  transform: scale(1.05);
+}
+
+.persona-tabla-button-cambiar-estado {
+  color: white;
+}
+
+.persona-tabla-button-desactivar {
+  background-color: #c61e0c;
+}
+
+.persona-tabla-button-desactivar:hover {
+  background-color: #ff1900;
+  transform: scale(1.05);
+}
+
+.persona-tabla-button-activar {
+  padding: 8px 27px;
+  background-color: #007bff;
+}
+
+.persona-tabla-button-activar:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para la paginación */
+.persona-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.persona-pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.persona-pagination button:hover {
+  background-color: #f2f2f2;
+}
+
+.persona-pagination .active {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .persona-tabla th,
+  .persona-tabla td {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .persona-pagination button {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+
+  .persona-tabla-button-editar,
+  .persona-tabla-button-cambiar-estado {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
