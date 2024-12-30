@@ -12,8 +12,8 @@ const api = axios.create({
 const checkServer = async () => {
   const servers = [
     "https://servidortransporte-copy-production.up.railway.app/api", // Servidor 1
-    "https://servidor-transporte.onrender.com/api", // Servidor 2
-    "https://servidor3.example.com/api", // Servidor 3 (puedes añadir más si es necesario)
+    "https://a75d919c-cc98-4775-9ffb-c39d4268a7ad-00-5zoqb9b2fyo3.spock.replit.dev/api", // Servidor 2
+    "https://servidor-transporte.fly.dev/api", // Servidor 3 (puedes añadir más si es necesario)
   ];
 
   // Verificamos si ya existe una URL guardada en sessionStorage
