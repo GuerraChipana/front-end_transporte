@@ -20,7 +20,7 @@ const Sidebar = ({ collapsed }) => {
                 ) : null}
                 <li><Link to="/personas"><i className="fas fa-users"></i> <span>{collapsed ? '' : 'Personas'}</span></Link></li>
                 <li><Link to="/conductores"><i className="fas fa-user-tie"></i> <span>{collapsed ? '' : 'Conductores'}</span></Link></li>
-                <li><Link to="/vehiculos"><i className="fas fa-car"></i> <span>{collapsed ? '' : 'Vehículos'}</span></Link></li>
+                <li><Link to="/vehiculo"><i className="fas fa-car"></i> <span>{collapsed ? '' : 'Vehículos'}</span></Link></li>
                 <li><Link to="/vehiculoseguros"><i className="fas fa-clipboard-list"></i> <span>{collapsed ? '' : 'Vehículos Seguros'}</span></Link></li>
                 <li><Link to="/empadronamiento"><i className="fas fa-clipboard"></i> <span>{collapsed ? '' : 'Empadronamiento'}</span></Link></li>
                 <li><Link to="/tuc"><i className="fas fa-address-card"></i> <span>{collapsed ? '' : 'TUC'}</span></Link></li>

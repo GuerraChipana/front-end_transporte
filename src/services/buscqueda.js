@@ -29,3 +29,4 @@ export const busquedaEmpadronamiento = async (empadro) => {
     }
   }
 };
+

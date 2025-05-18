@@ -79,7 +79,11 @@ const PersonasModal = ({ tipoModal, personaId, setModalIsOpen, onUpdate, persona
     const buscarDatosPersona = async () => {
         setLoading(true);
         try {
-            const persona = await buscarPersona(formData.dni, formData.password_consulta);
+            // Enviar solo dni y password_consulta
+            const { dni, password_consulta } = formData;
+            const persona = await buscarPersona({ dni, password_consulta });
+
+            // Después de recibir la respuesta, actualizamos los campos del formulario
             setFormData({
                 ...formData,
                 nombre: persona.nombre || "",
@@ -119,7 +123,7 @@ const PersonasModal = ({ tipoModal, personaId, setModalIsOpen, onUpdate, persona
                                     value={formData.dni}
                                     onChange={handleChange}
                                     placeholder="Ingrese el DNI"
-                                    required                         disabled={tipoModal === "editar"}
+                                    required disabled={tipoModal === "editar"}
 
                                 />
                             </div>
@@ -150,7 +154,7 @@ const PersonasModal = ({ tipoModal, personaId, setModalIsOpen, onUpdate, persona
                             value={formData.nombre}
                             onChange={handleChange}
                             placeholder="Ingrese el nombre"
-                            required                         disabled={tipoModal === "editar"}
+                            required disabled={tipoModal === "editar"}
 
                         />
                     </div>
@@ -164,7 +168,7 @@ const PersonasModal = ({ tipoModal, personaId, setModalIsOpen, onUpdate, persona
                             value={formData.apPaterno}
                             onChange={handleChange}
                             placeholder="Ingrese el apellido paterno"
-                            required                         disabled={tipoModal === "editar"}
+                            required disabled={tipoModal === "editar"}
 
                         />
                     </div>
@@ -178,7 +182,7 @@ const PersonasModal = ({ tipoModal, personaId, setModalIsOpen, onUpdate, persona
                             value={formData.apMaterno}
                             onChange={handleChange}
                             placeholder="Ingrese el apellido materno"
-                            required                         disabled={tipoModal === "editar"}
+                            required disabled={tipoModal === "editar"}
 
                         />
                     </div>
@@ -193,7 +197,7 @@ const PersonasModal = ({ tipoModal, personaId, setModalIsOpen, onUpdate, persona
                             onChange={handleChange}
                             placeholder="Ingrese la dirección"
                             required
-                            
+
                         />
                     </div>
 
@@ -206,7 +210,7 @@ const PersonasModal = ({ tipoModal, personaId, setModalIsOpen, onUpdate, persona
                             value={formData.ubigeo}
                             onChange={handleChange}
                             placeholder="Ingrese el ubigeo"
-                            required                         disabled={tipoModal === "editar"}
+                            required disabled={tipoModal === "editar"}
 
                         />
                     </div>

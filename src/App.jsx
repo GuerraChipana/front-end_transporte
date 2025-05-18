@@ -45,7 +45,7 @@ function App() {
           element={<PrivateRoute element={<DashboardLayout><Dashboard /></DashboardLayout>} />} 
         />
         <Route 
-          path="/vehiculos" 
+          path="/vehiculo" 
           element={<PrivateRoute element={<DashboardLayout><Vehiculos /></DashboardLayout>} />} 
         />
         <Route 

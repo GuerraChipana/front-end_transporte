@@ -128,3 +128,54 @@
   max-width: 600px;
   width: 100%;
 }
+/* Contenedor para la barra de búsqueda y el filtro por año en la misma línea */
+.tuc-search-container {
+  display: flex;
+  justify-content: flex-start;  /* Alinear a la izquierda */
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;  /* Permitir que se ajusten si la pantalla es pequeña */
+}
+
+/* Estilo para los inputs de búsqueda */
+.tuc-search-input {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;  /* Tamaño adecuado para que todos los elementos quepan en la línea */
+  margin: 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.tuc-search-input:focus {
+  border-color: #007bff;
+}
+
+/* Contenedor del filtro por Año */
+.tuc-filter-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Etiqueta del filtro */
+.tuc-filter-container label {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Select del filtro */
+.tuc-filter-container select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 150px;  /* Reducir el tamaño del select para ajustarlo */
+  transition: border-color 0.3s ease;
+}
+
+/* Estilo para el select cuando está enfocado */
+.tuc-filter-container select:focus {
+  border-color: #007bff;
+}

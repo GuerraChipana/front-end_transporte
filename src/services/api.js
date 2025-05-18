@@ -2,72 +2,56 @@ import axios from "axios";
 
 // Inicializamos Axios sin baseURL inicialmente
 const api = axios.create({
-  baseURL: "", // Inicialmente vacío, se configurará después
+  baseURL: "https://servidor-transporte.fly.dev/api", // Inicialmente vacío, se configurará después
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 // Función para verificar si alguno de los servidores está activo
-const checkServer = async () => {
+export const checkServer = async () => {
   const servers = [
-    "https://servidortransporte-copy-production.up.railway.app/api", // Servidor 1
-    "https://a75d919c-cc98-4775-9ffb-c39d4268a7ad-00-5zoqb9b2fyo3.spock.replit.dev/api", // Servidor 2
-    "https://servidor-transporte.fly.dev/api", // Servidor 3 (puedes añadir más si es necesario)
+    "https://servidor-transporte.fly.dev/api", // Servidor 1
+    "https://servidortransporte-copy-production.up.railway.app/api", // Servidor 2
+    "https://a75d919c-cc98-4775-9ffb-c39d4268a7ad-00-5zoqb9b2fyo3.spock.replit.dev/api", // Servidor 3
   ];
 
   // Verificamos si ya existe una URL guardada en sessionStorage
-  const storedBaseURL = sessionStorage.getItem("baseURL");
+  let storedBaseURL = sessionStorage.getItem("baseURL");
   if (storedBaseURL) {
-    // Si la baseURL ya está guardada en sessionStorage, la usamos
-    api.defaults.baseURL = storedBaseURL;
-    return; // Ya no necesitamos hacer más verificaciones
-  }
-
-  // Intentamos la primera URL
-  try {
-    const response = await axios.get(servers[0]);
-    if (response.status === 200) {
-      api.defaults.baseURL = servers[0]; // Establecemos la primera URL como baseURL
-      sessionStorage.setItem("baseURL", servers[0]); // Guardamos la baseURL en sessionStorage
-      return;
+    // Si la baseURL ya está guardada en sessionStorage, verificamos si es válida
+    try {
+      const response = await axios.get(storedBaseURL);
+      if (response.status === 200) {
+        api.defaults.baseURL = storedBaseURL;
+        return;
+      }
+    } catch (error) {
+      console.error(`Error con la baseURL guardada: ${error.message}`);
+      sessionStorage.removeItem("baseURL"); // Eliminamos la baseURL almacenada
     }
-  } catch (error) {
-    console.log("Servidor 1 no disponible, probando con el siguiente...");
   }
 
-  // Intentamos la segunda URL
-  try {
-    const response = await axios.get(servers[1]);
-    if (response.status === 200) {
-      api.defaults.baseURL = servers[1]; // Establecemos la segunda URL como baseURL
-      sessionStorage.setItem("baseURL", servers[1]); // Guardamos la baseURL en sessionStorage
-      return;
+  // Si no hay una URL válida guardada o la guardada no es válida, probamos los servidores
+  for (let i = 0; i < servers.length; i++) {
+    try {
+      const response = await axios.get(servers[i]);
+      if (response.status === 200) {
+        api.defaults.baseURL = servers[i]; // Establecemos esta URL como baseURL
+        sessionStorage.setItem("baseURL", servers[i]); // Guardamos la nueva baseURL
+        return;
+      }
+    } catch (error) {
+      console.log(`Servidor ${i + 1} no disponible: ${error.message}, probando con el siguiente...`);
     }
-  } catch (error) {
-    console.log("Servidor 2 no disponible, probando con el siguiente...");
   }
-
-  // Intentamos la tercera URL
-  try {
-    const response = await axios.get(servers[2]);
-    if (response.status === 200) {
-      api.defaults.baseURL = servers[2]; // Establecemos la tercera URL como baseURL
-      sessionStorage.setItem("baseURL", servers[2]); // Guardamos la baseURL en sessionStorage
-      return;
-    }
-  } catch (error) {
-    console.log("Servidor 3 no disponible.");
-  }
-
-  // Si ninguno de los servidores responde correctamente
   throw new Error("No se pudo conectar con los servidores.");
 };
 
 // Llamamos a la función para configurar el baseURL
 checkServer().catch((error) => {
   console.error(error.message);
-});
+});     
 
 // Interceptor para añadir el token en cada solicitud
 api.interceptors.request.use(
