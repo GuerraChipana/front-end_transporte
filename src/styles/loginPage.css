@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url("../assets/logo-blanco2.png"); /* Imagen de fondo */
+  background-image: url("../assets/fondo.png"); /* Imagen de fondo */
   background-size: cover; /* Se asegura que la imagen cubra toda el área del fondo */
   background-position: center center; /* Centra la imagen */
   background-repeat: no-repeat; /* No repite la imagen */
@@ -27,21 +27,22 @@ body {
 /* Contenedor del login */
 .login-container {
   margin-top: 8%;
-  background: rgba(150, 144, 144, 0.18); /* Fondo translúcido */
+  background: #0e0c0cce; /* Fondo translúcido */
   padding: 30px;
-  border: 0.5px solid rgba(150, 144, 144, 0.18);
+  border: 0.5px solid rgba(150, 144, 144, 0.553);
   backdrop-filter: blur(10px);
   width: 100%;
   max-width: 300px;
   text-align: center;
   box-sizing: border-box;
   border-radius: 7%;
+  
 }
 
 /* Estilo para el título */
 .login-container h2 {
   margin-bottom: 20px;
-  color: #2a1790;
+  color: #e9e8ea;
   font-size: 28px;
   font-weight: bold;
   text-align: center;
@@ -49,13 +50,13 @@ body {
   position: relative; /* Necesario para posicionar el efecto de texto */
 
   /* Efecto de texto iluminado o neón */
-  color: #1b09de; /* Color del texto (verde fosforescente suave) */
-  text-shadow: 0 0 10px rgba(9, 146, 112, 0.8), 0 0 20px rgba(18, 2, 189, 0.8),
-    0 0 30px rgba(0, 245, 183, 0.8); /* Efecto de resplandor */
+  color: #e2e0f8; /* Color del texto (verde fosforescente suave) */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(139, 137, 161, 0.353),
+    0 0 30px rgba(133, 133, 133, 0.8); /* Efecto de resplandor */
 
   /* Fondo con borde iluminado */
-  background: #2a1790;
-  -webkit-background-clip: text; 
+  background: #c0beca;
+  -webkit-background-clip: text;
   color: transparent;
   padding: 5px;
 }

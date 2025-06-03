@@ -89,17 +89,26 @@ const VehiculosTable = ({ vehiculos, onEdit, onChangeState }) => {
                 </tbody>
             </table>
 
-            {/* Paginación */}
             <div className="pagination">
-                {pageNumbers.map(number => (
-                    <button
-                        key={number}
-                        onClick={() => paginate(number)}
-                        className={number === currentPage ? 'active' : ''}
-                    >
-                        {number}
-                    </button>
-                ))}
+                <button
+                    onClick={() => paginate(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="pagination-button"
+                >
+                    Anterior
+                </button>
+
+                <span className="page-indicator">
+                    Página {currentPage} de {Math.ceil(vehiculos.length / recordsPerPage)}
+                </span>
+
+                <button
+                    onClick={() => paginate(currentPage + 1)}
+                    disabled={currentPage === Math.ceil(vehiculos.length / recordsPerPage)}
+                    className="pagination-button"
+                >
+                    Siguiente
+                </button>
             </div>
         </div>
     );

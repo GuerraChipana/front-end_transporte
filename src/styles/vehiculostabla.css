@@ -109,46 +109,51 @@
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 20px;
+  gap: 15px;
 }
 
-.pagination button {
+.pagination-button {
   padding: 8px 16px;
-  margin: 0 5px;
   border: 1px solid #ddd;
   background-color: #ffffff;
   cursor: pointer;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  min-width: 80px;
 }
 
-.pagination button:hover {
+.pagination-button:hover:not(:disabled) {
   background-color: #f2f2f2;
 }
 
-.pagination .active {
-  background-color: #007bff;
-  color: white;
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-indicator {
+  font-size: 14px;
+  color: #555;
+  padding: 0 10px;
 }
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
-  .vehiculos-table th,
-  .vehiculos-table td {
-    font-size: 12px; /* Reducir aún más en pantallas pequeñas */
-    padding: 8px 12px;
+  .pagination {
+    gap: 10px;
   }
 
-  .pagination button {
-    font-size: 12px;
-    padding: 8px 15px;
-  }
-
-  .vehiculos-table .button-editar,
-  .vehiculos-table .button-cambiar-estado {
-    font-size: 12px;
+  .pagination-button {
     padding: 6px 12px;
+    font-size: 12px;
+    min-width: 70px;
+  }
+
+  .page-indicator {
+    font-size: 12px;
   }
 }
